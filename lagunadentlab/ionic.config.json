@@ -1,0 +1,7 @@
+{
+  "name": "lagunadentlab",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
