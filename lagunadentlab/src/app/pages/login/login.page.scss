@@ -6,29 +6,29 @@ ion-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color:#0a1931;
+    color:var(--primary-500);
   }
 
   h1 {
     font-weight: bold;
     font-size: 26px;
-    color:#17396f;
+    color:var(--primary-400);
     margin-bottom: 15%;
   }
 
   h6{
 
-    color:#17396f;
+    color:var(--primary-400);
   }
 
   h5{
-      color: #3b7bae;
+      color: var(--secondary-800);
     font-size: 14.5px;
     cursor: pointer;
   }
   
   h4{
-    color:#7e7e7e;
+    color:var(--neutral-800);
   }
 
   .form-container {
@@ -59,12 +59,12 @@ ion-content {
     box-shadow: none;
     margin-top: 20px;
     width: 100%;
-    --secondary-800: #3b7bae;
+    color: var(--secondary-800);
   }
 }
 
 ion-input.custom {
-  --background: #373737;
+  background: #373737;
   --color: #fff;
   --placeholder-color: #ddd;
   --placeholder-opacity: 0.8;
@@ -82,22 +82,22 @@ ion-input.custom {
 }
 .label-row h6 {
   font-weight: 600;
-  --secondary-700: #050c19;
-}
+  color: var (--primary-700);
+} 
 
 .forgot-link {
-  color: #2D5D82;
+  color: var(--secondary-900);
   font-size: 16px;
   cursor: pointer;
 }
 
 .forgot-link:hover {
-  color: #2d5d82;
+  color: var(--secondary-900);
   text-decoration: underline;
 }
 
 .input-field {
-  border: 2px solid #2D5D82;
+  border: 2px solid var(--secondary-900);
   border-radius: 10px;
   padding: 10px;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -106,12 +106,12 @@ ion-input.custom {
 
 .input-field:hover,
 .input-field:focus-within {
-  border-color: #2d5d82;
+  border-color: var(--secondary-900);
   box-shadow: 0 0 5px rgba(45, 93, 130, 0.4);
 }
 
 ion-input {
-  --color: #050c19;
+  color: var(--primary-700);
   --placeholder-color: #d8cfcf;
 }
 
@@ -121,19 +121,18 @@ ion-button {
   font-weight: bold;
   border-radius: 10px;
   height: 45px;
-  --background: #0a1931;
-  --color: white;
+  --background: var(--primary-700);
+  color: var(--neutral-100);
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
 ion-button:hover {
-  --background: #2D5D82;
+  --background: var(--secondary-900);
   box-shadow: 0 4px 10px rgba(45, 93, 130, 0.4);
   transform: scale(1.02);
 }
 
 ion-icon {
   font-size: 70px;
-  color:#17396f;
+  color:var(--primary-400);
 }
-

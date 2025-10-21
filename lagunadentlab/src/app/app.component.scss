@@ -19,7 +19,7 @@
 .nav-icon-button ion-icon {
   font-size: 55px;
   background-color: transparent !important;
-  color: #0a1931;
+  color: var(--primary-700);
   margin: 0;
 }
 
@@ -29,8 +29,8 @@
   font-weight: bold;
   border-radius: 10px;
   height: 40px;
-  --background: #0a1931;
-  --color: white;
+  --background: var(--primary-500);
+  color: var(--neutral-100);
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
@@ -41,7 +41,7 @@ ion-header {
 }
 
 ion-toolbar {
-  --background: white; 
+  background: var(--neutral-100); 
   --padding-start: 20px;
   --padding-end: 20px;
 }
@@ -54,8 +54,8 @@ ion-toolbar {
 }
 
 .logo-icon-placeholder {
-  background: #0a1931; 
-  color: white;
+  background: var(--primary-500); 
+  color: var(--neutral-100);
   width: 32px;
   height: 32px;
   border-radius: 8px; 
@@ -67,7 +67,7 @@ ion-toolbar {
 }
 
 ion-title {
-  color: #050c19; 
+  color: var(--primary-700); 
   font-size: 18px;
   font-weight: bold;
   padding-inline-start: 0 !important; 
@@ -82,30 +82,30 @@ ion-title {
 
 /* Estilos de los botones de acción en el DESKTOP */
 .text-button {
-  --color: #555; 
+  color: var(--neutral-900); 
   font-weight: 500;
   text-transform: none; 
   margin-right: 15px; 
   
 
-  --background: transparent;
-  --box-shadow: none;
+  background: transparent;
+  box-shadow: none;
   height: auto; 
   border-radius: 0;
   margin-top: 0;
   width: auto;
 }
 .text-button:hover {
-    --background: transparent;
-    color: #0a1931; 
+    background: transparent;
+    color: var(--primary-500); 
     box-shadow: none;
     transform: none;
 }
 
 
 .register-button {
-  --background: #0a1931;
-  --color: white;
+  background: var(--primary-500);
+  color: var(--neutral-100);
   height: 35px;
   font-weight: 500;
   text-transform: none;
@@ -120,7 +120,7 @@ ion-title {
 }
 
 .register-button:hover {
-    --background: #0a1931 !important; 
+    background: var(--primary-500) !important; 
     box-shadow: none !important;
     transform: none !important;
 }
@@ -145,15 +145,15 @@ ion-title {
 
 .desktop-menu ion-item {
   --min-height: 40px; 
-  --background: transparent;
-  color: #555; 
+  background: transparent;
+  color: var(--neutral-900); 
   font-weight: 500;
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .desktop-menu ion-item:hover {
-  color: #0a1931; 
+  color: var(--primary-500); 
 }
 
 .menu-buttons {
@@ -163,7 +163,7 @@ ion-title {
 
 ion-menu ion-item {
     --background-activated: #f0f0f0;
-    color: #0a1931;
+    color: var(--primary-500);
     font-weight: 500;
 }
 
@@ -180,7 +180,7 @@ ion-header {
 }
 
 ion-toolbar {
-  --background: white; 
+  background: var(--neutral-100); 
   --padding-start: 20px;
   --padding-end: 20px;
 }
@@ -193,8 +193,8 @@ ion-toolbar {
 }
 
 .logo-icon-placeholder {
-  background: #0a1931; 
-  color: white;
+  background: var(--primary-500); 
+  color:var (--neutral-100);
   width: 32px;
   height: 32px;
   border-radius: 8px; 
@@ -206,7 +206,7 @@ ion-toolbar {
 }
 
 ion-title {
-  color: #050c19; 
+  color: var(--primary-700); 
   font-size: 18px;
   font-weight: bold;
   padding-inline-start: 0 !important; 
@@ -225,7 +225,7 @@ ion-title {
   font-weight: 500;
   text-transform: none; 
   margin-right: 15px; 
-  --background: transparent;
+  background: transparent;
   --box-shadow: none;
   height: auto; 
   border-radius: 0;
@@ -233,16 +233,16 @@ ion-title {
   width: auto;
 }
 .text-button:hover {
-    --background: transparent;
-    color: #0a1931; 
+    background: transparent;
+    color: var(--primary-500); 
     box-shadow: none;
     transform: none;
 }
 
 
 .register-button {
-  --background: #0a1931;
-  --color: white;
+  --background: var(--primary-500);
+  color: var(--neutral-100);
   height: 35px;
   font-weight: 500;
   text-transform: none;
@@ -257,7 +257,7 @@ ion-title {
 }
 
 .register-button:hover {
-    --background: #0a1931 !important; 
+    --background: var(--primary-500) !important; 
     box-shadow: none !important;
     transform: none !important;
 }
@@ -281,14 +281,14 @@ ion-title {
 .desktop-menu ion-item {
   --min-height: 40px; 
   --background: transparent;
-  color: #555; 
+  color: var(--neutral-900); 
   font-weight: 500;
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .desktop-menu ion-item:hover {
-  color: #0a1931; 
+  color: var(--primary-500); 
 }
 
 /* Estilos del menú lateral */
@@ -298,7 +298,7 @@ ion-title {
 
 ion-menu ion-item {
     --background-activated: #f0f0f0;
-    color: #0a1931;
+    color: var(--primary-500);
     font-weight: 500;
 }
 
@@ -428,5 +428,4 @@ ion-menu ion-item {
     gap: 40px;
   }
 }
-
 
