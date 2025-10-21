@@ -1,0 +1,431 @@
+.auth-inline {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 30px;
+}
+
+.nav-icon-button {
+  all: unset; // elimina herencia de ion-button global
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+  background-color: transparent !important; // ✅ sin color de fondo
+  box-shadow: none !important; // ✅ sin borde ni sombra
+}
+
+.nav-icon-button ion-icon {
+  font-size: 55px;
+  background-color: transparent !important;
+  color: var(--primary-700);
+  margin: 0;
+}
+
+
+.small-btn {
+  width: 100%;
+  font-weight: bold;
+  border-radius: 10px;
+  height: 40px;
+  --background: var(--primary-500);
+  color: var(--neutral-100);
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+/* NAV */
+
+ion-header {
+  box-shadow: none !important; 
+}
+
+ion-toolbar {
+  background: var(--neutral-100); 
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
+/* Contenedor del Logo  */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.logo-icon-placeholder {
+  background: var(--primary-500); 
+  color: var(--neutral-100);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+ion-title {
+  color: var(--primary-700); 
+  font-size: 18px;
+  font-weight: bold;
+  padding-inline-start: 0 !important; 
+}
+
+/* Línea de separación bajo el header */
+.header-divider {
+    height: 1px;
+    background-color: #f0f0f0; 
+    width: 100%;
+}
+
+/* Estilos de los botones de acción en el DESKTOP */
+.text-button {
+  color: var(--neutral-900); 
+  font-weight: 500;
+  text-transform: none; 
+  margin-right: 15px; 
+  
+
+  background: transparent;
+  box-shadow: none;
+  height: auto; 
+  border-radius: 0;
+  margin-top: 0;
+  width: auto;
+}
+.text-button:hover {
+    background: transparent;
+    color: var(--primary-500); 
+    box-shadow: none;
+    transform: none;
+}
+
+
+.register-button {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  height: 35px;
+  font-weight: 500;
+  text-transform: none;
+  border-radius: 5px;
+  margin: 0; 
+  padding: 0 15px;
+  width: auto;
+  
+
+  box-shadow: none !important; 
+  transition: none !important;
+}
+
+.register-button:hover {
+    background: var(--primary-500) !important; 
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+
+.desktop-only {
+  display: none !important;
+}
+
+.mobile-only {
+  display: block !important;
+}
+
+
+.desktop-menu {
+  display: none; 
+  flex-grow: 1; 
+  justify-content: center; 
+  align-items: center;
+  gap: 30px; 
+}
+
+.desktop-menu ion-item {
+  --min-height: 40px; 
+  background: transparent;
+  color: var(--neutral-900); 
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.desktop-menu ion-item:hover {
+  color: var(--primary-500); 
+}
+
+.menu-buttons {
+    padding: 20px;
+}
+
+
+ion-menu ion-item {
+    --background-activated: #f0f0f0;
+    color: var(--primary-500);
+    font-weight: 500;
+}
+
+:root {
+  font-family: 'Poppins', sans-serif; 
+}
+
+ion-content {
+  --padding-bottom: 0px !important; 
+}
+
+ion-header {
+  box-shadow: none !important; 
+}
+
+ion-toolbar {
+  background: var(--neutral-100); 
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
+/* Contenedor del Logo (Laguna Dent Lab) */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.logo-icon-placeholder {
+  background: var(--primary-500); 
+  color:var (--neutral-100);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+ion-title {
+  color: var(--primary-700); 
+  font-size: 18px;
+  font-weight: bold;
+  padding-inline-start: 0 !important; 
+}
+
+/* Línea de separación bajo el header */
+.header-divider {
+    height: 1px;
+    background-color: #f0f0f0; 
+    width: 100%;
+}
+
+/* Estilos de los botones de acción en el DESKTOP */
+.text-button {
+  --color: #555; 
+  font-weight: 500;
+  text-transform: none; 
+  margin-right: 15px; 
+  background: transparent;
+  --box-shadow: none;
+  height: auto; 
+  border-radius: 0;
+  margin-top: 0;
+  width: auto;
+}
+.text-button:hover {
+    background: transparent;
+    color: var(--primary-500); 
+    box-shadow: none;
+    transform: none;
+}
+
+
+.register-button {
+  --background: var(--primary-500);
+  color: var(--neutral-100);
+  height: 35px;
+  font-weight: 500;
+  text-transform: none;
+  border-radius: 5px; 
+  margin: 0; 
+  padding: 0 15px;
+  width: auto;
+  
+  /* Quitamos el hover del botón de registro */
+  box-shadow: none !important; 
+  transition: none !important;
+}
+
+.register-button:hover {
+    --background: var(--primary-500) !important; 
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.desktop-only {
+  display: none !important;
+}
+
+.mobile-only {
+  display: block !important;
+}
+
+.desktop-menu {
+  display: none; 
+  flex-grow: 1; 
+  justify-content: center; 
+  align-items: center;
+  gap: 30px; 
+}
+
+.desktop-menu ion-item {
+  --min-height: 40px; 
+  --background: transparent;
+  color: var(--neutral-900); 
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.desktop-menu ion-item:hover {
+  color: var(--primary-500); 
+}
+
+/* Estilos del menú lateral */
+.menu-buttons {
+    padding: 20px;
+}
+
+ion-menu ion-item {
+    --background-activated: #f0f0f0;
+    color: var(--primary-500);
+    font-weight: 500;
+}
+
+
+/* 📱 Móvil: hasta 480px */
+@media (max-width: 480px) {
+  .auth-inline {
+    gap: 10px;
+    margin-left: 10px;
+  }
+
+  .nav-icon-button {
+    height: 30px;
+    width: 30px;
+  }
+
+  .nav-icon-button ion-icon {
+    font-size: 20px;
+  }
+
+  .text-button,
+  .register-button {
+    font-size: 13px;
+    padding: 0 8px;
+  }
+
+  .logo-icon-placeholder {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+  ion-title {
+    font-size: 15px;
+  }
+
+  .desktop-menu {
+    gap: 15px;
+  }
+}
+
+/* 📲 Tablet: 481px – 767px */
+@media (min-width: 481px) and (max-width: 767px) {
+  .auth-inline {
+    gap: 12px;
+    margin-left: 20px;
+  }
+
+  .nav-icon-button {
+    height: 32px;
+    width: 32px;
+  }
+
+  .nav-icon-button ion-icon {
+    font-size: 21px;
+  }
+
+  .text-button,
+  .register-button {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .logo-icon-placeholder {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  ion-title {
+    font-size: 16px;
+  }
+
+  .desktop-menu {
+    gap: 20px;
+  }
+}
+
+/* 💻 Escritorio: desde 768px */
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none !important;
+  }
+
+  .desktop-only {
+    display: flex !important;
+    align-items: center;
+  }
+
+  .desktop-menu {
+    display: flex;
+    gap: 30px;
+  }
+
+  ion-toolbar {
+    --padding-start: 40px;
+    --padding-end: 40px;
+  }
+}
+
+/* 🖥️ Escritorio amplio: desde 1200px */
+@media (min-width: 1200px) {
+  .auth-inline {
+    gap: 20px;
+    margin-left: 40px;
+  }
+
+  .nav-icon-button {
+    height: 40px;
+    width: 40px;
+  }
+
+  .nav-icon-button ion-icon {
+    font-size: 22px;
+  }
+
+  .text-button,
+  .register-button {
+    font-size: 16px;
+  }
+
+  ion-title {
+    font-size: 20px;
+  }
+
+  .desktop-menu {
+    gap: 40px;
+  }
+}
+

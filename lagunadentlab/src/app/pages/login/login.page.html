@@ -1,0 +1,63 @@
+<ion-content>
+  <!-- 🔹 Contenedor del formulario -->
+  <div class="form-container">
+
+      <div id="header">
+    <ion-icon name="log-in"></ion-icon>
+    <h2>Iniciar Sesión</h2>
+    <h4>Ingresa tus datos</h4>
+  </div>
+
+
+    <form id="form">
+      <ion-list>
+        <div class="label-row">
+          <h6>Correo electrónico</h6>
+        </div>
+
+        <ion-item class="input-email" lines="none">
+          <ion-input
+            class="input-field email-field"
+            type="email"
+            placeholder="correo@gmail.com"
+          ></ion-input>
+          
+        </ion-item>
+
+        <div class="label-row">
+          <h6>Contraseña</h6>
+          <h5 class="forgot-link" [routerLink]="['/forgot']">
+            ¿Olvidaste tu contraseña?
+          </h5>
+        </div>
+
+        <ion-item class="input-password" lines="none">
+          <ion-input
+            class="input-field password-field"
+            type="password"
+            placeholder="******"
+          >
+            <ion-input-password-toggle
+              slot="end"
+              class="pwd-toggle toggle-blue"
+            ></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+      <br />
+
+      <ion-button expand="block" routerLink="/nav">
+        Iniciar Sesión
+      </ion-button>
+      <br>
+
+              <div class="label-row">
+          <h6>¿No tienes cuenta?</h6>
+          <h5 class="forgot-link" [routerLink]="['/register']">
+             Regístrate aquí
+          </h5>
+        </div>
+
+    </form>
+  </div>
+</ion-content>
