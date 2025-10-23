@@ -7,7 +7,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar,IonMenu, IonButton,IonInput
  import { RouterLink } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { addIcons } from 'ionicons';
-import {logIn } from 'ionicons/icons';
+import {logIn, logInOutline } from 'ionicons/icons';
 
 
 
@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
 
     addIcons({
       logIn,
+      logInOutline
     });
 
   }
