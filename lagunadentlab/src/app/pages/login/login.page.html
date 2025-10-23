@@ -1,63 +1,42 @@
-<ion-content>
-  <!-- 🔹 Contenedor del formulario -->
-  <div class="form-container">
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div class="back-link">
+      <a routerLink="/" class="back-text">← Volver al inicio</a>
+    </div>
+  </ion-toolbar>
+</ion-header>
 
-      <div id="header">
-    <ion-icon name="log-in"></ion-icon>
-    <h2>Iniciar Sesión</h2>
-    <h4>Ingresa tus datos</h4>
-  </div>
+<ion-content class="login-bg" fullscreen>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="icon-box" aria-hidden="true">
+        <ion-icon name="log-in-outline" class="icon-white"></ion-icon>
+      </div>
 
+      <h2 class="title">Iniciar sesión</h2>
+      <p class="subtitle">Ingresa tus credenciales para continuar</p>
 
-    <form id="form">
-      <ion-list>
-        <div class="label-row">
-          <h6>Correo electrónico</h6>
+      <form class="form" novalidate>
+        <div class="field">
+          <label class="field-label">Correo electrónico</label>
+          <ion-input type="email" placeholder="correo@ejemplo.com" class="field-input"></ion-input>
         </div>
 
-        <ion-item class="input-email" lines="none">
-          <ion-input
-            class="input-field email-field"
-            type="email"
-            placeholder="correo@gmail.com"
-          ></ion-input>
-          
-        </ion-item>
-
-        <div class="label-row">
-          <h6>Contraseña</h6>
-          <h5 class="forgot-link" [routerLink]="['/forgot']">
-            ¿Olvidaste tu contraseña?
-          </h5>
+        <div class="field">
+          <div class="field-row">
+            <label class="field-label">Contraseña</label>
+            <a routerLink="/forgot" class="forgot-link">¿Olvidaste tu contraseña?</a>
+          </div>
+          <ion-input type="password" placeholder=" " class="field-input"></ion-input>
         </div>
 
-        <ion-item class="input-password" lines="none">
-          <ion-input
-            class="input-field password-field"
-            type="password"
-            placeholder="******"
-          >
-            <ion-input-password-toggle
-              slot="end"
-              class="pwd-toggle toggle-blue"
-            ></ion-input-password-toggle>
-          </ion-input>
-        </ion-item>
-      </ion-list>
-      <br />
+        <ion-button expand="block" class="submit-btn" routerLink="/nav">Iniciar sesión</ion-button>
 
-      <ion-button expand="block" routerLink="/nav">
-        Iniciar Sesión
-      </ion-button>
-      <br>
-
-              <div class="label-row">
-          <h6>¿No tienes cuenta?</h6>
-          <h5 class="forgot-link" [routerLink]="['/register']">
-             Regístrate aquí
-          </h5>
-        </div>
-
-    </form>
+        <p class="register-line">
+          ¿No tienes cuenta?
+          <a routerLink="/register" class="register-link">Regístrate</a>
+        </p>
+      </form>
+    </div>
   </div>
 </ion-content>
