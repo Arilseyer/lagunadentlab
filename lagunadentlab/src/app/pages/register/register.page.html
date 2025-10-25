@@ -1,0 +1,74 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <div class="registro-container">
+
+    <!-- Volver al inicio -->
+    <!-- <a routerLink="/" class="back-link">
+      ← Volver al inicio
+    </a> -->
+
+    <!-- Card Registro -->
+    <div class="registro-card">
+      
+      <!-- Ícono superior -->
+      <div class="icon-wrapper">
+        <ion-icon name="person-add-outline"></ion-icon>
+      </div>
+
+      <!-- Títulos -->
+      <h1 class="registro-title">Crear cuenta</h1>
+      <p class="registro-subtitle">Completa tus datos para registrarte</p>
+
+      <!-- Formulario -->
+      <form class="registro-form">
+        
+        <div class="form-field">
+          <label class="field-label">Nombre completo</label>
+          <input type="text" class="field-input" placeholder="Juan Pérez" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Correo electrónico</label>
+          <input type="email" class="field-input" placeholder="correo@ejemplo.com" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Teléfono</label>
+          <input type="tel" class="field-input" placeholder="(871) 123-4567" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Contraseña</label>
+          <input type="password" class="field-input" placeholder="••••••••" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Confirmar contraseña</label>
+          <input type="password" class="field-input" placeholder="••••••••" />
+        </div>
+
+        <button type="submit" class="btn-crear">
+          Crear cuenta
+        </button>
+
+      </form>
+
+      <!-- Link a login -->
+      <div class="login-link">
+        <span>¿Ya tienes cuenta?</span>
+        <a routerLink="/login" class="login-btn">Inicia sesión</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>
+
+

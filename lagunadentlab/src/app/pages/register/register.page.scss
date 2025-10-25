@@ -1,0 +1,174 @@
+ion-content {
+  --background: var(--neutral-100:);
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* Contenedor principal */
+.registro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1.5rem 1rem;
+}
+
+/* Botón volver al inicio */
+.back-link {
+  align-self: flex-start;
+  margin-bottom: 1.5rem;
+  color: var(--neutral-700);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Card Registro */
+.registro-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--neutral-100);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 40px rgba(10, 35, 66, 0.08);
+  padding: 2rem 2rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 500px) {
+    padding: 1.5rem;
+  }
+}
+
+/* Ícono superior */
+.icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background: var(--primary-500);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  ion-icon {
+    color: var(--neutral-100);
+    font-size: 2rem;
+  }
+}
+
+/* Títulos */
+.registro-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+  }
+}
+
+.registro-subtitle {
+  font-size: 0.875rem;
+  color: var(--neutral-700);
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+/* Formulario */
+.registro-form {
+  width: 100%;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-500);
+  margin-bottom: 0.4rem;
+}
+
+.field-input {
+  width: 100%;
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-400);
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  color: var(--dark-500);
+  outline: none;
+  transition: all 0.2s ease;
+  
+  &::placeholder {
+    color: var(--neutral-600);
+  }
+
+  &:focus {
+    border-color: var(--primary-300);
+    box-shadow: 0 0 0 3px rgba(35, 89, 174, 0.1);
+  }
+
+  &:hover {
+    border-color: var(--neutral-500);
+  }
+}
+
+/* Botón Crear cuenta */
+.btn-crear {
+  width: 100%;
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: var(--primary-400);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Link a login */
+.login-link {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--neutral-700);
+  width: 100%;
+
+  span {
+    margin-right: 0.25rem;
+  }
+
+  .login-btn {
+    color: var(--primary-500);
+    font-weight: 600;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
