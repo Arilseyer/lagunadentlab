@@ -1,6 +1,6 @@
 ion-content {
-  --background: var(--neutral-100:);
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+  --background: var(--neutral-100);
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Contenedor principal */
@@ -9,22 +9,33 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 1.5rem 1rem;
+  min-height: calc(100vh - 80px);
+  padding: 0 1rem;
+  margin-top: 0;
+  position: relative;
 }
 
-/* Botón volver al inicio */
+/* Botón volver al inicio - alineado con el borde izquierdo del card */
 .back-link {
-  align-self: flex-start;
-  margin-bottom: 1.5rem;
+  position: absolute !important;
+  top: 1rem !important;
+  left: 50% !important;
+  transform: translateX(-210px) !important; /* Ancho máximo del card (420px) / 2 = 210px hacia la izquierda */
+  margin: 0 !important;
   color: var(--neutral-700);
   font-size: 0.875rem;
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
+  z-index: 10;
   
   &:hover {
     text-decoration: underline;
+  }
+  
+  @media (max-width: 500px) {
+    left: 1rem !important;
+    transform: none !important;
   }
 }
 
@@ -36,12 +47,16 @@ ion-content {
   border-radius: 1.25rem;
   box-shadow: 0 10px 40px rgba(10, 35, 66, 0.08);
   padding: 2rem 2rem 1.5rem 2rem;
+  margin-top: 3rem; /* Margen superior para evitar solapamiento con el botón */
+  margin-bottom: 2rem !important; /* Margen inferior agregado con mayor prioridad */
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (max-width: 500px) {
     padding: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem !important; /* Margen inferior para móvil con mayor prioridad */
   }
 }
 
@@ -50,7 +65,7 @@ ion-content {
   width: 64px;
   height: 64px;
   background: var(--primary-500);
-  border-radius: 50%;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,19 +79,19 @@ ion-content {
 
 /* Títulos */
 .registro-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 2rem; // Estandarizado H1
+  font-weight: 800; // Estandarizado
   color: var(--primary-500);
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 1rem 0; // Estandarizado
   text-align: center;
 
-  @media (max-width: 500px) {
-    font-size: 1.5rem;
+  @media (min-width: 768px) {
+    font-size: 2.25rem; // Estandarizado H1 desktop
   }
 }
 
 .registro-subtitle {
-  font-size: 0.875rem;
+  font-size: 1.125rem; // Estandarizado subtítulo principal
   color: var(--neutral-700);
   margin: 0 0 1.5rem 0;
   text-align: center;
@@ -122,6 +137,39 @@ ion-content {
 
   &:hover {
     border-color: var(--neutral-500);
+  }
+}
+
+/* Contenedor para input de contraseña con botón de mostrar/ocultar */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  padding-right: 3rem !important;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--neutral-700);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--primary-500);
+  }
+
+  ion-icon {
+    font-size: 1.25rem;
   }
 }
 

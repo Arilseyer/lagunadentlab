@@ -1,21 +1,17 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header> -->
+<app-navbar></app-navbar>
 
 <ion-content>
 
   <div class="registro-container">
 
-    <!-- Volver al inicio -->
-    <!-- <a routerLink="/" class="back-link">
+    <!-- Volver al inicio - fuera del card -->
+    <a routerLink="/" class="back-link">
       ← Volver al inicio
-    </a> -->
+    </a>
 
     <!-- Card Registro -->
     <div class="registro-card">
-      
+
       <!-- Ícono superior -->
       <div class="icon-wrapper">
         <ion-icon name="person-add-outline"></ion-icon>
@@ -45,12 +41,38 @@
 
         <div class="form-field">
           <label class="field-label">Contraseña</label>
-          <input type="password" class="field-input" placeholder="••••••••" />
+          <div class="password-input-container">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              class="field-input password-input" 
+              placeholder="••••••••" 
+            />
+            <button 
+              type="button" 
+              class="password-toggle-btn" 
+              (click)="togglePasswordVisibility()"
+            >
+              <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+            </button>
+          </div>
         </div>
 
         <div class="form-field">
           <label class="field-label">Confirmar contraseña</label>
-          <input type="password" class="field-input" placeholder="••••••••" />
+          <div class="password-input-container">
+            <input 
+              [type]="showConfirmPassword ? 'text' : 'password'" 
+              class="field-input password-input" 
+              placeholder="••••••••" 
+            />
+            <button 
+              type="button" 
+              class="password-toggle-btn" 
+              (click)="toggleConfirmPasswordVisibility()"
+            >
+              <ion-icon [name]="showConfirmPassword ? 'eye-off' : 'eye'"></ion-icon>
+            </button>
+          </div>
         </div>
 
         <button type="submit" class="btn-crear">
@@ -70,5 +92,4 @@
   </div>
 
 </ion-content>
-
 

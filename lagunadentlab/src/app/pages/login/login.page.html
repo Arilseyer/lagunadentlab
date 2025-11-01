@@ -1,42 +1,69 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <div class="back-link">
-      <a routerLink="/" class="back-text">← Volver al inicio</a>
-    </div>
-  </ion-toolbar>
-</ion-header>
+<app-navbar></app-navbar>
 
-<ion-content class="login-bg" fullscreen>
-  <div class="login-wrapper">
+<ion-content>
+
+  <div class="login-container">
+
+    <!-- Volver al inicio - fuera del card -->
+    <a routerLink="/" class="back-link">
+      ← Volver al inicio
+    </a>
+
+    <!-- Card Login -->
     <div class="login-card">
-      <div class="icon-box" aria-hidden="true">
-        <ion-icon name="log-in-outline" class="icon-white"></ion-icon>
+
+      <!-- Ícono superior -->
+      <div class="icon-wrapper">
+        <ion-icon name="log-in-outline"></ion-icon>
       </div>
 
-      <h2 class="title">Iniciar sesión</h2>
-      <p class="subtitle">Ingresa tus credenciales para continuar</p>
+      <!-- Títulos -->
+      <h1 class="login-title">Iniciar sesión</h1>
+      <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
 
-      <form class="form" novalidate>
-        <div class="field">
+      <!-- Formulario -->
+      <form class="login-form">
+        
+        <div class="form-field">
           <label class="field-label">Correo electrónico</label>
-          <ion-input type="email" placeholder="correo@ejemplo.com" class="field-input"></ion-input>
+          <input type="email" class="field-input" placeholder="correo@ejemplo.com" />
         </div>
 
-        <div  class="field">
+        <div class="form-field">
           <div class="field-row">
             <label class="field-label">Contraseña</label>
             <a routerLink="/forgotpassword" class="forgot-link">¿Olvidaste tu contraseña?</a>
           </div>
-          <ion-input type="password" placeholder=" " class="field-input"></ion-input>
+          <div class="password-input-container">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              class="field-input password-input" 
+              placeholder="••••••••" 
+            />
+            <button 
+              type="button" 
+              class="password-toggle-btn" 
+              (click)="togglePasswordVisibility()"
+            >
+              <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+            </button>
+          </div>
         </div>
 
-        <ion-button expand="block" class="submit-btn" routerLink="/nav">Iniciar sesión</ion-button>
+        <button type="submit" class="btn-login" routerLink="/home">
+          Iniciar sesión
+        </button>
 
-        <p class="register-line">
-          ¿No tienes cuenta?
-          <a routerLink="/register" class="register-link">Regístrate</a>
-        </p>
       </form>
+
+      <!-- Link a registro -->
+      <div class="register-link-section">
+        <span>¿No tienes cuenta?</span>
+        <a routerLink="/register" class="register-btn">Regístrate</a>
+      </div>
+
     </div>
+
   </div>
+
 </ion-content>

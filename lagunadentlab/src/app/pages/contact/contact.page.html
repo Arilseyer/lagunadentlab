@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+
+  <!-- 🔷 SECCIÓN 1: ENCABEZADO -->
+  <section class="hero">
+    <div class="hero-container">
+      <h1 class="hero-title">Contacto</h1>
+      <p class="hero-subtitle">Estamos aquí para ayudarte. Contáctanos por cualquier medio</p>
+    </div>
+  </section>
+
+  <!-- 🔷 SECCIÓN 2: FORMULARIO Y DATOS DE CONTACTO -->
+  <section class="contact-section">
+    <div class="contact-row contact-align">
+      <!-- Columna izquierda: Formulario -->
+      <div class="col-form">
+        <ion-card class="form-card">
+          <ion-card-header class="form-header">
+            <ion-card-title class="form-title">
+              <ion-icon name="send-outline" class="title-icon"></ion-icon>
+              Envíanos un mensaje
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="form-body">
+            <form class="form">
+              <div class="form-fields">
+                <div class="field">
+                  <label class="field-label">Nombre completo</label>
+                  <input type="text" class="field-input" placeholder="Dr. Juan Pérez">
+                </div>
+                <div class="field">
+                  <label class="field-label">Correo electrónico</label>
+                  <input type="email" class="field-input" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="field">
+                  <label class="field-label">Teléfono / WhatsApp</label>
+                  <input type="tel" class="field-input" placeholder="+52 123 456 7890">
+                </div>
+                <div class="field">
+                  <label class="field-label">Mensaje</label>
+                  <textarea class="field-input field-textarea" placeholder="Cuéntanos cómo podemos ayudarte..." rows="5"></textarea>
+                </div>
+              </div>
+              <ion-button expand="block" class="btn-primary">
+                Enviar mensaje
+                <ion-icon slot="end" name="send-outline"></ion-icon>
+              </ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <!-- Columna derecha: Tarjetas -->
+      <div class="col-info">
+        <div class="info-stack">
+          <!-- Ubicación -->
+          <ion-card class="info-card">
+            <ion-card-content class="info-content">
+              <div class="icon-box">
+                <ion-icon name="location-outline" class="icon-primary"></ion-icon>
+              </div>
+              <div>
+                <h3 class="info-title">Ubicación</h3>
+                <p class="info-text">Blvrd. Revolución 587 ote<br />Col. Centro</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          <!-- Horario -->
+          <ion-card class="info-card">
+            <ion-card-content class="info-content">
+              <div class="icon-box">
+                <ion-icon name="time-outline" class="icon-primary"></ion-icon>
+              </div>
+              <div>
+                <h3 class="info-title">Horario</h3>
+                <ul class="schedule">
+                  <li><strong>Lunes - Viernes:</strong> 9:00 AM - 6:00 PM</li>
+                  <li><strong>Sábado:</strong> 9:00 AM - 2:00 PM</li>
+                  <li><strong>Domingo:</strong> Cerrado</li>
+                </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          <!-- Contáctanos -->
+          <ion-card class="info-card contact-card">
+            <ion-card-content class="info-content">
+              <div class="icon-box">
+                <ion-icon name="call-outline" class="icon-primary"></ion-icon>
+              </div>
+              <div>
+                <h3 class="info-title">Contáctanos</h3>
+                <ul class="contact-list">
+                  <li><ion-icon name="logo-whatsapp"></ion-icon> 8701498192</li>
+                  <li><ion-icon name="logo-facebook"></ion-icon> Laguna Dent Lab</li>
+                  <li><ion-icon name="mail-outline"></ion-icon> lagunadentmaster@gmail.com</li>
+                </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          <!-- CTA Urgencias -->
+          <ion-card class="cta-card">
+            <ion-card-content class="cta-content">
+              <h3>¿Tienes una urgencia?</h3>
+              <p>Contáctanos directamente por WhatsApp para atención inmediata</p>
+              <ion-button class="cta-btn" fill="solid" (click)="abrirWhatsApp()">
+                Abrir WhatsApp
+                <ion-icon slot="end" name="logo-whatsapp"></ion-icon>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+
+</ion-content>
+

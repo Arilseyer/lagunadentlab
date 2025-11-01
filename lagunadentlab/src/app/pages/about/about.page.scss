@@ -1,0 +1,430 @@
+// Estilos globales consistentes
+ion-content {
+  --background: var(--neutral-100);
+  font-family: 'Poppins', sans-serif;
+}
+
+// Tipografía global para la página
+:host {
+  font-family: 'Poppins', sans-serif;
+}
+
+// Aplicar Poppins a todos los elementos
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+// Bordes redondeados para todas las imágenes de esta página
+img,
+ion-img,
+ion-img::part(image) {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+// 🔷 Sección 1: Encabezado
+.about-hero {
+  background: var(--neutral-100); // full-bleed
+  text-align: center;
+  padding: 0.2rem 1rem;
+  margin: 0; // sin bordes blancos
+  width: 100%;
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-title {
+    font-size: 2rem; // Estandarizado H1
+    font-weight: 800;
+    color: var(--primary-500); // Consistencia con otras páginas
+    margin: 0 0 1rem 0; // Estandarizado
+    
+    @media (min-width: 768px) {
+      font-size: 2.25rem; // Estandarizado H1 desktop
+    }
+  }
+
+  .about-subtitle {
+    color: var(--neutral-700);
+    font-size: 1.125rem; // Estandarizado subtítulo principal
+    margin: 0;
+  }
+
+  .hero-checks {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem 1rem;
+    justify-content: center;
+
+    li { color: var(--dark-500); display:flex; align-items:center; gap:.4rem; font-size:.95rem; }
+    .check { color: var(--primary-500); font-size: 1.1rem; }
+  }
+}
+
+.tabs-buttons {
+  margin: 3.5rem auto 0; // Aumentado espacio superior para consistencia con otras páginas
+  max-width: 720px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0 1rem;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    margin: 2.5rem auto 0; // Espacio reducido en móviles
+  }
+}
+
+.service-button {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+
+  &:hover {
+    background: var(--primary-400);
+  }
+
+  &.active {
+    background: var(--neutral-100); // Fondo blanco cuando está activo
+    color: var(--primary-500); // Texto azul cuando está activo
+    border: 1px solid var(--primary-500); // Borde más delgado
+    box-shadow: 0 4px 12px rgba(10, 35, 66, 0.2);
+    
+    &:hover {
+      background: var(--neutral-200); // Hover más sutil para estado activo
+      color: var(--primary-500);
+    }
+  }
+
+  ion-icon {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.tabs-content {
+  padding: 3.5rem 1.25rem 1.25rem 1.25rem; // Aumentado padding superior para más espacio entre botones y contenido
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (max-width: 767px) {
+    padding: 2.5rem 1rem 1rem 1rem; // Espacio reducido en móviles
+  }
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  text-align: left;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.history-image {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(10,35,66,0.10);
+}
+
+.timeline-title {
+  font-size: 1.5rem; // Estandarizado H2 móvil
+  font-weight: 800;
+  color: var(--primary-500); // Usar color primario consistente
+  margin: 0 0 0.75rem 0;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  
+  @media (min-width: 768px) {
+    font-size: 1.875rem; // Estandarizado H2 desktop
+  }
+}
+
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+}
+
+.timeline-year {
+  background: var(--neutral-100);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--primary-500);
+  font-weight: 800;
+  border-radius: 0.75rem;
+  height: 28px;
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.timeline-item-title {
+  font-weight: 700;
+  color: var(--dark-500);
+  margin-bottom: 0.15rem;
+}
+
+.timeline-item-desc {
+  color: var(--neutral-700);
+  font-size: 0.95rem;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+
+  li { display: flex; gap: .5rem; align-items: start; margin-bottom: .5rem; color: var(--neutral-700); }
+  .check { color: var(--primary-500); font-size: 1.1rem; margin-top: .1rem; }
+}
+
+.values-section {
+  text-align: center;
+  padding: 3.5rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .section-title { 
+    font-size: 1.5rem; // Estandarizado H2 móvil
+    font-weight: 800; 
+    color: var(--primary-500); // Consistencia con otras páginas
+    margin: 0 0 0.75rem 0; // Estandarizado
+    
+    @media (min-width: 768px) {
+      font-size: 1.875rem; // Estandarizado H2 desktop
+    }
+  }
+  .section-subtitle { 
+    color: var(--neutral-700); 
+    margin: 0; 
+    font-size: 1.125rem; // Estandarizado subtítulo principal
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    margin-top: 1.75rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 900px) { grid-template-columns: repeat(4, 1fr); }
+
+    .value-card {
+      background: var(--neutral-100);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 6px 18px rgba(10,35,66,0.06);
+      transition: transform .2s ease, box-shadow .2s ease;
+      text-align: center;
+
+      &:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(10,35,66,0.10); }
+
+      .value-icon { 
+        width: 3.2rem; 
+        height: 3.2rem; 
+        border-radius: .9rem; 
+        background: var(--primary-500); 
+        color: var(--neutral-100); 
+        display:flex; 
+        align-items:center; 
+        justify-content:center; 
+        margin:0 auto .75rem; 
+        font-size:1.6rem; 
+      }
+      h3 { 
+        font-weight: 800; 
+        color: var(--primary-500); // Usar color primario consistente
+        margin: 0 0 .25rem 0; 
+        font-size:1.05rem; 
+        font-family: 'Poppins', sans-serif;
+      }
+      p { 
+        color: var(--neutral-700); 
+        margin:0; 
+        font-size:.95rem; 
+        font-family: 'Poppins', sans-serif;
+      }
+    }
+  }
+}
+
+.principles-section {
+  background: var(--neutral-100); // Consistencia de fondo
+  padding: 3.5rem 1rem;
+  text-align: center;
+
+  .section-title { 
+    font-size: 1.5rem; // Estandarizado H2 móvil
+    font-weight: 800; 
+    color: var(--primary-500); // Consistencia con otras páginas
+    margin: 0 0 0.75rem 0; // Estandarizado
+    
+    @media (min-width: 768px) {
+      font-size: 1.875rem; // Estandarizado H2 desktop
+    }
+  }
+
+  .principles-card {
+    max-width: 960px;
+    margin: 1.75rem auto 0;
+    background: var(--neutral-100);
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 24px rgba(10,35,66,0.06);
+    padding: 1.25rem 1rem;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem 1rem;
+
+    @media (min-width: 800px) { grid-template-columns: 1fr 1fr; }
+
+    .principle-item { display: flex; gap: .5rem; align-items: start; color: var(--dark-500); }
+    .check { color: var(--primary-500); font-size: 1.15rem; margin-top: .1rem; }
+  }
+}
+
+.team-section {
+  text-align: center;
+  padding: 3.5rem 1rem;
+
+  .section-title { 
+    font-size: 1.5rem; // Estandarizado H2 móvil
+    font-weight: 800; 
+    color: var(--primary-500); // Consistencia con otras páginas
+    margin: 0 0 0.75rem 0; // Estandarizado
+    
+    @media (min-width: 768px) {
+      font-size: 1.875rem; // Estandarizado H2 desktop
+    }
+  }
+
+  .team-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem 1.25rem;
+    background: var(--neutral-100);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    max-width: 940px;
+    margin: 0 auto;
+    box-shadow: 0 8px 24px rgba(10,35,66,0.06);
+
+    @media (max-width: 720px) { grid-template-columns: 1fr; text-align: left; }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: var(--primary-500);
+      color: var(--neutral-100);
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 800; font-size: 1.25rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .team-info { text-align: left; }
+    .member-name {
+      font-weight: 800;
+      color: var(--primary-500); // Usar color primario consistente
+      margin-bottom: .3rem;
+      font-size: 1.2rem;
+      letter-spacing: .2px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .role-badge {
+      display:inline-block;
+      background: var(--primary-500);
+      color: var(--neutral-100);
+      font-weight: 600;
+      padding:.2rem .55rem;
+      border-radius:.4rem;
+      margin-bottom:.65rem;
+      font-size: .75rem;
+      line-height: 1.2;
+      box-shadow: 0 2px 6px rgba(10,35,66,.12);
+      font-family: 'Poppins', sans-serif;
+    }
+    .member-desc {
+      color: var(--neutral-700);
+      margin: 0 0 .9rem 0;
+      line-height: 1.75;
+      font-size: .95rem;
+      max-width: 68ch;
+      text-align: justify;
+      font-family: 'Poppins', sans-serif;
+    }
+    .member-list { 
+      list-style: none; 
+      padding: 0; 
+      margin: .25rem 0 0 0; 
+    }
+    .member-list li { 
+      display:flex; 
+      gap:.5rem; 
+      align-items:center; 
+      color: var(--neutral-700); 
+      margin-bottom:.4rem; 
+      font-family: 'Poppins', sans-serif;
+    }
+    .dot { font-size:.35rem; color: var(--primary-500); }
+  }
+}
+
+/* Estilos para los nuevos textos de historia, misión y visión */
+.history-text,
+.mission-text,
+.vision-text {
+  color: var(--neutral-700);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0;
+  text-align: justify;
+  max-width: 100%;
+  font-family: 'Poppins', sans-serif;
+  
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+  }
+}

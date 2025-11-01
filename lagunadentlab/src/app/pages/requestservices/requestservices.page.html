@@ -1,0 +1,106 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+  
+  <!-- 🔷 CONTENEDOR PRINCIPAL CENTRADO -->
+  <div class="main-container">
+    
+    <!-- 🔹 ENCABEZADO DE PÁGINA -->
+    <div class="header-section">
+      <h1 class="page-title">Solicitar Servicio</h1>
+      <p class="page-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+    </div>
+
+    <!-- � TARJETA DEL FORMULARIO PRINCIPAL -->
+    <div class="form-card">
+      
+      <!-- Título del formulario -->
+      <div class="form-title-section">
+        <ion-icon name="document-text-outline" class="form-icon"></ion-icon>
+        <h2 class="form-title">Información del Servicio</h2>
+      </div>
+
+      <!-- Formulario -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="service-form">
+        
+        <!-- Grid de campos -->
+        <div class="form-grid">
+          
+          <!-- Nombre completo -->
+          <div class="form-field">
+            <label class="field-label">Nombre completo *</label>
+            <input type="text" class="field-input" formControlName="name" placeholder="Dr. Juan Pérez" />
+          </div>
+
+          <!-- Teléfono / WhatsApp -->
+          <div class="form-field">
+            <label class="field-label">Teléfono / WhatsApp *</label>
+            <input type="tel" class="field-input" formControlName="phone" placeholder="+52 123 456 7890" />
+          </div>
+
+          <!-- Correo electrónico -->
+          <div class="form-field form-field-full">
+            <label class="field-label">Correo electrónico *</label>
+            <input type="email" class="field-input" formControlName="email" placeholder="correo@ejemplo.com" />
+          </div>
+
+          <!-- Tipo de servicio -->
+          <div class="form-field form-field-full">
+            <label class="field-label">Tipo de servicio *</label>
+            <select class="field-input" formControlName="serviceType">
+              <option value="" disabled selected>Selecciona un servicio</option>
+              <option *ngFor="let service of serviceTypes" [value]="service">{{ service }}</option>
+            </select>
+          </div>
+
+          <!-- Fecha preferida -->
+          <div class="form-field">
+            <label class="field-label">
+              <ion-icon name="calendar-outline" class="field-icon"></ion-icon>
+              Fecha preferida *
+            </label>
+            <input type="date" class="field-input" formControlName="date" placeholder="dd/mm/aaaa" />
+          </div>
+
+          <!-- Hora preferida -->
+          <div class="form-field">
+            <label class="field-label">
+              <ion-icon name="time-outline" class="field-icon"></ion-icon>
+              Hora preferida *
+            </label>
+            <input type="time" class="field-input" formControlName="time" placeholder="--:-- --" />
+          </div>
+
+          <!-- Notas adicionales -->
+          <div class="form-field form-field-full">
+            <label class="field-label">Notas adicionales</label>
+            <textarea class="field-input field-textarea" formControlName="notes" placeholder="Especificaciones del trabajo, urgencias, etc." rows="3"></textarea>
+          </div>
+
+        </div>
+
+        <!-- Botones -->
+        <div class="button-group">
+          <button type="button" class="btn-cancel" (click)="goBack()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-submit">
+            Enviar Solicitud
+            <ion-icon name="arrow-forward-outline" class="btn-icon"></ion-icon>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- 🔹 BLOQUE INFORMATIVO INFERIOR -->
+    <div class="info-note">
+      <strong>Nota:</strong> Nos pondremos en contacto contigo dentro de las próximas 24 horas para confirmar tu cita y discutir los detalles del servicio.
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+
+</ion-content>
+

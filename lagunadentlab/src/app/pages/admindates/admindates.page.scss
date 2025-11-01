@@ -1,0 +1,479 @@
+/* ===============================
+   Gestión de Citas - Diseño Moderno
+   =============================== */
+
+.admin-content {
+  --background: var(--neutral-100);
+  font-family: 'Poppins';
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 10px 40px 0px;
+  
+  @media (max-width: 768px) {
+    padding: 10px 16px 20px 16px;
+  }
+}
+
+/* ===============================
+   Encabezado
+   =============================== */
+.header {
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.title {
+  font-family: 'Poppins';
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.subtitle {
+  font-family: 'Poppins';
+  font-size: 1rem;
+  color: var(--neutral-700);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ===============================
+   Tabla Card Container
+   =============================== */
+.table-card {
+  --background: var(--neutral-100);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin: 0;
+  overflow: hidden;
+}
+
+.table-content {
+  padding: 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===============================
+   Tabla Principal
+   =============================== */
+.citas-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Poppins', sans-serif;
+  min-width: 1000px;
+}
+
+/* Encabezados */
+.citas-table thead th {
+  background-color: var(--neutral-100);
+  color: var(--dark-400);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-align: left;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--neutral-300);
+  white-space: nowrap;
+}
+
+/* Filas */
+.citas-table tbody .table-row {
+  border-bottom: 1px solid var(--neutral-300);
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: var(--neutral-200);
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.citas-table tbody td {
+  padding: 20px;
+  vertical-align: middle;
+  font-size: 0.875rem;
+}
+
+/* ===============================
+   Columnas Específicas
+   =============================== */
+
+/* Usuario */
+.col-usuario {
+  width: 22%;
+  min-width: 200px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--dark-500);
+  font-size: 0.875rem;
+}
+
+.user-email {
+  color: var(--neutral-700);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Servicio */
+.col-servicio {
+  width: 18%;
+  min-width: 150px;
+}
+
+.service-name {
+  color: var(--dark-400);
+  font-weight: 500;
+}
+
+/* Fecha */
+.col-fecha {
+  width: 15%;
+  min-width: 120px;
+}
+
+.date-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.date {
+  color: var(--dark-400);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.time {
+  color: var(--neutral-700);
+  font-size: 0.875rem;
+}
+
+/* Estado */
+.col-estado {
+  width: 12%;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Acciones */
+.col-acciones {
+  width: 40%;
+  min-width: 380px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.status-pendiente {
+  background-color: var(--primary-50);
+  color: var(--primary-500);
+}
+
+.status-aprobada {
+  background-color: var(--primary-500);
+  color: var(--neutral-100);
+}
+
+.status-rechazada {
+  background-color: #FEE2E2;
+  color: #DC2626;
+}
+
+.status-completada {
+  background-color: #DCFCE7;
+  color: #16A34A;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ===============================
+   Botones de Acción - Uniformes y Lineales
+   =============================== */
+
+/* Clase base para todos los botones */
+.btn-action {
+  --border-radius: 6px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: none;
+  margin: 0;
+  min-width: 110px;
+  flex: 1;
+  max-width: 120px;
+  
+  ion-icon {
+    font-size: 16px;
+  }
+}
+
+/* Botón Aprobar */
+.btn-aprobar {
+  --background: var(--primary-500);
+  --color: var(--neutral-100);
+  
+  &:disabled {
+    --background: var(--neutral-700);
+    --color: var(--neutral-100);
+  }
+}
+
+/* Botón Rechazar */
+.btn-rechazar {
+  --background: #EF4444;
+  --color: #ffffff;
+  
+  &:disabled {
+    --background: #FCA5A5;
+    --color: #ffffff;
+  }
+}
+
+/* Botón Completar */
+.btn-completar {
+  --background: var(--neutral-100);
+  --color: var(--dark-400);
+  --border-color: var(--neutral-400);
+  --border-width: 1px;
+  
+  &:disabled {
+    --background: var(--neutral-200);
+    --color: var(--neutral-700);
+    --border-color: var(--neutral-300);
+  }
+}
+
+/* ===============================
+   Responsividad
+   =============================== */
+
+@media (max-width: 1024px) {
+  .citas-table {
+    min-width: 900px;
+  }
+  
+  .action-buttons {
+    gap: 8px;
+  }
+  
+  .btn-action {
+    font-size: 0.75rem;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    min-width: 90px;
+    max-width: 100px;
+    
+    ion-icon {
+      font-size: 14px;
+    }
+  }
+}
+
+/* Tabla con scroll horizontal para móviles */
+@media (max-width: 768px) {
+  .table-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .table-content {
+    padding: 0;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Mejorar el scroll en móviles */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-500) var(--neutral-300);
+  }
+  
+  .table-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-track {
+    background: var(--neutral-200);
+    border-radius: 4px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary-500);
+    border-radius: 4px;
+  }
+  
+  .citas-table {
+    min-width: 1000px; /* Asegurar ancho mínimo para scroll horizontal */
+    width: max-content;
+  }
+  
+  /* Ajustar tamaños de columnas para móvil */
+  .col-usuario {
+    min-width: 180px;
+  }
+  
+  .col-servicio {
+    min-width: 140px;
+  }
+  
+  .col-fecha {
+    min-width: 120px;
+  }
+  
+  .col-estado {
+    min-width: 100px;
+  }
+  
+  .col-acciones {
+    min-width: 320px;
+  }
+  
+  /* Ajustar padding para móvil */
+  .citas-table thead th {
+    padding: 12px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .citas-table tbody td {
+    padding: 16px;
+    font-size: 0.85rem;
+  }
+  
+  /* Ajustar botones para móvil */
+  .action-buttons {
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  
+  .btn-action {
+    --border-radius: 6px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    min-width: 90px;
+    max-width: 100px;
+    
+    ion-icon {
+      font-size: 14px;
+    }
+  }
+  
+  /* Mejorar la apariencia del header en móvil */
+  .header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 0 16px;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  
+  /* Mejoras en texto de usuario */
+  .user-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  .user-email {
+    font-size: 0.75rem;
+    color: var(--neutral-700);
+  }
+  
+  /* Mejoras en fecha */
+  .date {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .time {
+    font-size: 0.75rem;
+    color: var(--neutral-700);
+  }
+  
+  /* Ajustar badge de estado */
+  .status-badge {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Para tablets - mantener tabla normal con algunos ajustes */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    padding: 24px;
+  }
+  
+  .citas-table {
+    min-width: 800px;
+  }
+  
+  .action-buttons {
+    gap: 8px;
+  }
+  
+  .btn-action {
+    font-size: 0.8rem;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    min-width: 90px;
+    max-width: 100px;
+  }
+}
