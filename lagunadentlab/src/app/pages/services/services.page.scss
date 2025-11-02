@@ -21,7 +21,7 @@ ion-content {
     font-weight: 800;
     color: var(--primary-500);
     margin: 0 0 1rem 0;
-    
+
     @media (min-width: 768px) {
       font-size: 3rem;
     }
@@ -35,7 +35,7 @@ ion-content {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    
+
     @media (min-width: 768px) {
       font-size: 1.125rem;
     }
@@ -53,7 +53,7 @@ ion-content {
     gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
-    
+
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
@@ -65,7 +65,7 @@ ion-content {
 .service-card {
   background: var(--neutral-100);
   border-radius: 0.75rem;
-  box-shadow: 0 4px 12px rgba(10, 35, 66, 0.08);
+  box-shadow: 0 4px 12px rgba(var(--shadow-color-rgb), 0.08);
   padding: 1.5rem;
   border: 1px solid var(--neutral-200);
   display: flex;
@@ -76,7 +76,7 @@ ion-content {
   font-family: 'Poppins', sans-serif;
 
   &:hover {
-    box-shadow: 0 8px 24px rgba(10, 35, 66, 0.12);
+    box-shadow: 0 8px 24px rgba(var(--shadow-color-rgb), 0.12);
     transform: translateY(-2px);
   }
 }
@@ -115,7 +115,7 @@ ion-content {
     font-weight: 600;
     color: var(--primary-500);
     margin: 0;
-    
+
     @media (min-width: 768px) {
       font-size: 1.25rem;
     }
@@ -199,7 +199,7 @@ ion-content {
     font-weight: 800;
     color: var(--neutral-100);
     margin: 0 0 1rem 0;
-    
+
     @media (min-width: 768px) {
       font-size: 2.5rem;
     }
@@ -220,11 +220,11 @@ ion-content {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    
+
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
     }
-    
+
     @media (min-width: 1024px) {
       grid-template-columns: repeat(4, 1fr);
     }
@@ -235,7 +235,7 @@ ion-content {
   background: var(--neutral-100);
   border-radius: 0.75rem;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06);
   text-align: center;
   font-family: 'Poppins', sans-serif;
 
@@ -261,7 +261,7 @@ ion-content {
     font-weight: 600;
     color: var(--primary-500);
     margin: 0 0 0.75rem 0;
-    
+
     @media (min-width: 768px) {
       font-size: 1.125rem;
     }
@@ -288,7 +288,7 @@ ion-content {
     grid-template-columns: 1fr;
     gap: 2rem;
     align-items: center;
-    
+
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
       gap: 4rem;
@@ -318,7 +318,7 @@ ion-content {
       font-weight: 800;
       color: var(--primary-500);
       margin: 0 0 1rem 0;
-      
+
       @media (min-width: 768px) {
         font-size: 2rem;
       }
@@ -359,7 +359,7 @@ ion-content {
       width: 100%;
       height: auto;
       border-radius: 0.75rem;
-      box-shadow: 0 4px 12px rgba(10, 35, 66, 0.08);
+      box-shadow: 0 4px 12px rgba(var(--shadow-color-rgb), 0.08);
       object-fit: cover;
     }
   }

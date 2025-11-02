@@ -41,7 +41,6 @@ import { FooterComponent } from '../../components/footer/footer.component';
     IonIcon,
     IonCard,
     IonCardContent,
-    IonImg,
     IonAccordionGroup,
     IonAccordion,
     IonItem,

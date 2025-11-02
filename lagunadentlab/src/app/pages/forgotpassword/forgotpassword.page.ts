@@ -15,7 +15,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   templateUrl: './forgotpassword.page.html',
   styleUrls: ['./forgotpassword.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonToolbar, CommonModule, FormsModule,IonIcon, IonInput, IonButton, NavbarComponent, RouterModule]
+  imports: [IonContent, CommonModule, FormsModule, IonIcon, NavbarComponent, RouterModule]
 })
 export class ForgotpasswordPage  {
 

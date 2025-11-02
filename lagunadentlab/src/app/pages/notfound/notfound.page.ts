@@ -10,7 +10,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   templateUrl: './notfound.page.html',
   styleUrls: ['./notfound.page.scss'],
   standalone: true,
-  imports: [IonContent, IonButton, IonIcon, RouterLink, CommonModule, FormsModule, NavbarComponent]
+  imports: [IonContent, IonButton, RouterLink, CommonModule, FormsModule]
 })
 export class NotfoundPage implements OnInit {
 

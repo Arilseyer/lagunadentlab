@@ -10,7 +10,7 @@
  */
 
  :root {
-  --neutral-100: white;
+  --neutral-100: #fff;
   --neutral-200: #ececec;
   --neutral-300: #e7e7e7;
   --neutral-400: #e2e2e2;
@@ -25,7 +25,7 @@
   --dark-500: #0a0c11;
   --dark-600: #000000;
 
- --primary-50: #c1d4f2;
+  --primary-50: #c1d4f2;
   --primary-100: #82a8e6;
   --primary-200: #447dd9;
   --primary-300: #2359ae;
@@ -43,6 +43,12 @@
   --secondary-700: #5c98c7;
   --secondary-800: #3b7bae;
   --secondary-900: #2d5d82;
+
+  /* Complementos de tema */
+  --light-blue-500: #eaf2ff; /* usado en degradados claros */
+  /* RGB tokens para sombras y anillos de enfoque */
+  --shadow-color-rgb: 10, 35, 66; /* box-shadows con distintas opacidades */
+  --primary-300-rgb: 35, 89, 174; /* corresponde a --primary-300 */
 
 }
 
@@ -75,8 +81,8 @@
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+/* Cambiamos a modo oscuro por clase para NO seguir el sistema automáticamente. */
+@import "@ionic/angular/css/palettes/dark.class.css";
 
 // Estilos para navegación fija
 // Compensar la altura de la navegación fija

@@ -16,9 +16,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonToolbar, IonTitle,
-  IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
-  IonBadge, IonButton, IonIcon, IonList, IonItem, IonLabel, NavbarComponent, FooterComponent, RouterLink]
+  imports: [IonContent, IonIcon, NavbarComponent, FooterComponent, RouterLink]
 })
 export class ServicesPage implements OnInit {
 

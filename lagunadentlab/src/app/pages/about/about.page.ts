@@ -15,9 +15,7 @@ import {
 import {
   IonContent,
   IonCard,
-  IonCardContent,
   IonIcon,
-  IonBadge,
   IonImg
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
@@ -33,9 +31,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
     FormsModule,
     
     IonContent,
-    IonCardContent,
     IonIcon,
-    IonBadge,
     IonImg,
     NavbarComponent,
     FooterComponent

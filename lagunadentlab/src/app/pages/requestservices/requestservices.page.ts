@@ -44,21 +44,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
     ReactiveFormsModule,
     
     IonContent,
-    IonButton,
     IonIcon,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonTextarea,
-    IonSelect,
-    IonSelectOption,
     FooterComponent,
     NavbarComponent
   ]

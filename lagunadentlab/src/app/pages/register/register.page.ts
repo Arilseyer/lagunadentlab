@@ -36,17 +36,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
     
     RouterLink,
     IonContent,
-    IonButton,
     IonIcon,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonRouterLink,
     NavbarComponent]
 })
 export class RegisterPage implements OnInit {

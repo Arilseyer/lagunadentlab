@@ -7,9 +7,6 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonItem,
-  IonLabel,
-  IonInput,
   IonTextarea,
   IonButton,
   IonIcon
@@ -42,13 +39,10 @@ import { FooterComponent } from '../../components/footer/footer.component';
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonTextarea,
     IonButton,
-    IonIcon
-    , IonGrid, IonRow, IonCol, NavbarComponent, FooterComponent
+    IonIcon,
+    NavbarComponent,
+    FooterComponent
   ]
 })
 export class ContactPage implements OnInit {

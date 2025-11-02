@@ -52,7 +52,7 @@ ion-content {
 .perfil-card {
   margin: 0;
   border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06);
 
   .profile-content {
     text-align: center;
@@ -227,7 +227,7 @@ ion-content {
 .compact-info-card {
   margin: 0;
   border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06);
 
   .compact-card-header {
     display: flex;
@@ -327,7 +327,7 @@ ion-content {
 .compact-orders-card {
   margin: 0;
   border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06);
 
   .empty-orders {
     text-align: center;

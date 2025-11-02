@@ -5,7 +5,7 @@
 }
 
 ion-content {
-  --background: linear-gradient(to bottom, var(--light-blue-500), var(--neutral-100));
+  --background: var(--neutral-100);
 }
 
 // 🔷 CONTENEDOR PRINCIPAL CENTRADO
@@ -57,7 +57,7 @@ ion-content {
 .form-card {
   background: var(--neutral-100);
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(10, 35, 66, 0.08);
+  box-shadow: 0 10px 40px rgba(var(--shadow-color-rgb), 0.08);
   padding: 32px 40px;
   width: 100%;
   margin-bottom: 24px;
@@ -141,7 +141,7 @@ ion-content {
   outline: none;
   transition: all 0.2s ease;
   font-family: 'Poppins', sans-serif;
-  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06);
   
   &::placeholder {
     color: var(--neutral-600);
@@ -149,7 +149,7 @@ ion-content {
 
   &:focus {
     border-color: var(--primary-300);
-    box-shadow: 0 0 0 3px rgba(35, 89, 174, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--primary-300-rgb), 0.1);
   }
 
   &:hover {
@@ -197,7 +197,7 @@ select.field-input {
 
   &:focus {
     border-color: var(--primary-300);
-    box-shadow: 0 0 0 3px rgba(35, 89, 174, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--primary-300-rgb), 0.1);
   }
 }
 
@@ -294,11 +294,11 @@ ion-select.field-input {
   --padding-top: 10px !important;
   --padding-bottom: 10px !important;
   --background: var(--neutral-100) !important;
-  --box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06) !important;
+  --box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06) !important;
 
   &.ion-focused {
     --border-color: var(--primary-300) !important;
-    --box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06) !important;
+  --box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06) !important;
   }
 
   &:hover {
