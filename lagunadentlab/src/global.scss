@@ -9,7 +9,7 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
-:root {
+ :root {
   --neutral-100: white;
   --neutral-200: #ececec;
   --neutral-300: #e7e7e7;
@@ -46,6 +46,11 @@
 
 }
 
+/* Tipografía global - Poppins como fuente principal */
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -71,4 +76,68 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
 
+// Estilos para navegación fija
+// Compensar la altura de la navegación fija
+ion-content {
+  --padding-top: 80px;
+}
+
+/* ===============================
+   BOTONES UNIVERSALES - ESTILO CONSISTENTE
+   =============================== */
+
+// Botón principal - mismo estilo que el botón "Registrarse" del navbar
+.btn-primary {
+  font-family: 'Poppins';
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  width: auto;
+  min-width: auto;
+  height: auto;
+  min-height: 2.5rem; /* Altura mínima consistente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+// Botón secundario - estilo alternativo con la misma altura
+.btn-secondary {
+  font-family: 'Poppins';
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid var(--primary-500);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  width: auto;
+  min-width: auto;
+  height: auto;
+  min-height: 2.5rem; /* Misma altura mínima que btn-primary */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+// Botón con icono
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  ion-icon {
+    font-size: 1rem;
+  }
+}

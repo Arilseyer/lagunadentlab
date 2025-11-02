@@ -1,0 +1,81 @@
+<footer class="main-footer">
+  <div class="footer-content">
+    
+    <!-- Layout horizontal con 3 columnas -->
+    <div class="footer-grid">
+      
+      <!-- Columna 1: Logo y descripción -->
+      <div class="footer-section company-info">
+        <div class="footer-logo">
+          <div class="logo-container">
+            <div class="logo-icon">LD</div>
+            <div class="logo-text-container">
+              <span class="logo-text">Laguna Dent Lab</span>
+              <span class="logo-subtitle">Prótesis Dental</span>
+            </div>
+          </div>
+        </div>
+        <p class="company-description">
+          Laboratorio dental con 15 años de experiencia en prótesis de alta calidad
+        </p>
+        
+        <!-- Iconos sociales -->
+        <div class="social-media">
+          <button class="social-btn" (click)="openSocialLink('https://facebook.com')">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+          <button class="social-btn" (click)="openSocialLink('https://wa.me/8701498192')">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </button>
+          <button class="social-btn" (click)="openSocialLink('mailto:lagunadentmaster@gmail.com')">
+            <ion-icon name="mail-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Columna 2: Enlaces rápidos -->
+      <div class="footer-section quick-links">
+        <h3 class="section-title">Enlaces Rápidos</h3>
+        <ul class="links-list">
+          <li><a (click)="navigateTo('/home')" class="footer-link">Inicio</a></li>
+          <li><a (click)="navigateTo('/services')" class="footer-link">Servicios</a></li>
+          <li><a (click)="navigateTo('/about')" class="footer-link">Nosotros</a></li>
+          <li><a (click)="navigateTo('/contact')" class="footer-link">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Información de contacto -->
+      <div class="footer-section contact-info">
+        <h3 class="section-title">Contacto</h3>
+        <div class="contact-item">
+          <ion-icon name="location-outline"></ion-icon>
+          <div class="contact-text">
+            <span>Blvd. Revolución 587 ote</span>
+            <span>Col. Centro, Torreón</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <ion-icon name="call-outline"></ion-icon>
+          <span>8701498192</span>
+        </div>
+        <div class="contact-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <div class="contact-text">
+            <span>Lun - Vie: 9:00 AM - 6:00 PM</span>
+            <span>Sábado: 9:00 AM - 2:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Separador -->
+    <div class="footer-divider"></div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Laguna Dent Lab. Todos los derechos reservados.</p>
+    </div>
+
+  </div>
+</footer>

@@ -1,0 +1,206 @@
+// 💅 Variables generales 
+:host {
+  font-family: 'Poppins', sans-serif;
+}
+
+// Elimina solo el focus ring azul predeterminado, pero mantiene funcionalidad
+ion-input:focus, ion-textarea:focus,
+input:focus, textarea:focus {
+  outline: none !important;
+}
+ion-input::part(native):focus, ion-textarea::part(native):focus {
+  outline: none !important;
+}
+
+/* Estilos de campos idénticos a registro (elementos HTML nativos) */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  margin-bottom: 1rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-500);
+  margin-bottom: 0.4rem;
+}
+
+.field-input {
+  width: 100%;
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-400);
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  color: var(--dark-500);
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+  
+  &::placeholder {
+    color: var(--neutral-600);
+  }
+
+  &:focus {
+    border-color: var(--primary-300);
+    box-shadow: 0 0 0 3px rgba(35, 89, 174, 0.1);
+  }
+
+  &:hover {
+    border-color: var(--neutral-500);
+  }
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.5;
+}
+
+ion-content {
+  --background: var(--neutral-100); // fondo muy claro para toda la página
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🔷 SECCIÓN 1: ENCABEZADO */
+.hero {
+  background: linear-gradient(180deg, var(--neutral-100) 0%, var(--neutral-100) 65%);
+  text-align: center;
+  padding: 1.5rem 1rem 3.5rem 1rem; // py-6 móvil, py-10 desktop mediante media query
+
+  @media (min-width: 768px) {
+    padding: 2rem 1rem 5rem 1rem;
+  }
+
+  .hero-container {
+    max-width: 64rem; // ~max-w-5xl
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 2rem; // Estandarizado H1
+    font-weight: 800;
+    color: var(--primary-500);
+    margin: 0 0 1rem 0; // Estandarizado
+    
+    @media (min-width: 768px) {
+      font-size: 2.25rem; // Estandarizado H1 desktop
+    }
+  }
+
+  .hero-subtitle {
+    color: var(--neutral-700);
+    font-size: 1.125rem; // Estandarizado subtítulo principal
+    margin: 0 auto;
+    max-width: 48rem;
+  }
+}
+
+/* 🔷 SECCIÓN 2: FORMULARIO Y DATOS */
+
+.contact-section {
+  padding: 2rem 1rem 3rem;
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 72rem;
+    margin: 0 auto;
+    @media (min-width: 900px) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2.5rem;
+    }
+  }
+  .col-form { flex: 1 1 0; min-width: 0; }
+  .col-info { flex: 1 1 0; min-width: 0; }
+}
+
+/* 🔹 FORMULARIO */
+.form-card {
+  background: var(--neutral-100);
+  border-radius: 1rem; // rounded-2xl
+  box-shadow: 0 8px 24px rgba(10,35,66,0.06);
+}
+.form-header { padding: .75rem 1.25rem 0 1.25rem; }
+.form-title {
+  display: flex; align-items: center; gap: .5rem;
+  font-weight: 800; color: var(--primary-500); font-size: 1.1rem;
+}
+.title-icon { color: var(--primary-500); font-size: 1.2rem; }
+.form-body { padding: 1rem 1.25rem 1.25rem; }
+.form {
+  display: flex; flex-direction: column; gap: .75rem;
+}
+
+.form-fields { display: flex; flex-direction: column; gap: 1.1rem; }
+
+/* Botón principal */
+.btn-primary {
+  width: 100%;
+  margin-top: .5rem;
+  --background: var(--primary-500);
+  --color: var(--neutral-100);
+  border-radius: 0.75rem;
+  padding: .9rem 1.25rem; // py-3 px-6
+  font-weight: 700;
+  letter-spacing: .2px;
+  transition: transform .2s ease, filter .2s ease;
+}
+.btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+/* 🔹 TARJETAS DE INFORMACIÓN */
+.info-stack { display: flex; flex-direction: column; gap: 1rem; }
+.info-card {
+  background: var(--neutral-100);
+  border-radius: 1rem; // rounded-2xl
+  box-shadow: 0 8px 20px rgba(10,35,66,0.05);
+  position: relative;
+}
+.contact-card .dot {
+  position: absolute; top: .4rem; right: .6rem;
+  width: .5rem; height: .5rem; border-radius: 999px; background: var(--secondary-700);
+}
+.info-content { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem; }
+.icon-box { width: 44px; height: 44px; border-radius: .75rem; background: var(--primary-50); display:flex; align-items:center; justify-content:center; }
+.icon-primary { color: var(--primary-500); font-size: 1.25rem; }
+.info-title { font-weight: 800; color: var(--dark-500); margin: 0 0 .25rem 0; }
+.info-text { color: var(--neutral-700); margin: 0; }
+.schedule { list-style: none; padding: 0; margin: 0; color: var(--neutral-700); }
+.schedule li { margin-bottom: .25rem; }
+.schedule strong { color: var(--dark-500); }
+.contact-list { list-style: none; padding: 0; margin: 0; color: var(--neutral-700); }
+.contact-list li { display: flex; gap: .5rem; align-items: center; margin-bottom: .25rem; }
+.contact-list ion-icon { color: var(--primary-500); }
+
+/* 🔹 CTA URGENCIAS */
+.cta-card {
+  background: var(--primary-500);
+  border-radius: 1rem;
+  color: var(--neutral-100);
+}
+.cta-content {
+  text-align: center; padding: 1.25rem;
+}
+.cta-content h3 { margin: 0; font-size: 1.2rem; font-weight: 800; }
+.cta-content p { margin: .4rem 0 1rem; opacity: .95; }
+.cta-btn {
+  --background: var(--neutral-300); // azul claro del botón
+  --color: var(--primary-500);
+  border-radius: 0.75rem;
+  padding: .9rem 1.25rem;
+  font-weight: 700;
+  max-width: 16rem; // w-64
+  margin: 0 auto;
+  transition: filter .2s ease, transform .2s ease;
+}
+.cta-btn:hover { --background: var(--neutral-400); transform: translateY(-1px); }
+
+/* Responsivo */
+@media (max-width: 767px) {
+  .form-body { padding: .75rem; }
+  .info-content { padding: .9rem; }
+}

@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+  
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1 class="hero-title">Mi Perfil</h1>
+    <p class="hero-subtitle">Administra tu información personal y revisa tus pedidos</p>
+  </div>
+
+  <!-- Main Grid Layout -->
+  <ion-grid class="main-grid">
+    <ion-row>
+      
+      <!-- Columna Izquierda - Información del Perfil -->
+      <ion-col size="12" size-md="4" class="profile-column">
+        <ion-card class="perfil-card">
+          <ion-card-content class="profile-content">
+            
+            <!-- Nombre y Email -->
+            <h2 class="profile-name">Dr. Juan Pérez García</h2>
+            <p class="profile-email">juan.perez@clinicadental.com</p>
+            
+            <!-- Información Adicional -->
+            <div class="contact-info">
+              <ion-item lines="none" class="info-item">
+                <ion-icon slot="start" name="call-outline"></ion-icon>
+                <ion-label class="compact-label">(871) 123-4567</ion-label>
+              </ion-item>
+              
+              <ion-item lines="none" class="info-item">
+                <ion-icon slot="start" name="calendar-outline"></ion-icon>
+                <ion-label class="compact-label">Miembro desde Enero 2022</ion-label>
+              </ion-item>
+            </div>
+            
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Columna Derecha - Pestañas e Información -->
+      <ion-col size="12" size-md="8" class="content-column">
+        
+        <!-- Contenedor de navegación con botones y editar -->
+        <div class="navigation-container">
+          <!-- Botones de Navegación estilo Services - Botones normales -->
+          <div class="custom-tabs">
+            <button 
+              class="custom-tab-button" 
+              [class.active]="selectedTab === 'info'"
+              (click)="selectedTab = 'info'">
+              <ion-icon name="person-outline"></ion-icon>
+              <span>Información</span>
+            </button>
+            <button 
+              class="custom-tab-button" 
+              [class.active]="selectedTab === 'orders'"
+              (click)="selectedTab = 'orders'">
+              <ion-icon name="receipt-outline"></ion-icon>
+              <span>Mis Pedidos</span>
+            </button>
+          </div>
+
+          <!-- Botón Editar al lado derecho -->
+          <button class="edit-button" *ngIf="selectedTab === 'info'">
+            <ion-icon name="create-outline"></ion-icon>
+            <span>Editar</span>
+          </button>
+        </div>
+
+        <!-- Contenido de Información -->
+        <ion-card *ngIf="selectedTab === 'info'" class="compact-info-card">
+          <ion-card-header class="compact-card-header">
+            <div class="header-content">
+              <ion-card-title class="compact-title">Información Personal</ion-card-title>
+              <ion-card-subtitle class="compact-subtitle">Tu información de contacto</ion-card-subtitle>
+            </div>
+          </ion-card-header>
+          
+          <ion-card-content class="compact-card-content">
+            
+            <div class="form-field">
+              <ion-item lines="none" class="compact-form-item" disabled>
+                <ion-icon slot="start" name="person-outline"></ion-icon>
+                <div class="field-content">
+                  <h3>Nombre completo</h3>
+                  <p>Dr. Juan Pérez García</p>
+                </div>
+              </ion-item>
+            </div>
+            
+            <div class="form-field">
+              <ion-item lines="none" class="compact-form-item" disabled>
+                <ion-icon slot="start" name="mail-outline"></ion-icon>
+                <div class="field-content">
+                  <h3>Correo electrónico</h3>
+                  <p>juan.perez@clinicadental.com</p>
+                </div>
+              </ion-item>
+            </div>
+            
+            <div class="form-field">
+              <ion-item lines="none" class="compact-form-item" disabled>
+                <ion-icon slot="start" name="call-outline"></ion-icon>
+                <div class="field-content">
+                  <h3>Teléfono</h3>
+                  <p>(871) 123-4567</p>
+                </div>
+              </ion-item>
+            </div>
+            
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Contenido de Pedidos -->
+        <ion-card *ngIf="selectedTab === 'orders'" class="compact-orders-card">
+          <ion-card-content class="empty-orders">
+            <p>No tienes pedidos aún</p>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+

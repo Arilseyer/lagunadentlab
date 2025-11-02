@@ -1,0 +1,408 @@
+// 🎨 Base del contenido
+ion-content {
+  --background: var(--neutral-100);
+  font-family: 'Poppins', sans-serif;
+}
+
+// 🔷 Hero Section - Más compacto
+.hero-section {
+  background: var(--neutral-100);
+  text-align: center;
+  padding: 0.5rem 1rem 1.5rem;
+
+  .hero-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary-500);
+    margin: 0 0 0.5rem 0;
+    
+    @media (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .hero-subtitle {
+    color: var(--neutral-700);
+    font-size: 0.875rem;
+    margin: 0;
+    
+    @media (min-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// 🔷 Grid Principal
+.main-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+// 🔷 Columnas
+.profile-column {
+  padding: 0.5rem;
+}
+
+.content-column {
+  padding: 0.5rem;
+}
+
+// 🔷 Tarjeta de Perfil (Izquierda) - Sin avatar
+.perfil-card {
+  margin: 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+
+  .profile-content {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+
+  .profile-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-500);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .profile-email {
+    color: var(--neutral-600);
+    margin: 0 0 1.25rem 0;
+    font-size: 0.875rem;
+  }
+
+  .contact-info {
+    text-align: left;
+  }
+
+  .info-item {
+    --background: transparent;
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0.5rem;
+    --padding-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+
+    ion-icon {
+      color: var(--primary-500);
+      font-size: 1rem;
+      margin-right: 0.75rem;
+    }
+
+    .compact-label {
+      color: var(--neutral-700);
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// 🔷 Contenedor de navegación con botón editar
+.navigation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+// 🔷 Botones personalizados - Alineados a la izquierda
+.custom-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+
+  .custom-tab-button {
+    background: var(--neutral-200);
+    color: var(--primary-500);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+
+    &:hover:not(.active) {
+      background: var(--neutral-300);
+    }
+
+    &.active {
+      background: var(--primary-500);
+      color: var(--neutral-100);
+
+      &:hover {
+        background: var(--primary-400);
+      }
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+      outline: none !important;
+      box-shadow: none !important;
+      border: none !important;
+      text-shadow: none !important;
+    }
+
+    ion-icon {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    span {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin: 0;
+      text-shadow: none;
+      -webkit-text-stroke: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
+
+// 🔷 Botón editar - Colores invertidos sin borde
+.edit-button {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  &:hover {
+    background: var(--primary-400);
+    color: var(--neutral-100);
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:active {
+    outline: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  ion-icon {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+// 🔷 Tarjeta de Información - Más compacta
+.compact-info-card {
+  margin: 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+
+  .compact-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 1rem 0.75rem;
+
+    .header-content {
+      flex: 1;
+
+      .compact-title {
+        color: var(--primary-500);
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .compact-subtitle {
+        color: var(--neutral-700);
+        font-size: 0.8rem;
+      }
+    }
+
+    .compact-edit-button {
+      --border-color: var(--primary-500);
+      --color: var(--primary-500);
+      --border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      height: 32px;
+      --padding-start: 0.75rem;
+      --padding-end: 0.75rem;
+
+      ion-icon {
+        font-size: 0.875rem;
+      }
+
+      &:hover {
+        --background: var(--primary-500);
+        --color: var(--neutral-100);
+      }
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+
+      .compact-edit-button {
+        align-self: center;
+      }
+    }
+  }
+
+  .compact-card-content {
+    padding: 0.5rem 1rem 1rem;
+  }
+
+  .form-field {
+    margin-bottom: 0.75rem;
+  }
+
+  .compact-form-item {
+    --background: var(--neutral-50);
+    --border-radius: 0.5rem;
+    margin-bottom: 0;
+    padding: 0.75rem;
+    min-height: 48px;
+
+    ion-icon {
+      color: var(--primary-500);
+      font-size: 1rem;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .field-content {
+      flex: 1;
+
+      h3 {
+        color: var(--neutral-800);
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 0 0 0.125rem 0;
+      }
+
+      p {
+        color: var(--neutral-600);
+        font-size: 0.8rem;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// 🔷 Tarjeta de Pedidos - Más compacta
+.compact-orders-card {
+  margin: 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+
+  .empty-orders {
+    text-align: center;
+    padding: 2rem 1.5rem;
+
+    p {
+      color: var(--neutral-600);
+      font-size: 0.9rem;
+      margin: 0;
+      font-style: italic;
+    }
+  }
+}
+
+// 🔷 Responsive Design - Más compacto
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .main-grid {
+    padding: 0.5rem;
+  }
+
+  .profile-column,
+  .content-column {
+    padding: 0.25rem;
+  }
+
+  .perfil-card .profile-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .compact-info-card .compact-card-header {
+    padding: 0.75rem;
+  }
+
+  .compact-form-item {
+    min-height: 44px;
+  }
+
+  .navigation-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .custom-tabs {
+    .custom-tab-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+
+      ion-icon {
+        font-size: 0.9rem;
+      }
+
+      span {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .edit-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    align-self: flex-end;
+
+    ion-icon {
+      font-size: 0.9rem;
+    }
+
+    span {
+      font-size: 0.8rem;
+    }
+  }
+}
+

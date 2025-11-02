@@ -1,0 +1,307 @@
+
+// 💅 Variables generales 
+:host {
+  font-family: 'Poppins', sans-serif;
+}
+
+ion-content {
+  --background: linear-gradient(to bottom, var(--light-blue-500), var(--neutral-100));
+}
+
+// 🔷 CONTENEDOR PRINCIPAL CENTRADO
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px 16px 40px 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 10px 16px 24px 16px;
+    min-height: auto;
+  }
+}
+
+// 🔹 ENCABEZADO DE PÁGINA
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.page-title {
+  font-size: 2rem;
+  line-height: 2.25rem;
+  font-weight: 800;
+  color: var(--primary-500);
+  margin: 0 0 16px 0;
+
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: var(--neutral-600);
+  margin: 0 0 40px 0;
+  line-height: 1.5;
+}
+
+// � TARJETA DEL FORMULARIO PRINCIPAL
+.form-card {
+  background: var(--neutral-100);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(10, 35, 66, 0.08);
+  padding: 32px 40px;
+  width: 100%;
+  margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    padding: 24px;
+    border-radius: 16px;
+  }
+}
+
+// 🔹 TÍTULO DEL FORMULARIO
+.form-title-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+
+  .form-icon {
+    font-size: 20px;
+    color: var(--primary-500);
+  }
+
+  .form-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--primary-500);
+    margin: 0;
+  }
+}
+
+// 🔹 FORMULARIO
+.service-form {
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+// 🔹 CAMPOS DEL FORMULARIO
+.form-field {
+  display: flex;
+  flex-direction: column;
+
+  &.form-field-full {
+    grid-column: 1 / -1;
+  }
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-500);
+  margin-bottom: 6px;
+
+  .field-icon {
+    font-size: 16px;
+    color: var(--primary-500);
+  }
+}
+
+.field-input {
+  width: 100%;
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-400);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 16px;
+  color: var(--dark-500);
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
+  
+  &::placeholder {
+    color: var(--neutral-600);
+  }
+
+  &:focus {
+    border-color: var(--primary-300);
+    box-shadow: 0 0 0 3px rgba(35, 89, 174, 0.1);
+  }
+
+  &:hover {
+    border-color: var(--neutral-500);
+  }
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+// 🔹 ESTILOS ESPECÍFICOS PARA SELECT (MENÚ DESPLEGABLE)
+select.field-input {
+  border-radius: 12px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23447dd9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+
+  // Estilos para las opciones del dropdown con bordes redondeados
+  option {
+    background: var(--neutral-100);
+    color: var(--dark-500);
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin: 2px;
+    
+    &:hover, &:focus {
+      background: var(--primary-100);
+      color: var(--primary-500);
+      border-radius: 12px;
+    }
+    
+    &:checked, &:selected {
+      background: var(--primary-100);
+      color: var(--primary-100);
+      border-radius: 12px;
+    }
+  }
+
+  &:focus {
+    border-color: var(--primary-300);
+    box-shadow: 0 0 0 3px rgba(35, 89, 174, 0.1);
+  }
+}
+
+// 🔹 BOTONES
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+}
+
+.btn-cancel {
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+  border: 1px solid var(--neutral-400);
+  border-radius: 0.75rem;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--neutral-200);
+    border-color: var(--neutral-500);
+  }
+
+  @media (max-width: 767px) {
+    order: 2;
+  }
+}
+
+.btn-submit {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover {
+    background: var(--primary-400);
+  }
+
+  .btn-icon {
+    font-size: 18px;
+  }
+
+  @media (max-width: 767px) {
+    order: 1;
+  }
+}
+
+// 🔹 BLOQUE INFORMATIVO INFERIOR
+.info-note {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 24px;
+  width: 100%;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+// 🔹 IONIC OVERRIDES para inputs nativos
+ion-input.field-input,
+ion-textarea.field-input,
+ion-select.field-input {
+  --border-color: var(--neutral-400) !important;
+  --border-radius: 12px !important;
+  --padding-start: 12px !important;
+  --padding-end: 12px !important;
+  --padding-top: 10px !important;
+  --padding-bottom: 10px !important;
+  --background: var(--neutral-100) !important;
+  --box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06) !important;
+
+  &.ion-focused {
+    --border-color: var(--primary-300) !important;
+    --box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06) !important;
+  }
+
+  &:hover {
+    --border-color: var(--neutral-500) !important;
+  }
+}
