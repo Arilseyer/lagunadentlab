@@ -23,6 +23,11 @@
 .header {
   margin-bottom: 32px;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .title {
@@ -44,6 +49,76 @@
   color: var(--neutral-700);
   margin: 0;
   font-weight: 400;
+}
+
+.btn-refresh {
+  --border-radius: 0.75rem;
+  font-weight: 600;
+}
+
+/* ===============================
+   Estadísticas
+   =============================== */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-300);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--neutral-700);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===============================
+   Estados de carga y vacío
+   =============================== */
+.loading-container,
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--neutral-700);
+  font-size: 1rem;
+}
+
+.loading-container {
+  p {
+    margin: 0;
+    font-style: italic;
+  }
+}
+
+.empty-state {
+  p {
+    margin: 0;
+    font-weight: 500;
+  }
 }
 
 /* ===============================
@@ -146,6 +221,13 @@
 .service-name {
   color: var(--dark-400);
   font-weight: 500;
+}
+
+.service-notes {
+  font-size: 0.75rem;
+  color: var(--neutral-600);
+  margin-top: 0.25rem;
+  font-style: italic;
 }
 
 /* Fecha */
@@ -279,6 +361,19 @@
     --background: var(--neutral-200);
     --color: var(--neutral-700);
     --border-color: var(--neutral-300);
+  }
+}
+
+/* Botón Eliminar */
+.btn-eliminar {
+  --color: #EF4444;
+  --border-color: #EF4444;
+  --border-width: 1.5px;
+  min-width: 100px;
+  
+  &:hover:not(:disabled) {
+    --background: #EF4444;
+    --color: #ffffff;
   }
 }
 

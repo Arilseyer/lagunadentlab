@@ -130,6 +130,33 @@ ion-content {
   }
 }
 
+// Wrapper para inputs con iconos (fecha y hora)
+.input-with-icon {
+  position: relative;
+  width: 100%;
+
+  .input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--primary-500);
+    pointer-events: all;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--primary-600);
+    }
+  }
+
+  .field-input {
+    padding-right: 40px; // Espacio para el icono
+  }
+}
+
 .field-input {
   width: 100%;
   background: var(--neutral-100);
@@ -154,6 +181,23 @@ ion-content {
 
   &:hover {
     border-color: var(--neutral-500);
+  }
+
+  // Estilos para campos de solo lectura (cuando el usuario está autenticado)
+  &[readonly] {
+    background: var(--neutral-200);
+    color: var(--neutral-700);
+    cursor: not-allowed;
+    border-color: var(--neutral-300);
+    
+    &:hover {
+      border-color: var(--neutral-300);
+    }
+    
+    &:focus {
+      border-color: var(--neutral-300);
+      box-shadow: none;
+    }
   }
 }
 

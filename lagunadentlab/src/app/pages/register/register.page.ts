@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+/**
+ * Página de registro de usuario.
+ * Valida el formulario, crea el usuario en Auth y guarda el perfil en Firestore.
+ * Envía correo de verificación y cierra sesión tras el registro.
+ */
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { 
-  IonContent,
-  IonButton,
-  IonIcon,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonRouterLink
-} from '@ionic/angular/standalone';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
+import { sendEmailVerification } from 'firebase/auth';
+import { ToastController } from '@ionic/angular';
+import { RouterLink, Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
-import { 
+import {
   personAddOutline,
   arrowBackOutline,
   eye,
@@ -33,21 +29,40 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   imports: [
     CommonModule,
     FormsModule,
-    
+    ReactiveFormsModule,
     RouterLink,
-    IonContent,
-    IonIcon,
+    IonicModule,
     NavbarComponent]
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
+  form: FormGroup;
+  loading = false;
+
   showPassword = false;
   showConfirmPassword = false;
 
-  constructor() {
-    addIcons({personAddOutline, arrowBackOutline, eye, eyeOff});
+  constructor(
+    private fb: FormBuilder,
+    private dataService: DataService,
+    private toastCtrl: ToastController,
+    private router: Router,
+    private authService: AuthService,
+  ) {
+    addIcons({ personAddOutline, arrowBackOutline, eye, eyeOff });
+
+    this.form = this.fb.group({
+      fullName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10,15}$')]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]]
+    }, { validators: this.passwordsMatchValidator });
   }
 
-  ngOnInit() {
+  passwordsMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordsMismatch: true };
   }
 
   togglePasswordVisibility() {
@@ -56,5 +71,64 @@ export class RegisterPage implements OnInit {
 
   toggleConfirmPasswordVisibility() {
     this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
+  async presentToast(message: string, color: string = 'success', duration = 3000) {
+    const toast = await this.toastCtrl.create({
+      message,
+      color,
+      duration,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
+
+  async onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      if (this.form.errors && this.form.errors['passwordsMismatch']) {
+        await this.presentToast('Las contraseñas no coinciden', 'danger');
+      } else {
+        await this.presentToast('Completa todos los campos correctamente.', 'danger');
+      }
+      return;
+    }
+
+    this.loading = true;
+    try {
+      const { fullName, email, phone, password } = this.form.value;
+      const cred = await this.authService.register(email, password);
+
+      if (cred.user) {
+        await sendEmailVerification(cred.user);
+
+        try {
+          await this.dataService.saveUserProfile(cred.user.uid, {
+            name: fullName,
+            email,
+            phone,
+            isAdmin: false,
+            createdAt: new Date()
+          });
+          this.form.reset();
+        } catch (firestoreError: any) {
+          console.error('Error guardando perfil (users/create):', firestoreError);
+          const errorMsg = firestoreError?.message || firestoreError?.code || 'Error desconocido';
+          await this.presentToast(`Error guardando perfil: ${errorMsg}`, 'danger');
+        }
+
+        await this.authService.logout();
+        await this.presentToast('Te enviamos un correo de verificación. Verifica tu email antes de iniciar sesión.', 'warning');
+        this.router.navigateByUrl('/login');
+      }
+    } catch (err: any) {
+      if (err.code === 'auth/email-already-in-use') {
+        await this.presentToast('Este correo ya está registrado', 'danger');
+        this.loading = false;
+        return;
+      }
+      await this.presentToast(err.message || 'Error al registrar', 'danger');
+    }
+    this.loading = false;
   }
 }

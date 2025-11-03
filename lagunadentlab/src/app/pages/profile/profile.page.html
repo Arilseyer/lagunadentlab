@@ -5,7 +5,7 @@
   <!-- Hero Section -->
   <div class="hero-section">
     <h1 class="hero-title">Mi Perfil</h1>
-    <p class="hero-subtitle">Administra tu información personal y revisa tus pedidos</p>
+    <p class="hero-subtitle">Administra tu información personal y revisa tus citas</p>
   </div>
 
   <!-- Main Grid Layout -->
@@ -18,21 +18,31 @@
           <ion-card-content class="profile-content">
             
             <!-- Nombre y Email -->
-            <h2 class="profile-name">Dr. Juan Pérez García</h2>
-            <p class="profile-email">juan.perez@clinicadental.com</p>
+            <h2 class="profile-name">{{ userProfile?.name || 'Usuario' }}</h2>
+            <p class="profile-email">{{ currentUser?.email || 'email@ejemplo.com' }}</p>
             
             <!-- Información Adicional -->
             <div class="contact-info">
               <ion-item lines="none" class="info-item">
                 <ion-icon slot="start" name="call-outline"></ion-icon>
-                <ion-label class="compact-label">(871) 123-4567</ion-label>
+                <ion-label class="compact-label">{{ userProfile?.phone || 'No registrado' }}</ion-label>
               </ion-item>
               
               <ion-item lines="none" class="info-item">
                 <ion-icon slot="start" name="calendar-outline"></ion-icon>
-                <ion-label class="compact-label">Miembro desde Enero 2022</ion-label>
+                <ion-label class="compact-label">Miembro desde {{ formatDate(userProfile?.createdAt) }}</ion-label>
               </ion-item>
             </div>
+
+            <!-- Botón de Cerrar Sesión -->
+            <ion-button 
+              expand="block" 
+              color="danger" 
+              class="logout-button"
+              (click)="logout()">
+              <ion-icon slot="start" name="log-out-outline"></ion-icon>
+              Cerrar Sesión
+            </ion-button>
             
           </ion-card-content>
         </ion-card>
@@ -57,15 +67,27 @@
               [class.active]="selectedTab === 'orders'"
               (click)="selectedTab = 'orders'">
               <ion-icon name="receipt-outline"></ion-icon>
-              <span>Mis Pedidos</span>
+              <span>Mis Citas</span>
             </button>
           </div>
 
           <!-- Botón Editar al lado derecho -->
-          <button class="edit-button" *ngIf="selectedTab === 'info'">
+          <button class="edit-button" *ngIf="selectedTab === 'info' && !isEditing" (click)="toggleEdit()">
             <ion-icon name="create-outline"></ion-icon>
             <span>Editar</span>
           </button>
+          
+          <!-- Botones Guardar/Cancelar cuando está editando -->
+          <div class="edit-actions" *ngIf="selectedTab === 'info' && isEditing">
+            <button class="cancel-button" (click)="toggleEdit()">
+              <ion-icon name="close-outline"></ion-icon>
+              <span>Cancelar</span>
+            </button>
+            <button class="save-button" (click)="saveProfile()" [disabled]="loading">
+              <ion-icon name="save-outline"></ion-icon>
+              <span>{{ loading ? 'Guardando...' : 'Guardar' }}</span>
+            </button>
+          </div>
         </div>
 
         <!-- Contenido de Información -->
@@ -79,43 +101,116 @@
           
           <ion-card-content class="compact-card-content">
             
-            <div class="form-field">
-              <ion-item lines="none" class="compact-form-item" disabled>
-                <ion-icon slot="start" name="person-outline"></ion-icon>
-                <div class="field-content">
-                  <h3>Nombre completo</h3>
-                  <p>Dr. Juan Pérez García</p>
-                </div>
-              </ion-item>
+            <!-- Modo Vista -->
+            <div *ngIf="!isEditing">
+              <div class="form-field">
+                <ion-item lines="none" class="compact-form-item" disabled>
+                  <ion-icon slot="start" name="person-outline"></ion-icon>
+                  <div class="field-content">
+                    <h3>Nombre completo</h3>
+                    <p>{{ userProfile?.name || 'No registrado' }}</p>
+                  </div>
+                </ion-item>
+              </div>
+              
+              <div class="form-field">
+                <ion-item lines="none" class="compact-form-item" disabled>
+                  <ion-icon slot="start" name="mail-outline"></ion-icon>
+                  <div class="field-content">
+                    <h3>Correo electrónico</h3>
+                    <p>{{ currentUser?.email || 'No registrado' }}</p>
+                  </div>
+                </ion-item>
+              </div>
+              
+              <div class="form-field">
+                <ion-item lines="none" class="compact-form-item" disabled>
+                  <ion-icon slot="start" name="call-outline"></ion-icon>
+                  <div class="field-content">
+                    <h3>Teléfono</h3>
+                    <p>{{ userProfile?.phone || 'No registrado' }}</p>
+                  </div>
+                </ion-item>
+              </div>
             </div>
-            
-            <div class="form-field">
-              <ion-item lines="none" class="compact-form-item" disabled>
-                <ion-icon slot="start" name="mail-outline"></ion-icon>
-                <div class="field-content">
-                  <h3>Correo electrónico</h3>
-                  <p>juan.perez@clinicadental.com</p>
-                </div>
-              </ion-item>
-            </div>
-            
-            <div class="form-field">
-              <ion-item lines="none" class="compact-form-item" disabled>
-                <ion-icon slot="start" name="call-outline"></ion-icon>
-                <div class="field-content">
-                  <h3>Teléfono</h3>
-                  <p>(871) 123-4567</p>
-                </div>
-              </ion-item>
-            </div>
+
+            <!-- Modo Edición -->
+            <form [formGroup]="editForm" *ngIf="isEditing">
+              <div class="form-field">
+                <label class="field-label">Nombre completo</label>
+                <ion-input 
+                  type="text" 
+                  class="field-input" 
+                  placeholder="Tu nombre completo"
+                  formControlName="name"
+                  [class.invalid]="editForm.get('name')?.invalid && editForm.get('name')?.touched">
+                </ion-input>
+                <span class="error-message" *ngIf="editForm.get('name')?.hasError('required') && editForm.get('name')?.touched">
+                  El nombre es requerido
+                </span>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">Correo electrónico</label>
+                <ion-input 
+                  type="email" 
+                  class="field-input" 
+                  [value]="currentUser?.email"
+                  disabled>
+                </ion-input>
+                <span class="help-text">El correo no se puede modificar</span>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">Teléfono</label>
+                <ion-input 
+                  type="tel" 
+                  class="field-input" 
+                  placeholder="(871) 123-4567"
+                  formControlName="phone"
+                  [class.invalid]="editForm.get('phone')?.invalid && editForm.get('phone')?.touched">
+                </ion-input>
+                <span class="error-message" *ngIf="editForm.get('phone')?.hasError('required') && editForm.get('phone')?.touched">
+                  El teléfono es requerido
+                </span>
+                <span class="error-message" *ngIf="editForm.get('phone')?.hasError('pattern') && editForm.get('phone')?.touched">
+                  Formato inválido (10-15 dígitos)
+                </span>
+              </div>
+            </form>
             
           </ion-card-content>
         </ion-card>
 
         <!-- Contenido de Pedidos -->
         <ion-card *ngIf="selectedTab === 'orders'" class="compact-orders-card">
-          <ion-card-content class="empty-orders">
-            <p>No tienes pedidos aún</p>
+          <ion-card-header class="compact-card-header">
+            <div class="header-content">
+              <ion-card-title class="compact-title">Mis Citas</ion-card-title>
+              <ion-card-subtitle class="compact-subtitle">Historial de citas agendadas</ion-card-subtitle>
+            </div>
+          </ion-card-header>
+          
+          <ion-card-content class="compact-card-content">
+            <div *ngIf="appointments.length === 0" class="empty-orders">
+              <p>No tienes citas agendadas aún. <a routerLink="/appointment" class="agenda-link">Agenda aquí</a>.</p>
+            </div>
+
+            <div *ngIf="appointments.length > 0" class="appointments-list">
+              <div *ngFor="let appointment of appointments" class="appointment-item">
+                <div class="appointment-header">
+                  <h3>{{ appointment.serviceType || 'Servicio' }}</h3>
+                  <span class="status-badge" [ngClass]="'status-' + getStatusColor(appointment.status)">
+                    {{ appointment.status || 'Pendiente' }}
+                  </span>
+                </div>
+                <div class="appointment-details">
+                  <p><ion-icon name="calendar-outline"></ion-icon> {{ formatDate(appointment.date) }}</p>
+                  <p><ion-icon name="time-outline"></ion-icon> {{ appointment.time || 'N/A' }}</p>
+                </div>
+                <p class="appointment-notes" *ngIf="appointment.notes">{{ appointment.notes }}</p>
+              </div>
+            </div>
           </ion-card-content>
         </ion-card>
 

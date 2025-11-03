@@ -1,4 +1,7 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './services/auth.guard';
+import { AdminGuard } from './services/admin.guard';
+import { NoAuthGuard } from './services/no-auth.guard';
 
 export const routes: Routes = [
   // Ruta por defecto
@@ -26,32 +29,38 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contact/contact.page').then(m => m.ContactPage)
   },
   {
-    path: 'requestservices',
+    path: 'appointment',
     loadComponent: () => import('./pages/requestservices/requestservices.page').then(m => m.RequestservicesPage)
   },
   
   // Autenticación
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
+    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage),
+    canActivate: [NoAuthGuard]
   },
   {
     path: 'register',
-    loadComponent: () => import('./pages/register/register.page').then(m => m.RegisterPage)
+    loadComponent: () => import('./pages/register/register.page').then(m => m.RegisterPage),
+    canActivate: [NoAuthGuard]
   },
   {
     path: 'forgotpassword',
-    loadComponent: () => import('./pages/forgotpassword/forgotpassword.page').then(m => m.ForgotpasswordPage)
+    loadComponent: () => import('./pages/forgotpassword/forgotpassword.page').then(m => m.ForgotpasswordPage),
+    canActivate: [NoAuthGuard]
+    //por qué?
   },
   {
     path: 'profile',
-    loadComponent: () => import('./pages/profile/profile.page').then(m => m.ProfilePage)
+    loadComponent: () => import('./pages/profile/profile.page').then(m => m.ProfilePage),
+    canActivate: [AuthGuard]
   },
   
   // Administración
   {
     path: 'admindates',
-    loadComponent: () => import('./pages/admindates/admindates.page').then(m => m.AdmindatesPage)
+    loadComponent: () => import('./pages/admindates/admindates.page').then(m => m.AdmindatesPage),
+    canActivate: [AdminGuard]
   },
   
   // Error handling

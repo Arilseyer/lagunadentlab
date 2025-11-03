@@ -338,6 +338,19 @@ ion-content {
       font-size: 0.9rem;
       margin: 0;
       font-style: italic;
+
+      .agenda-link {
+        color: var(--primary-600);
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: var(--secondary-600);
+          border-bottom-color: var(--secondary-600);
+        }
+      }
     }
   }
 }
@@ -406,3 +419,183 @@ ion-content {
   }
 }
 
+// Estilos adicionales para funcionalidades nuevas
+.logout-button {
+  margin-top: 1.5rem;
+  --border-radius: 0.75rem;
+  font-weight: 600;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.cancel-button,
+.save-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  ion-icon {
+    font-size: 1rem;
+  }
+}
+
+.cancel-button {
+  background: var(--neutral-300);
+  color: var(--neutral-700);
+
+  &:hover {
+    background: var(--neutral-400);
+  }
+}
+
+.save-button {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+
+  &:hover:not(:disabled) {
+    background: var(--primary-400);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-500);
+  margin-bottom: 0.4rem;
+}
+
+.field-input {
+  --background: var(--neutral-100);
+  --border-color: var(--neutral-400);
+  --border-radius: 0.75rem;
+  --padding-start: 0.75rem;
+  --padding-end: 0.75rem;
+  font-size: 1rem;
+  color: var(--dark-500);
+  margin-bottom: 0.25rem;
+
+  &.invalid {
+    --border-color: #dc3545;
+  }
+}
+
+.error-message {
+  display: block;
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.help-text {
+  display: block;
+  color: var(--neutral-600);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.appointment-item {
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-300);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-500);
+    margin: 0;
+  }
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  &.status-success {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  &.status-warning {
+    background: #fff3cd;
+    color: #856404;
+  }
+
+  &.status-danger {
+    background: #f8d7da;
+    color: #721c24;
+  }
+
+  &.status-medium {
+    background: var(--neutral-300);
+    color: var(--neutral-700);
+  }
+}
+
+.appointment-details {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--neutral-700);
+    margin: 0;
+
+    ion-icon {
+      color: var(--primary-500);
+      font-size: 1rem;
+    }
+  }
+}
+
+.appointment-notes {
+  font-size: 0.875rem;
+  color: var(--neutral-600);
+  margin: 0.5rem 0 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--neutral-300);
+}

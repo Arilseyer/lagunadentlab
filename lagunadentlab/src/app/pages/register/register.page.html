@@ -22,21 +22,54 @@
       <p class="registro-subtitle">Completa tus datos para registrarte</p>
 
       <!-- Formulario -->
-      <form class="registro-form">
+      <form class="registro-form" [formGroup]="form" (ngSubmit)="onSubmit()">
         
         <div class="form-field">
           <label class="field-label">Nombre completo</label>
-          <input type="text" class="field-input" placeholder="Juan Pérez" />
+          <input 
+            type="text" 
+            class="field-input" 
+            placeholder="Juan Pérez" 
+            formControlName="fullName"
+            [class.invalid]="form.get('fullName')?.invalid && form.get('fullName')?.touched"
+          />
+          <span class="error-message" *ngIf="form.get('fullName')?.hasError('required') && form.get('fullName')?.touched">
+            El nombre es requerido
+          </span>
         </div>
 
         <div class="form-field">
           <label class="field-label">Correo electrónico</label>
-          <input type="email" class="field-input" placeholder="correo@ejemplo.com" />
+          <input 
+            type="email" 
+            class="field-input" 
+            placeholder="correo@ejemplo.com" 
+            formControlName="email"
+            [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+          />
+          <span class="error-message" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+            El correo es requerido
+          </span>
+          <span class="error-message" *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+            Correo inválido
+          </span>
         </div>
 
         <div class="form-field">
           <label class="field-label">Teléfono</label>
-          <input type="tel" class="field-input" placeholder="(871) 123-4567" />
+          <input 
+            type="tel" 
+            class="field-input" 
+            placeholder="(871) 123-4567" 
+            formControlName="phone"
+            [class.invalid]="form.get('phone')?.invalid && form.get('phone')?.touched"
+          />
+          <span class="error-message" *ngIf="form.get('phone')?.hasError('required') && form.get('phone')?.touched">
+            El teléfono es requerido
+          </span>
+          <span class="error-message" *ngIf="form.get('phone')?.hasError('pattern') && form.get('phone')?.touched">
+            Formato inválido (10-15 dígitos)
+          </span>
         </div>
 
         <div class="form-field">
@@ -46,6 +79,8 @@
               [type]="showPassword ? 'text' : 'password'" 
               class="field-input password-input" 
               placeholder="••••••••" 
+              formControlName="password"
+              [class.invalid]="form.get('password')?.invalid && form.get('password')?.touched"
             />
             <button 
               type="button" 
@@ -55,6 +90,12 @@
               <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
             </button>
           </div>
+          <span class="error-message" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+            La contraseña es requerida
+          </span>
+          <span class="error-message" *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+            Mínimo 6 caracteres
+          </span>
         </div>
 
         <div class="form-field">
@@ -64,6 +105,8 @@
               [type]="showConfirmPassword ? 'text' : 'password'" 
               class="field-input password-input" 
               placeholder="••••••••" 
+              formControlName="confirmPassword"
+              [class.invalid]="(form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched) || (form.errors?.['passwordsMismatch'] && form.get('confirmPassword')?.touched)"
             />
             <button 
               type="button" 
@@ -73,10 +116,16 @@
               <ion-icon [name]="showConfirmPassword ? 'eye-off' : 'eye'"></ion-icon>
             </button>
           </div>
+          <span class="error-message" *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
+            Confirma tu contraseña
+          </span>
+          <span class="error-message" *ngIf="form.errors?.['passwordsMismatch'] && form.get('confirmPassword')?.touched">
+            Las contraseñas no coinciden
+          </span>
         </div>
 
-        <button type="submit" class="btn-crear">
-          Crear cuenta
+        <button type="submit" class="btn-crear" [disabled]="loading">
+          {{ loading ? 'Creando cuenta...' : 'Crear cuenta' }}
         </button>
 
       </form>
