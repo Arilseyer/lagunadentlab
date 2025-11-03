@@ -29,19 +29,19 @@
           <!-- Nombre completo -->
           <div class="form-field">
             <label class="field-label">Nombre completo *</label>
-            <input type="text" class="field-input" formControlName="name" placeholder="Dr. Juan Pérez" />
+            <input type="text" class="field-input" formControlName="name" placeholder="Dr. Juan Pérez" [readonly]="isLoggedIn" />
           </div>
 
           <!-- Teléfono / WhatsApp -->
           <div class="form-field">
             <label class="field-label">Teléfono / WhatsApp *</label>
-            <input type="tel" class="field-input" formControlName="phone" placeholder="+52 123 456 7890" />
+            <input type="tel" class="field-input" formControlName="phone" placeholder="+52 123 456 7890" [readonly]="isLoggedIn" />
           </div>
 
           <!-- Correo electrónico -->
           <div class="form-field form-field-full">
             <label class="field-label">Correo electrónico *</label>
-            <input type="email" class="field-input" formControlName="email" placeholder="correo@ejemplo.com" />
+            <input type="email" class="field-input" formControlName="email" placeholder="correo@ejemplo.com" [readonly]="isLoggedIn" />
           </div>
 
           <!-- Tipo de servicio -->
@@ -59,7 +59,10 @@
               <ion-icon name="calendar-outline" class="field-icon"></ion-icon>
               Fecha preferida *
             </label>
-            <input type="date" class="field-input" formControlName="date" placeholder="dd/mm/aaaa" />
+            <div class="input-with-icon">
+              <input type="date" class="field-input" formControlName="date" placeholder="dd/mm/aaaa" #dateInput />
+              <ion-icon name="calendar-outline" class="input-icon" (click)="dateInput.showPicker()"></ion-icon>
+            </div>
           </div>
 
           <!-- Hora preferida -->
@@ -68,7 +71,10 @@
               <ion-icon name="time-outline" class="field-icon"></ion-icon>
               Hora preferida *
             </label>
-            <input type="time" class="field-input" formControlName="time" placeholder="--:-- --" />
+            <div class="input-with-icon">
+              <input type="time" class="field-input" formControlName="time" placeholder="--:-- --" #timeInput />
+              <ion-icon name="time-outline" class="input-icon" (click)="timeInput.showPicker()"></ion-icon>
+            </div>
           </div>
 
           <!-- Notas adicionales -->

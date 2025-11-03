@@ -22,11 +22,23 @@
       <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
 
       <!-- Formulario -->
-      <form class="login-form">
+      <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
         
         <div class="form-field">
           <label class="field-label">Correo electrónico</label>
-          <input type="email" class="field-input" placeholder="correo@ejemplo.com" />
+          <input 
+            type="email" 
+            class="field-input" 
+            placeholder="correo@ejemplo.com" 
+            formControlName="email"
+            [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+          />
+          <span class="error-message" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+            El correo es requerido
+          </span>
+          <span class="error-message" *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+            Correo inválido
+          </span>
         </div>
 
         <div class="form-field">
@@ -39,6 +51,8 @@
               [type]="showPassword ? 'text' : 'password'" 
               class="field-input password-input" 
               placeholder="••••••••" 
+              formControlName="password"
+              [class.invalid]="form.get('password')?.invalid && form.get('password')?.touched"
             />
             <button 
               type="button" 
@@ -48,10 +62,16 @@
               <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
             </button>
           </div>
+          <span class="error-message" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+            La contraseña es requerida
+          </span>
+          <span class="error-message" *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+            Mínimo 6 caracteres
+          </span>
         </div>
 
-        <button type="submit" class="btn-login" routerLink="/home">
-          Iniciar sesión
+        <button type="submit" class="btn-login" [disabled]="loading">
+          {{ loading ? 'Iniciando sesión...' : 'Iniciar sesión' }}
         </button>
 
       </form>

@@ -9,7 +9,7 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
- :root {
+:root {
   --neutral-100: #fff;
   --neutral-200: #ececec;
   --neutral-300: #e7e7e7;
@@ -45,11 +45,16 @@
   --secondary-900: #2d5d82;
 
   /* Complementos de tema */
-  --light-blue-500: #eaf2ff; /* usado en degradados claros */
+  --light-blue-500: #eaf2ff;
+  /* usado en degradados claros */
   /* RGB tokens para sombras y anillos de enfoque */
-  --shadow-color-rgb: 10, 35, 66; /* box-shadows con distintas opacidades */
-  --primary-300-rgb: 35, 89, 174; /* corresponde a --primary-300 */
+  --shadow-color-rgb: 10, 35, 66;
+  /* box-shadows con distintas opacidades */
+  --primary-300-rgb: 35, 89, 174;
+  /* corresponde a --primary-300 */
 
+  /* Colores de error */
+  --error-red: #dc3545;
 }
 
 /* Tipografía global - Poppins como fuente principal */
@@ -58,6 +63,8 @@
 }
 
 /* Core CSS required for Ionic components to work properly */
+
+
 @import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
@@ -108,11 +115,12 @@ ion-content {
   width: auto;
   min-width: auto;
   height: auto;
-  min-height: 2.5rem; /* Altura mínima consistente */
+  min-height: 2.5rem;
+  /* Altura mínima consistente */
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 // Botón secundario - estilo alternativo con la misma altura
@@ -129,11 +137,12 @@ ion-content {
   width: auto;
   min-width: auto;
   height: auto;
-  min-height: 2.5rem; /* Misma altura mínima que btn-primary */
+  min-height: 2.5rem;
+  /* Misma altura mínima que btn-primary */
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 // Botón con icono
@@ -142,7 +151,7 @@ ion-content {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
+
   ion-icon {
     font-size: 1rem;
   }

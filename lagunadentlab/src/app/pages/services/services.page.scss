@@ -17,13 +17,13 @@ ion-content {
 
   .hero-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 800;
     color: var(--primary-500);
     margin: 0 0 1rem 0;
 
     @media (min-width: 768px) {
-      font-size: 3rem;
+      font-size: 2.25rem;
     }
   }
 
@@ -111,13 +111,13 @@ ion-content {
 
   .service-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
     font-weight: 600;
     color: var(--primary-500);
     margin: 0;
 
     @media (min-width: 768px) {
-      font-size: 1.25rem;
+      font-size: 1rem;
     }
   }
 

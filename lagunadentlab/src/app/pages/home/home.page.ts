@@ -64,7 +64,7 @@ export class HomePage {
 
   // Método para navegar a solicitud de servicios
   navegarASolicitudServicios() {
-    this.router.navigate(['/requestservices']);
+    this.router.navigate(['/appointment']);
   }
 
   // Método para navegar a nosotros

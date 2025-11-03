@@ -5,12 +5,48 @@
     
     <!-- Encabezado -->
     <div class="header">
-      <h1 class="title">Gestión de Citas</h1>
-      <p class="subtitle">Administra todas las citas del laboratorio dental</p>
+      <div>
+        <h1 class="title">Gestión de Citas</h1>
+        <p class="subtitle">Administra todas las citas del laboratorio dental</p>
+      </div>
+      <ion-button fill="outline" class="btn-refresh" (click)="loadCitas()">
+        <ion-icon name="refresh-outline" slot="start"></ion-icon>
+        Actualizar
+      </ion-button>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-value">{{ getCitasPendientes() }}</div>
+        <div class="stat-label">Pendientes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ getCitasAprobadas() }}</div>
+        <div class="stat-label">Aprobadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ getCitasCompletadas() }}</div>
+        <div class="stat-label">Completadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ citas.length }}</div>
+        <div class="stat-label">Total</div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading-container">
+      <p>Cargando citas...</p>
+    </div>
+
+    <!-- No hay citas -->
+    <div *ngIf="!loading && citas.length === 0" class="empty-state">
+      <p>No hay citas registradas</p>
     </div>
 
     <!-- Tabla de citas -->
-    <ion-card class="table-card">
+    <ion-card class="table-card" *ngIf="!loading && citas.length > 0">
       <ion-card-content class="table-content">
         <div class="table-wrapper">
           <table class="citas-table">
@@ -28,21 +64,22 @@
                 <!-- Usuario -->
                 <td class="col-usuario" data-label="Usuario">
                   <div class="user-info">
-                    <div class="user-name">{{ cita.usuario }}</div>
-                    <div class="user-email">{{ cita.email }}</div>
+                    <div class="user-name">{{ cita.userName || 'Usuario' }}</div>
+                    <div class="user-email">{{ cita.userEmail || cita.uid }}</div>
                   </div>
                 </td>
                 
                 <!-- Servicio -->
                 <td class="col-servicio" data-label="Servicio">
-                  <div class="service-name">{{ cita.servicio }}</div>
+                  <div class="service-name">{{ cita.serviceType || 'N/A' }}</div>
+                  <div class="service-notes" *ngIf="cita.notes">{{ cita.notes }}</div>
                 </td>
                 
                 <!-- Fecha -->
                 <td class="col-fecha" data-label="Fecha">
                   <div class="date-info">
-                    <div class="date">{{ cita.fecha }}</div>
-                    <div class="time">{{ cita.hora }}</div>
+                    <div class="date">{{ formatDate(cita.date) }}</div>
+                    <div class="time">{{ cita.time || 'N/A' }}</div>
                   </div>
                 </td>
                 
@@ -50,12 +87,12 @@
                 <td class="col-estado" data-label="Estado">
                   <span class="status-badge" 
                         [ngClass]="{
-                          'status-pendiente': cita.estado === 'Pendiente',
-                          'status-aprobada': cita.estado === 'Aprobada',
-                          'status-rechazada': cita.estado === 'Rechazada',
-                          'status-completada': cita.estado === 'Completada'
+                          'status-pendiente': cita.status === ESTADOS.PENDIENTE,
+                          'status-aprobada': cita.status === ESTADOS.APROBADA,
+                          'status-rechazada': cita.status === ESTADOS.RECHAZADA,
+                          'status-completada': cita.status === ESTADOS.COMPLETADA
                         }">
-                    {{ cita.estado }}
+                    {{ cita.status || 'Pendiente' }}
                   </span>
                 </td>
                 
@@ -66,30 +103,40 @@
                       fill="solid" 
                       size="small" 
                       class="btn-action btn-aprobar"
-                      [disabled]="cita.estado !== 'Pendiente'"
+                      [disabled]="cita.status !== ESTADOS.PENDIENTE"
                       (click)="aprobar(cita)">
                       <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-                      {{ cita.estado === 'Aprobada' ? 'Aprobado' : 'Aprobar' }}
+                      Aprobar
                     </ion-button>
                     
                     <ion-button 
                       fill="solid" 
                       size="small" 
                       class="btn-action btn-rechazar"
-                      [disabled]="cita.estado !== 'Pendiente'"
+                      [disabled]="cita.status !== ESTADOS.PENDIENTE"
                       (click)="rechazar(cita)">
                       <ion-icon name="close-circle-outline" slot="start"></ion-icon>
-                      {{ cita.estado === 'Rechazada' ? 'Rechazado' : 'Rechazar' }}
+                      Rechazar
                     </ion-button>
                     
                     <ion-button 
                       fill="outline" 
                       size="small" 
                       class="btn-action btn-completar"
-                      [disabled]="cita.estado === 'Pendiente' || cita.estado === 'Rechazada'"
+                      [disabled]="cita.status === ESTADOS.PENDIENTE || cita.status === ESTADOS.RECHAZADA || cita.status === ESTADOS.COMPLETADA"
                       (click)="completar(cita)">
                       <ion-icon name="time-outline" slot="start"></ion-icon>
-                      {{ cita.estado === 'Completada' ? 'Completado' : 'Completar' }}
+                      Completar
+                    </ion-button>
+
+                    <ion-button 
+                      fill="outline" 
+                      size="small" 
+                      color="danger"
+                      class="btn-action btn-eliminar"
+                      (click)="eliminar(cita)">
+                      <ion-icon name="trash-outline" slot="start"></ion-icon>
+                      Eliminar
                     </ion-button>
                   </div>
                 </td>

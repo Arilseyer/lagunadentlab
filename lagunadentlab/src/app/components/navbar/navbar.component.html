@@ -40,17 +40,17 @@
         </button>
         
         <!-- Botón Iniciar Sesión -->
-        <button class="auth-button login-btn" (click)="navigateTo('/login')">
+        <button *ngIf="!(isLoggedIn$ | async)" class="auth-button login-btn" (click)="navigateTo('/login')">
           Iniciar Sesión
         </button>
-        
+
         <!-- Botón Registrarse -->
-        <button class="auth-button register-btn" (click)="navigateTo('/register')">
+        <button *ngIf="!(isLoggedIn$ | async)" class="auth-button register-btn" (click)="navigateTo('/register')">
           Registrarse
         </button>
-        
+
         <!-- Botón de Perfil -->
-        <button class="profile-button" (click)="navigateTo('/profile')">
+        <button *ngIf="(isLoggedIn$ | async)" class="profile-button" (click)="navigateTo('/profile')">
           <ion-icon name="person-outline"></ion-icon>
         </button>
       </div>

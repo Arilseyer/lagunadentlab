@@ -157,6 +157,18 @@ ion-content {
   &:hover {
     border-color: var(--neutral-500);
   }
+
+  &.invalid {
+    border-color: #dc3545;
+  }
+}
+
+.error-message {
+  display: block;
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
 }
 
 /* Contenedor para input de contraseña con botón */
@@ -206,13 +218,18 @@ ion-content {
   cursor: pointer;
   transition: all 0.3s ease;
   
-  &:hover {
+  &:hover:not(:disabled) {
     background: var(--primary-400);
     transform: translateY(-1px);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 
