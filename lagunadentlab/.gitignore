@@ -64,12 +64,10 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
-
-# Environment files (do not commit secrets)
-# Keep environment.ts tracked with NO secrets; use environment.local.ts for local dev and CI generates environment.prod.ts
 src/environments/environment.local.ts
 src/environments/environment.prod.ts
 src/environments/environment.ts
+
 
 # System files
 .DS_Store
