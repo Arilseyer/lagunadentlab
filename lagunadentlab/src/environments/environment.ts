@@ -7,7 +7,7 @@ export const environment = {
 };
 
 export const firebaseConfig = {
-  apiKey: "",
+  apiKey: "AIzaSyD_jb0MfvY3Ml5oVF5kdZEMnIOHpo4d13M",
   authDomain: "lagunadentlab.firebaseapp.com",
   projectId: "lagunadentlab",
   storageBucket: "lagunadentlab.firebasestorage.app",

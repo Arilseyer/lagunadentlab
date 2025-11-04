@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "lagunadentlab"
-  }
+    "default": "lagunadentlab",
+    "laguna": "lagunadentlab"
+  },
+  "targets": {},
+  "etags": {}
 }
