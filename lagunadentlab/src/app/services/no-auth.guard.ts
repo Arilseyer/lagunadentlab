@@ -20,12 +20,14 @@ export class NoAuthGuard implements CanActivate {
             take(1),
             switchMap(() => this.authService.user$),
             switchMap(user => {
-                if (user) {
-                    // Si está autenticado, redirigir al home
-                    this.router.navigate(['/home']);
+                // Solo bloquea acceso a login/register si el usuario está VERIFICADO
+                // Usuarios no verificados deben poder acceder a login/register para completar el flujo
+                if (user?.emailVerified) {
+                    // Usuario verificado: redirigir a su área (mejor a profile que a home)
+                    this.router.navigate(['/profile']);
                     return of(false);
                 }
-                // Si no está autenticado, permitir acceso
+                // No hay sesión o no verificado: permitir acceso
                 return of(true);
             })
         );
