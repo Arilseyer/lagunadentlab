@@ -5,21 +5,21 @@
   <!-- 🔷 SECCIÓN 1: ENCABEZADO -->
   <section class="about-hero">
     <div class="hero-inner">
-      <h1 class="about-title">Sobre Nosotros</h1>
-      <p class="about-subtitle">15 años de experiencia creando sonrisas perfectas</p>
+      <h1 class="about-title">{{ 'about.hero.title' | translate }}</h1>
+      <p class="about-subtitle">{{ 'about.hero.subtitle' | translate }}</p>
     </div>
   </section>
 
   <!-- 🔷 SECCIÓN 2: PESTAÑAS -->
   <div class="tabs-buttons">
     <button class="service-button" [class.active]="selectedTab === 'historia'" (click)="setSelectedTab('historia')">
-      Historia
+      {{ 'about.tabs.history' | translate }}
     </button>
     <button class="service-button" [class.active]="selectedTab === 'mision'" (click)="setSelectedTab('mision')">
-      Misión
+      {{ 'about.tabs.mission' | translate }}
     </button>
     <button class="service-button" [class.active]="selectedTab === 'vision'" (click)="setSelectedTab('vision')">
-      Visión
+      {{ 'about.tabs.vision' | translate }}
     </button>
   </div>
 
@@ -29,9 +29,9 @@
       <div class="history-grid">
         <ion-img class="history-image" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80" alt="Laboratorio dental"></ion-img>
         <div class="timeline">
-          <h2 class="timeline-title">Nuestra Historia</h2>
+          <h2 class="timeline-title">{{ 'about.history.title' | translate }}</h2>
           <p class="history-text">
-            Laguna Dent Lab surgió como necesidad de entregar prótesis de mejor calidad a los pacientes, ya que no había muchas opciones en el mercado que pudieran satisfacer. A raíz de esa problemática, decidimos emprender con el laboratorio. Durante el camino si nos hemos encontrado con varias complicaciones, pero las hemos ido resolviendo y en este punto, nos sentimos satisfechos con el trabajo que hemos logrado y cada día estamos avanzando más en ese camino.
+            {{ 'about.history.description' | translate }}
           </p>
         </div>
       </div>
@@ -42,9 +42,9 @@
       <div class="history-grid">
         <ion-img class="history-image" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80" alt="Misión"></ion-img>
         <div class="timeline">
-          <h2 class="timeline-title">Nuestra Misión</h2>
+          <h2 class="timeline-title">{{ 'about.mission.title' | translate }}</h2>
           <p class="mission-text">
-            Ofrecer soluciones dentales personalizadas mediante la fabricación de piezas, placas y prótesis de alta calidad, utilizando materiales confiables, procesos precisos y tecnología especializada. Nuestro compromiso es apoyar a odontólogos y especialistas para mejorar la funcionalidad, estética y calidad de vida de sus pacientes, manteniendo siempre un servicio responsable, ético y eficiente.
+            {{ 'about.mission.description' | translate }}
           </p>
         </div>
       </div>
@@ -55,9 +55,9 @@
       <div class="history-grid">
         <ion-img class="history-image" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80" alt="Visión"></ion-img>
         <div class="timeline">
-          <h2 class="timeline-title">Nuestra Visión</h2>
+          <h2 class="timeline-title">{{ 'about.vision.title' | translate }}</h2>
           <p class="vision-text">
-            Ser el laboratorio dental de referencia en la región, reconocido por la calidad, precisión e innovación en la elaboración de piezas, placas y prótesis dentales, contribuyendo al bienestar y confianza de los pacientes a través del trabajo colaborativo con profesionales de la salud dental.
+            {{ 'about.vision.description' | translate }}
           </p>
         </div>
       </div>
@@ -66,25 +66,52 @@
 
   <!-- 🔷 SECCIÓN 4: VALORES -->
   <section class="values-section">
-    <h2 class="section-title">Nuestros Valores</h2>
-    <p class="section-subtitle">Principios que guían cada decisión y acción en nuestro laboratorio</p>
+    <h2 class="section-title">{{ 'about.values.title' | translate }}</h2>
+    <p class="section-subtitle">{{ 'about.values.subtitle' | translate }}</p>
     <div class="values-grid">
-      <div class="value-card" *ngFor="let v of values">
-        <div class="value-icon"><ion-icon [name]="v.icon"></ion-icon></div>
-        <h3>{{ v.title }}</h3>
-        <p>{{ v.description }}</p>
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="trophy-outline"></ion-icon></div>
+        <h3>{{ 'about.values.quality.title' | translate }}</h3>
+        <p>{{ 'about.values.quality.description' | translate }}</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="checkmark-circle-outline"></ion-icon></div>
+        <h3>{{ 'about.values.responsibility.title' | translate }}</h3>
+        <p>{{ 'about.values.responsibility.description' | translate }}</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="heart-outline"></ion-icon></div>
+        <h3>{{ 'about.values.honesty.title' | translate }}</h3>
+        <p>{{ 'about.values.honesty.description' | translate }}</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="bulb-outline"></ion-icon></div>
+        <h3>{{ 'about.values.discipline.title' | translate }}</h3>
+        <p>{{ 'about.values.discipline.description' | translate }}</p>
       </div>
     </div>
   </section>
 
   <!-- 🔷 SECCIÓN 5: PRINCIPIOS -->
   <section class="principles-section">
-    <h2 class="section-title">Nuestros Principios</h2>
+    <h2 class="section-title">{{ 'about.principles.title' | translate }}</h2>
     <div class="principles-card">
       <div class="principles-grid">
-        <div class="principle-item" *ngFor="let p of principles">
+        <div class="principle-item">
           <ion-icon name="checkmark-circle" class="check"></ion-icon>
-          <span>{{ p }}</span>
+          <span>{{ 'about.principles.respect' | translate }}</span>
+        </div>
+        <div class="principle-item">
+          <ion-icon name="checkmark-circle" class="check"></ion-icon>
+          <span>{{ 'about.principles.communication' | translate }}</span>
+        </div>
+        <div class="principle-item">
+          <ion-icon name="checkmark-circle" class="check"></ion-icon>
+          <span>{{ 'about.principles.improvement' | translate }}</span>
+        </div>
+        <div class="principle-item">
+          <ion-icon name="checkmark-circle" class="check"></ion-icon>
+          <span>{{ 'about.principles.ethics' | translate }}</span>
         </div>
       </div>
     </div>
@@ -92,19 +119,19 @@
 
   <!-- 🔷 SECCIÓN 6: EQUIPO -->
   <section class="team-section">
-    <h2 class="section-title">Nuestro Equipo</h2>
+    <h2 class="section-title">{{ 'about.team.title' | translate }}</h2>
     <div class="team-card">
       <div class="avatar">SR</div>
       <div class="team-info">
-        <div class="member-name">Dr. Saúl Rubén Ramírez Mora</div>
-        <span class="role-badge">Director y Fundador</span>
+        <div class="member-name">{{ 'about.team.member.name' | translate }}</div>
+        <span class="role-badge">{{ 'about.team.member.role' | translate }}</span>
         <p class="member-desc">
-        El Dr. Saúl Rubén Ramírez Mora es el encargado y propietario del laboratorio, además de contar con su propio consultorio dental. Es Médico Cirujano Dentista egresado de la Facultad de Odontología de la Universidad Autónoma de Coahuila y actualmente cursa una maestría en implantología dental. Con 15 años de experiencia en el ámbito odontológico y 4 años al frente del laboratorio, se distingue por su constante actualización profesional y por fomentar la capacitación de su equipo, con el objetivo de brindar siempre una atención de la más alta calidad.
+        {{ 'about.team.member.description' | translate }}
         </p>
         <ul class="member-list">
-          <li><ion-icon name="ellipse" class="dot"></ion-icon> Especialista en Prótesis Dental</li>
-          <li><ion-icon name="ellipse" class="dot"></ion-icon> Certificación en Tecnología CAD/CAM</li>
-          <li><ion-icon name="ellipse" class="dot"></ion-icon> Capacitación Continua</li>
+          <li><ion-icon name="ellipse" class="dot"></ion-icon> {{ 'about.team.member.specialty1' | translate }}</li>
+          <li><ion-icon name="ellipse" class="dot"></ion-icon> {{ 'about.team.member.specialty2' | translate }}</li>
+          <li><ion-icon name="ellipse" class="dot"></ion-icon> {{ 'about.team.member.specialty3' | translate }}</li>
         </ul>
       </div>
     </div>

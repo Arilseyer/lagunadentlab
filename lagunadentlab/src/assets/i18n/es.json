@@ -1,0 +1,449 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "profile": "Perfil",
+    "logout": "Cerrar Sesión"
+  },
+  "home": {
+    "hero": {
+      "title": "Innovación y Calidad en Prótesis Dentales",
+      "subtitle": "En Laguna Dent Lab, creamos prótesis dentales de alta calidad con tecnología de vanguardia y un compromiso inquebrantable con la excelencia.",
+      "cta": "Solicita tu Cotización",
+      "cta_secondary": "Ver Nuestros Servicios"
+    },
+    "stats": {
+      "experience": "Años de Experiencia",
+      "clients": "Clientes Satisfechos",
+      "products": "Productos Entregados",
+      "success": "Tasa de Éxito"
+    },
+    "features": {
+      "quality": {
+        "title": "Calidad",
+        "description": "Materiales certificados y procesos precisos en cada trabajo"
+      },
+      "speed": {
+        "title": "Atención Rápida",
+        "description": "Entrega eficiente sin comprometer la calidad"
+      },
+      "personalized": {
+        "title": "Atención Personalizada",
+        "description": "Soluciones dentales adaptadas a cada necesidad"
+      },
+      "innovation": {
+        "title": "Innovación",
+        "description": "Tecnología de punta y capacitación constante"
+      }
+    },
+    "services": {
+      "title": "Nuestros Servicios",
+      "subtitle": "Proveemos una amplia gama de soluciones protésicas con los más altos estándares de calidad",
+      "crown_porcelain": "Coronas de Porcelana y Zirconia",
+      "implants": "Implantes Dentales",
+      "prosthetics": "Prótesis Fijas y Removibles",
+      "acrylic": "Placas de Acrílico",
+      "guards": "Guardas Oclusales",
+      "view_all": "Ver Todos los Servicios"
+    },
+    "technology": {
+      "title": "Tecnología de Vanguardia",
+      "subtitle": "Utilizamos equipos de última generación para garantizar resultados precisos y de calidad",
+      "scanner_title": "Escáner Digital 3D",
+      "scanner_desc": "Modelos meticulosos de alta precisión",
+      "cadcam_title": "Sistema CAD/CAM",
+      "cadcam_desc": "Diseño asistido por computadora",
+      "materials_title": "Materiales Premium",
+      "materials_desc": "Zirconia, porcelanas de última generación",
+      "features": [
+        "Escáner intraoral de alta precisión",
+        "Diseño asistido por computadora (CAD)",
+        "Fresadoras CNC de alta velocidad", 
+        "Materiales biocompatibles certificados",
+        "Control de calidad riguroso"
+      ]
+    },
+    "testimonials": {
+      "title": "Lo que dicen nuestros clientes",
+      "subtitle": "Prueba la calidad de nuestros dentistas que confían en nuestro trabajo y servicio",
+      "testimonial1": {
+        "text": "Trabajo con Laguna Dent Lab desde hace 5 años. La calidad de sus prótesis ha sido excepcional y la atención personalizada ha marcado la diferencia en la satisfacción de mis pacientes.",
+        "author": "Dr. Mario González",
+        "title": "Odontólogo General"
+      },
+      "testimonial2": {
+        "text": "Su precisión en cada trabajo y tiempos de entrega son excepcionales. Me han ayudado muchísimo en casos complejos de rehabilitación. Altamente recomendados.",
+        "author": "Dr. Carlos Hernández",
+        "title": "Especialista en Rehabilitación"
+      }
+    },
+    "process": {
+      "title": "Nuestro Proceso de Trabajo",
+      "subtitle": "Un proceso optimizado para garantizar la mejor calidad en cada entrega",
+      "step1": {
+        "title": "Recepción",
+        "description": "Recibimos y verificamos las impresiones o archivos digitales"
+      },
+      "step2": {
+        "title": "Diseño",
+        "description": "Diseñamos con precisión usando tecnología CAD/CAM avanzada"
+      },
+      "step3": {
+        "title": "Fabricación",
+        "description": "Elaboramos con tecnología de punta y materiales de alta calidad"
+      },
+      "step4": {
+        "title": "Control de Calidad",
+        "description": "Verificamos cada detalle antes de hacer la entrega"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para trabajar con nosotros?",
+      "subtitle": "Únete a los cientos de dentistas que confían en nuestro trabajo y servicio",
+      "button": "Solicitar Información"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "question1": {
+        "title": "¿Cuánto tiempo toma un trabajo promedio?",
+        "answer": "El tiempo de entrega depende del tipo de prótesis. En promedio, trabajos como coronas toman de 3 a 5 días hábiles, mientras que prótesis completas pueden requerir de 7 a 10 días hábiles."
+      },
+      "question2": {
+        "title": "¿Qué materiales utilizan?",
+        "answer": "Trabajamos con materiales premium: zirconia de alta translucidez, porcelanas, acrílicos de grado médico, y aleaciones biocompatibles certificadas. Todos nuestros materiales cumplen con las normativas internacionales de calidad."
+      },
+      "question3": {
+        "title": "¿Necesito agendar cita para recoger un trabajo?",
+        "answer": "No es estrictamente necesario, pero es recomendable agendar una cita para asegurar que tu trabajo esté listo y que uno de nuestros técnicos pueda atenderte personalmente. Nuestro horario de atención es de lunes a viernes de 9:00 AM a 6:00 PM y sábados de 9:00 AM a 2:00 PM."
+      }
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Nuestros Servicios",
+      "subtitle": "Soluciones integrales en prótesis dental con tecnología avanzada"
+    },
+    "badges": {
+      "popular": "Popular"
+    },
+    "buttons": {
+      "request": "Solicitar Servicio"
+    },
+    "flexible": {
+      "title": "Prótesis Flexibles",
+      "partial": "Parcial Flexible",
+      "total": "Total Flexible",
+      "metallic": "Flexible con Ganchos Metálicos"
+    },
+    "plates": {
+      "title": "Placas Dentales",
+      "total_acrylic": "Placa Total de Acrílico",
+      "partial_acrylic": "Placa Parcial de Acrílico",
+      "temporary": "Placa Temporal",
+      "occlusal_guard": "Guarda Oclusal"
+    },
+    "crowns": {
+      "title": "Coronas",
+      "zirconia": "Corona de Zirconia",
+      "porcelain": "Corona de Porcelana",
+      "metal_porcelain": "Corona Metal-Porcelana",
+      "inlays": "Incrustaciones"
+    },
+    "digital": {
+      "title": "Tecnología Digital",
+      "scanning": "Escaneo 3D Intraoral",
+      "cadcam": "Diseño CAD/CAM",
+      "milling": "Fresado Digital",
+      "printing": "Impresión 3D"
+    },
+    "process": {
+      "title": "Nuestro Proceso de Trabajo",
+      "description": "Contamos con equipos de última generación que nos permiten ofrecer precisión milimétrica, tiempos de entrega optimizados y acabados estéticos superiores. Nuestra inversión en tecnología CAD/CAM garantiza resultados consistentes y de la más alta calidad.",
+      "step1": {
+        "title": "Recepción y Análisis",
+        "description": "Recibimos y analizamos tu caso con tecnología de escaneo digital"
+      },
+      "step2": {
+        "title": "Diseño Personalizado",
+        "description": "Diseñamos con precisión milimétrica usando software especializado"
+      },
+      "step3": {
+        "title": "Fabricación de Calidad",
+        "description": "Elaboramos con materiales premium y técnicas avanzadas"
+      },
+      "step4": {
+        "title": "Control y Entrega",
+        "description": "Verificamos cada detalle antes de entregarte tu prótesis"
+      }
+    },
+    "technology": {
+      "title": "Tecnología de Vanguardia",
+      "description": "Contamos con equipos de última generación que nos permiten ofrecer precisión milimétrica, tiempos de entrega optimizados y acabados estéticos superiores. Nuestra inversión en tecnología CAD/CAM garantiza resultados consistentes y de la más alta calidad.",
+      "scanner": "Escáner Digital 3D Intraoral",
+      "cadcam_system": "Sistema CAD/CAM de Diseño",
+      "milling_machine": "Fresadora Digital de Precisión",
+      "printer": "Impresora 3D Profesional"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Sobre Nosotros",
+      "subtitle": "15 años de experiencia creando sonrisas perfectas"
+    },
+    "tabs": {
+      "history": "Historia",
+      "mission": "Misión",
+      "vision": "Visión"
+    },
+    "history": {
+      "title": "Nuestra Historia",
+      "description": "Laguna Dent Lab surgió como necesidad de entregar prótesis de mejor calidad a los pacientes, ya que no había muchas opciones en el mercado que pudieran satisfacer. A raíz de esa problemática, decidimos emprender con el laboratorio. Durante el camino si nos hemos encontrado con varias complicaciones, pero las hemos ido resolviendo y en este punto, nos sentimos satisfechos con el trabajo que hemos logrado y cada día estamos avanzando más en ese camino."
+    },
+    "mission": {
+      "title": "Nuestra Misión",
+      "description": "Ofrecer soluciones dentales personalizadas mediante la fabricación de piezas, placas y prótesis de alta calidad, utilizando materiales confiables, procesos precisos y tecnología especializada. Nuestro compromiso es apoyar a odontólogos y especialistas para mejorar la funcionalidad, estética y calidad de vida de sus pacientes, manteniendo siempre un servicio responsable, ético y eficiente."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "description": "Ser el laboratorio dental de referencia en la región, reconocido por la calidad, precisión e innovación en la elaboración de piezas, placas y prótesis dentales, contribuyendo al bienestar y confianza de los pacientes a través del trabajo colaborativo con profesionales de la salud dental."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "subtitle": "Principios que guían cada decisión y acción en nuestro laboratorio",
+      "quality": {
+        "title": "Calidad",
+        "description": "Compromiso con la excelencia en cada trabajo realizado"
+      },
+      "responsibility": {
+        "title": "Responsabilidad",
+        "description": "Cumplimiento y confiabilidad en cada entrega"
+      },
+      "honesty": {
+        "title": "Honestidad",
+        "description": "Transparencia y sinceridad en nuestras relaciones"
+      },
+      "discipline": {
+        "title": "Disciplina",
+        "description": "Método y orden en todos nuestros procesos"
+      }
+    },
+    "principles": {
+      "title": "Nuestros Principios",
+      "respect": "Respeto mutuo entre equipo y clientes",
+      "communication": "Comunicación clara y transparente",
+      "improvement": "Mejora continua en procesos y técnicas",
+      "ethics": "Ética profesional en cada decisión"
+    },
+    "team": {
+      "title": "Nuestro Equipo",
+      "member": {
+        "name": "Dr. Saúl Rubén Ramírez Mora",
+        "role": "Director y Fundador",
+        "description": "El Dr. Saúl Rubén Ramírez Mora es el encargado y propietario del laboratorio, además de contar con su propio consultorio dental. Es Médico Cirujano Dentista egresado de la Facultad de Odontología de la Universidad Autónoma de Coahuila y actualmente cursa una maestría en implantología dental. Con 15 años de experiencia en el ámbito odontológico y 4 años al frente del laboratorio, se distingue por su constante actualización profesional y por fomentar la capacitación de su equipo, con el objetivo de brindar siempre una atención de la más alta calidad.",
+        "specialty1": "Especialista en Prótesis Dental",
+        "specialty2": "Certificación en Tecnología CAD/CAM",
+        "specialty3": "Capacitación Continua"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contacto",
+      "subtitle": "Estamos aquí para ayudarte. Contáctanos por cualquier medio"
+    },
+    "form": {
+      "title": "Envíanos un mensaje",
+      "name": "Nombre completo",
+      "name_placeholder": "Dr. Juan Pérez",
+      "email": "Correo electrónico",
+      "email_placeholder": "correo@ejemplo.com",
+      "phone": "Teléfono / WhatsApp",
+      "phone_placeholder": "+52 123 456 7890",
+      "message": "Mensaje",
+      "message_placeholder": "Cuéntanos cómo podemos ayudarte...",
+      "send": "Enviar mensaje"
+    },
+    "info": {
+      "location": {
+        "title": "Ubicación",
+        "address": "Blvrd. Revolución 587 ote",
+        "neighborhood": "Col. Centro"
+      },
+      "schedule": {
+        "title": "Horario",
+        "weekdays": "Lunes - Viernes",
+        "weekdays_hours": "9:00 AM - 6:00 PM",
+        "saturday": "Sábado",
+        "saturday_hours": "9:00 AM - 2:00 PM",
+        "sunday": "Domingo",
+        "closed": "Cerrado"
+      },
+      "contact": {
+        "title": "Contáctanos",
+        "whatsapp": "8701498192",
+        "facebook": "Laguna Dent Lab",
+        "email": "lagunadentmaster@gmail.com"
+      }
+    },
+    "emergency": {
+      "title": "¿Tienes una urgencia?",
+      "description": "Contáctanos directamente por WhatsApp para atención inmediata",
+      "button": "Abrir WhatsApp"
+    }
+  },
+  "auth": {
+    "back_home": "Volver al inicio",
+    "offline_message": "Se necesita conexión a internet para este proceso",
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Ingresa tus credenciales para continuar",
+      "email": "Correo electrónico",
+      "email_placeholder": "correo@ejemplo.com",
+      "email_required": "El correo es requerido",
+      "email_invalid": "Correo inválido",
+      "password": "Contraseña",
+      "password_required": "La contraseña es requerida",
+      "password_minlength": "Mínimo 6 caracteres",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar sesión",
+      "loading": "Iniciando sesión...",
+      "no_account": "¿No tienes cuenta?",
+      "register_link": "Regístrate"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Únete a nosotros",
+      "name": "Nombre completo",
+      "name_placeholder": "Tu nombre completo",
+      "name_required": "El nombre es requerido",
+      "email": "Correo electrónico",
+      "email_placeholder": "tu@email.com",
+      "email_required": "El email es requerido",
+      "email_invalid": "Formato de email inválido",
+      "phone": "Teléfono",
+      "phone_placeholder": "Tu número de teléfono",
+      "phone_required": "El teléfono es requerido",
+      "phone_invalid": "Formato de teléfono inválido",
+      "password": "Contraseña",
+      "password_required": "La contraseña es requerida",
+      "password_minlength": "Mínimo 6 caracteres",
+      "confirm_password": "Confirmar contraseña",
+      "confirm_password_required": "Confirma tu contraseña",
+      "passwords_mismatch": "Las contraseñas no coinciden",
+      "create_account": "Crear cuenta",
+      "creating": "Creando cuenta...",
+      "internet_required": "Se necesita conexión a internet para este proceso",
+      "terms": "Acepto los términos y condiciones",
+      "submit": "Crear Cuenta",
+      "have_account": "¿Ya tienes cuenta?",
+      "login_link": "Inicia sesión"
+    },
+    "forgot": {
+      "title": "Recuperar Contraseña", 
+      "subtitle": "Ingresa tu correo para recuperar tu contraseña",
+      "email": "Correo electrónico",
+      "submit": "Enviar",
+      "back": "Volver al inicio de sesión"
+    }
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "subtitle": "Administra tu información personal y revisa tus citas",
+    "user_default": "Usuario",
+    "email_default": "email@ejemplo.com",
+    "not_registered": "No registrado",
+    "member_since": "Miembro desde",
+    "logout": "Cerrar Sesión",
+    "information_tab": "Información",
+    "appointments_tab": "Mis Citas",
+    "edit_button": "Editar",
+    "cancel_button": "Cancelar",
+    "save_button": "Guardar",
+    "saving": "Guardando...",
+    "personal_info_title": "Información Personal",
+    "personal_info_subtitle": "Tu información de contacto",
+    "full_name": "Nombre completo",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "full_name_placeholder": "Tu nombre completo",
+    "phone_placeholder": "(871) 123-4567",
+    "name_required": "El nombre es requerido",
+    "phone_required": "El teléfono es requerido",
+    "phone_invalid": "Formato inválido (10-15 dígitos)",
+    "email_cannot_modify": "El correo no se puede modificar",
+    "appointments_title": "Mis Citas",
+    "appointments_subtitle": "Historial de citas agendadas",
+    "no_appointments": "No tienes citas agendadas aún.",
+    "schedule_here": "Agenda aquí",
+    "service_default": "Servicio",
+    "status_pending": "Pendiente",
+    "syncing": "Sincronizando...",
+    "personal_info": "Información Personal",
+    "orders": "Mis Pedidos",
+    "settings": "Configuración"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito", 
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "view_more": "Ver más",
+    "view_less": "Ver menos"
+  },
+  "footer": {
+    "company": "Laguna Dent Lab",
+    "description": "Líder en prótesis dentales de alta calidad",
+    "links": {
+      "about": "Acerca de", 
+      "services": "Servicios",
+      "contact": "Contacto",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    },
+    "social": {
+      "follow": "Síguenos",
+      "facebook": "Facebook", 
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    },
+    "copyright": "© 2024 Laguna Dent Lab. Todos los derechos reservados."
+  },
+  "appointment": {
+    "title": "Solicitar Servicio",
+    "subtitle": "Completa el formulario y nos pondremos en contacto contigo",
+    "form_title": "Información del Servicio",
+    "full_name": "Nombre completo",
+    "full_name_placeholder": "Dr. Juan Pérez",
+    "phone_whatsapp": "Teléfono / WhatsApp",
+    "phone_placeholder": "+52 123 456 7890",
+    "email": "Correo electrónico",
+    "email_placeholder": "correo@ejemplo.com",
+    "service_type": "Tipo de servicio",
+    "select_service": "Selecciona un servicio",
+    "preferred_date": "Fecha preferida",
+    "date_placeholder": "dd/mm/aaaa",
+    "preferred_time": "Hora preferida",
+    "time_placeholder": "--:-- --",
+    "additional_notes": "Notas adicionales",
+    "notes_placeholder": "Especificaciones del trabajo, urgencias, etc.",
+    "cancel": "Cancelar",
+    "send_request": "Enviar Solicitud",
+    "note_label": "Nota",
+    "note_text": "Nos pondremos en contacto contigo dentro de las próximas 24 horas para confirmar tu cita y discutir los detalles del servicio."
+  }
+}

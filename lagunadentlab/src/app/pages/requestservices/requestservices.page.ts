@@ -23,6 +23,7 @@ import {
   mailOutline, calendarOutline, arrowForwardOutline } from 'ionicons/icons';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-requestservices',
@@ -37,7 +38,8 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
     IonContent,
     IonIcon,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    TranslatePipe
   ]
 })
 export class RequestservicesPage implements OnInit, OnDestroy {

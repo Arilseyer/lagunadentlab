@@ -27,6 +27,7 @@ import {
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,8 @@ import { FooterComponent } from '../../components/footer/footer.component';
     IonItem,
     IonLabel,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TranslatePipe
   ]
 })
 export class HomePage {

@@ -6,7 +6,7 @@
 
     <!-- Volver al inicio - fuera del card -->
     <a routerLink="/" class="back-link">
-      ← Volver al inicio
+      ← {{ 'auth.back_home' | translate }}
     </a>
 
     <!-- Card Registro -->
@@ -18,62 +18,62 @@
       </div>
 
       <!-- Títulos -->
-      <h1 class="registro-title">Crear cuenta</h1>
-      <p class="registro-subtitle">Completa tus datos para registrarte</p>
+      <h1 class="registro-title">{{ 'auth.register.title' | translate }}</h1>
+      <p class="registro-subtitle">{{ 'auth.register.subtitle' | translate }}</p>
 
       <!-- Formulario -->
       <form class="registro-form" [formGroup]="form" (ngSubmit)="onSubmit()">
         
         <div class="form-field">
-          <label class="field-label">Nombre completo</label>
+          <label class="field-label">{{ 'auth.register.name' | translate }}</label>
           <input 
             type="text" 
             class="field-input" 
-            placeholder="Juan Pérez" 
+            placeholder="{{ 'auth.register.name_placeholder' | translate }}" 
             formControlName="fullName"
             [class.invalid]="form.get('fullName')?.invalid && form.get('fullName')?.touched"
           />
           <span class="error-message" *ngIf="form.get('fullName')?.hasError('required') && form.get('fullName')?.touched">
-            El nombre es requerido
+            {{ 'auth.register.name_required' | translate }}
           </span>
         </div>
 
         <div class="form-field">
-          <label class="field-label">Correo electrónico</label>
+          <label class="field-label">{{ 'auth.register.email' | translate }}</label>
           <input 
             type="email" 
             class="field-input" 
-            placeholder="correo@ejemplo.com" 
+            placeholder="{{ 'auth.register.email_placeholder' | translate }}" 
             formControlName="email"
             [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched"
           />
           <span class="error-message" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
-            El correo es requerido
+            {{ 'auth.register.email_required' | translate }}
           </span>
           <span class="error-message" *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
-            Correo inválido
+            {{ 'auth.register.email_invalid' | translate }}
           </span>
         </div>
 
         <div class="form-field">
-          <label class="field-label">Teléfono</label>
+          <label class="field-label">{{ 'auth.register.phone' | translate }}</label>
           <input 
             type="tel" 
             class="field-input" 
-            placeholder="(871) 123-4567" 
+            placeholder="{{ 'auth.register.phone_placeholder' | translate }}" 
             formControlName="phone"
             [class.invalid]="form.get('phone')?.invalid && form.get('phone')?.touched"
           />
           <span class="error-message" *ngIf="form.get('phone')?.hasError('required') && form.get('phone')?.touched">
-            El teléfono es requerido
+            {{ 'auth.register.phone_required' | translate }}
           </span>
           <span class="error-message" *ngIf="form.get('phone')?.hasError('pattern') && form.get('phone')?.touched">
-            Formato inválido (10-15 dígitos)
+            {{ 'auth.register.phone_invalid' | translate }}
           </span>
         </div>
 
         <div class="form-field">
-          <label class="field-label">Contraseña</label>
+          <label class="field-label">{{ 'auth.register.password' | translate }}</label>
           <div class="password-input-container">
             <input 
               [type]="showPassword ? 'text' : 'password'" 
@@ -91,15 +91,15 @@
             </button>
           </div>
           <span class="error-message" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
-            La contraseña es requerida
+            {{ 'auth.register.password_required' | translate }}
           </span>
           <span class="error-message" *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
-            Mínimo 6 caracteres
+            {{ 'auth.register.password_minlength' | translate }}
           </span>
         </div>
 
         <div class="form-field">
-          <label class="field-label">Confirmar contraseña</label>
+          <label class="field-label">{{ 'auth.register.confirm_password' | translate }}</label>
           <div class="password-input-container">
             <input 
               [type]="showConfirmPassword ? 'text' : 'password'" 
@@ -117,26 +117,26 @@
             </button>
           </div>
           <span class="error-message" *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
-            Confirma tu contraseña
+            {{ 'auth.register.confirm_password_required' | translate }}
           </span>
           <span class="error-message" *ngIf="form.errors?.['passwordsMismatch'] && form.get('confirmPassword')?.touched">
-            Las contraseñas no coinciden
+            {{ 'auth.register.passwords_mismatch' | translate }}
           </span>
         </div>
 
         <button type="submit" class="btn-crear" [disabled]="loading">
-          {{ loading ? 'Creando cuenta...' : 'Crear cuenta' }}
+          {{ loading ? ('auth.register.creating' | translate) : ('auth.register.create_account' | translate) }}
         </button>
         <div class="offline-hint" *ngIf="(isOnline$ | async) === false" style="margin-top:8px;color:var(--ion-color-warning)">
-          Se necesita conexión a internet para este proceso
+          {{ 'auth.register.internet_required' | translate }}
         </div>
 
       </form>
 
       <!-- Link a login -->
       <div class="login-link">
-        <span>¿Ya tienes cuenta?</span>
-        <a routerLink="/login" class="login-btn">Inicia sesión</a>
+        <span>{{ 'auth.register.have_account' | translate }}</span>
+        <a routerLink="/login" class="login-btn">{{ 'auth.register.login_link' | translate }}</a>
       </div>
 
     </div>

@@ -327,3 +327,26 @@
   align-items: center;
   cursor: pointer;
 }
+
+/** Botón de idioma específico **/
+.language-btn {
+  position: relative;
+  min-width: 60px !important;
+  width: auto !important;
+  padding: 0 0.5rem !important;
+  gap: 0.25rem;
+  
+  .language-code {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: inherit;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  &:hover {
+    .language-code {
+      color: var(--primary-500);
+    }
+  }
+}

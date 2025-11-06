@@ -21,6 +21,7 @@ import {
 } from 'ionicons/icons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { OnlineService } from '../../services/online.service';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +34,8 @@ import { OnlineService } from '../../services/online.service';
     ReactiveFormsModule,
     RouterLink,
     IonicModule,
-    NavbarComponent]
+    NavbarComponent,
+    TranslatePipe]
 })
 export class RegisterPage {
   form: FormGroup;

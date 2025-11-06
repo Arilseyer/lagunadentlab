@@ -6,16 +6,16 @@
   <section class="hero-section">
     <div class="hero-container">
       <div class="hero-text">
-        <h1 class="hero-title">Laboratorio Dental de Alta Precisión</h1>
+        <h1 class="hero-title">{{ 'home.hero.title' | translate }}</h1>
         <p class="hero-subtitle">
-          Creamos sonrisas perfectas con tecnología de vanguardia y 15 años de experiencia en prótesis dentales de calidad superior
+          {{ 'home.hero.subtitle' | translate }}
         </p>
         <div class="hero-buttons">
           <ion-button class="btn-primary" size="default" (click)="navegarASolicitudServicios()">
-            Solicitar Servicio
+            {{ 'home.hero.cta' | translate }}
           </ion-button>
           <ion-button class="btn-outline" fill="outline" size="default" (click)="navegarANosotros()">
-            Conocer Más
+            {{ 'home.hero.cta_secondary' | translate }}
           </ion-button>
         </div>
       </div>
@@ -35,19 +35,19 @@
     <div class="stats-container">
       <div class="stat-item">
         <div class="stat-number">15+</div>
-        <div class="stat-label">Años de Experiencia</div>
+        <div class="stat-label">{{ 'home.stats.experience' | translate }}</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">5,000+</div>
-        <div class="stat-label">Prótesis Realizadas</div>
+        <div class="stat-label">{{ 'home.stats.products' | translate }}</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">200+</div>
-        <div class="stat-label">Clientes Satisfechos</div>
+        <div class="stat-label">{{ 'home.stats.clients' | translate }}</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">98%</div>
-        <div class="stat-label">Tasa de Satisfacción</div>
+        <div class="stat-label">{{ 'home.stats.success' | translate }}</div>
       </div>
     </div>
   </section>
@@ -55,8 +55,8 @@
   <!-- ��� SECCIÓN 2: ¿POR QUÉ ELEGIRNOS? -->
   <section class="why-us-section">
     <div class="section-header">
-      <h2 class="section-title">¿Por qué elegirnos?</h2>
-      <p class="section-subtitle">Ofrecemos una amplia gama de soluciones protésicas con los más altos estándares de calidad</p>
+      <h2 class="section-title">{{ 'home.services.title' | translate }}</h2>
+      <p class="section-subtitle">{{ 'home.services.subtitle' | translate }}</p>
     </div>
     
     <div class="cards-grid">
@@ -65,8 +65,8 @@
           <div class="card-icon">
             <ion-icon name="ribbon-outline"></ion-icon>
           </div>
-          <h3>Calidad</h3>
-          <p>Materiales certificados y procesos precisos en cada trabajo</p>
+          <h3>{{ 'home.features.quality.title' | translate }}</h3>
+          <p>{{ 'home.features.quality.description' | translate }}</p>
         </ion-card-content>
       </ion-card>
 
@@ -75,8 +75,8 @@
           <div class="card-icon">
             <ion-icon name="flash-outline"></ion-icon>
           </div>
-          <h3>Atención Rápida</h3>
-          <p>Entrega eficiente sin comprometer la calidad</p>
+          <h3>{{ 'home.features.speed.title' | translate }}</h3>
+          <p>{{ 'home.features.speed.description' | translate }}</p>
         </ion-card-content>
       </ion-card>
 
@@ -85,8 +85,8 @@
           <div class="card-icon">
             <ion-icon name="people-outline"></ion-icon>
           </div>
-          <h3>Atención Personalizada</h3>
-          <p>Soluciones dentales adaptadas a cada necesidad</p>
+          <h3>{{ 'home.features.personalized.title' | translate }}</h3>
+          <p>{{ 'home.features.personalized.description' | translate }}</p>
         </ion-card-content>
       </ion-card>
 
@@ -95,8 +95,8 @@
           <div class="card-icon">
             <ion-icon name="bulb-outline"></ion-icon>
           </div>
-          <h3>Innovación</h3>
-          <p>Tecnología de punta y capacitación constante</p>
+          <h3>{{ 'home.features.innovation.title' | translate }}</h3>
+          <p>{{ 'home.features.innovation.description' | translate }}</p>
         </ion-card-content>
       </ion-card>
     </div>
@@ -110,34 +110,34 @@
       </div>
       
       <div class="text-col">
-        <h2 class="section-title">Nuestros Servicios</h2>
-        <p class="section-description">Proveemos una amplia gama de soluciones protésicas con los más altos estándares de calidad</p>
+        <h2 class="section-title">{{ 'home.services.title' | translate }}</h2>
+        <p class="section-description">{{ 'home.services.subtitle' | translate }}</p>
         
         <ul class="service-list">
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
-            <span>Coronas de Porcelana y Zirconia</span>
+            <span>{{ 'home.services.crown_porcelain' | translate }}</span>
           </li>
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
-            <span>Implantes Dentales</span>
+            <span>{{ 'home.services.implants' | translate }}</span>
           </li>  
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
-            <span>Prótesis Fijas y Removibles</span>
+            <span>{{ 'home.services.prosthetics' | translate }}</span>
           </li>
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
-            <span>Placas de Acrílico</span>
+            <span>{{ 'home.services.acrylic' | translate }}</span>
           </li>
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
-            <span>Guardas Oclusales</span>
+            <span>{{ 'home.services.guards' | translate }}</span>
           </li>
         </ul>
         
         <ion-button class="btn-outline" fill="outline" (click)="navegarAServicios()">
-          Ver Todos los Servicios
+          {{ 'home.services.view_all' | translate }}
           <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </div>
@@ -148,26 +148,26 @@
   <section class="tech-section">
     <div class="two-col-layout reverse">
       <div class="text-col">
-        <h2 class="section-title">Tecnología de Vanguardia</h2>
-        <p class="section-description">Utilizamos equipos de última generación para garantizar resultados precisos y de calidad</p>
+        <h2 class="section-title">{{ 'home.technology.title' | translate }}</h2>
+        <p class="section-description">{{ 'home.technology.subtitle' | translate }}</p>
         
         <ul class="tech-list">
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
             <div>
-              <strong>Escáner Digital 3D:</strong> Modelos meticulosos de alta precisión
+              <strong>{{ 'home.technology.scanner_title' | translate }}:</strong> {{ 'home.technology.scanner_desc' | translate }}
             </div>
           </li>
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
             <div>
-              <strong>Sistema CAD/CAM:</strong> Diseño asistido por computadora
+              <strong>{{ 'home.technology.cadcam_title' | translate }}:</strong> {{ 'home.technology.cadcam_desc' | translate }}
             </div>
           </li>
           <li>
             <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
             <div>
-              <strong>Materiales Premium:</strong> Zirconia, porcelanas de última generación
+              <strong>{{ 'home.technology.materials_title' | translate }}:</strong> {{ 'home.technology.materials_desc' | translate }}
             </div>
           </li>
         </ul>
@@ -182,8 +182,8 @@
   <!-- �� SECCIÓN 5: TESTIMONIOS -->
   <section class="testimonials-section">
     <div class="section-header">
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      <p class="section-subtitle">Prueba la calidad de nuestros dentistas que confían en nuestro trabajo y servicio</p>
+      <h2 class="section-title">{{ 'home.testimonials.title' | translate }}</h2>
+      <p class="section-subtitle">{{ 'home.testimonials.subtitle' | translate }}</p>
     </div>
     
     <div class="testimonials-grid">
@@ -197,11 +197,11 @@
             <ion-icon name="star"></ion-icon>
           </div>
           <p class="testimonial-text">
-            "Trabajo con Laguna Dent Lab desde hace 5 años. La calidad de sus prótesis ha sido excepcional y la atención personalizada ha marcado la diferencia en la satisfacción de mis pacientes."
+            "{{ 'home.testimonials.testimonial1.text' | translate }}"
           </p>
           <div class="author-info">
-            <div class="author-name">Dr. Mario González</div>
-            <div class="author-title">Odontólogo General</div>
+            <div class="author-name">{{ 'home.testimonials.testimonial1.author' | translate }}</div>
+            <div class="author-title">{{ 'home.testimonials.testimonial1.title' | translate }}</div>
           </div>
         </ion-card-content>
       </ion-card>
@@ -216,11 +216,11 @@
             <ion-icon name="star"></ion-icon>
           </div>
           <p class="testimonial-text">
-            "Su precisión en cada trabajo y tiempos de entrega son excepcionales. Me han ayudado muchísimo en casos complejos de rehabilitación. Altamente recomendados."
+            "{{ 'home.testimonials.testimonial2.text' | translate }}"
           </p>
           <div class="author-info">
-            <div class="author-name">Dr. Carlos Hernández</div>
-            <div class="author-title">Especialista en Rehabilitación</div>
+            <div class="author-name">{{ 'home.testimonials.testimonial2.author' | translate }}</div>
+            <div class="author-title">{{ 'home.testimonials.testimonial2.title' | translate }}</div>
           </div>
         </ion-card-content>
       </ion-card>
@@ -230,33 +230,33 @@
   <!-- ��� SECCIÓN 6: PROCESO DE TRABAJO -->
   <section class="process-section">
     <div class="section-header">
-      <h2 class="section-title">Nuestro Proceso de Trabajo</h2>
-      <p class="section-subtitle">Un proceso optimizado para garantizar la mejor calidad en cada entrega</p>
+      <h2 class="section-title">{{ 'home.process.title' | translate }}</h2>
+      <p class="section-subtitle">{{ 'home.process.subtitle' | translate }}</p>
     </div>
     
     <div class="process-grid">
       <div class="process-step">
         <div class="step-number">01</div>
-        <h3>Recepción</h3>
-        <p>Recibimos y verificamos las impresiones o archivos digitales</p>
+        <h3>{{ 'home.process.step1.title' | translate }}</h3>
+        <p>{{ 'home.process.step1.description' | translate }}</p>
       </div>
 
       <div class="process-step">
         <div class="step-number">02</div>
-        <h3>Diseño</h3>
-        <p>Diseñamos con precisión usando tecnología CAD/CAM avanzada</p>
+        <h3>{{ 'home.process.step2.title' | translate }}</h3>
+        <p>{{ 'home.process.step2.description' | translate }}</p>
       </div>
 
       <div class="process-step">
         <div class="step-number">03</div>
-        <h3>Fabricación</h3>
-        <p>Elaboramos con tecnología de punta y materiales de alta calidad</p>
+        <h3>{{ 'home.process.step3.title' | translate }}</h3>
+        <p>{{ 'home.process.step3.description' | translate }}</p>
       </div>
 
       <div class="process-step">
         <div class="step-number">04</div>
-        <h3>Control de Calidad</h3>
-        <p>Verificamos cada detalle antes de hacer la entrega</p>
+        <h3>{{ 'home.process.step4.title' | translate }}</h3>
+        <p>{{ 'home.process.step4.description' | translate }}</p>
       </div>
     </div>
   </section>
@@ -264,10 +264,10 @@
   <!-- ��� SECCIÓN 7: CTA (CALL TO ACTION) -->
   <section class="cta-section">
     <div class="cta-content">
-      <h2 class="cta-title">¿Listo para trabajar con nosotros?</h2>
-      <p class="cta-subtitle">Únete a los cientos de dentistas que confían en nuestro trabajo y servicio</p>
+      <h2 class="cta-title">{{ 'home.cta.title' | translate }}</h2>
+      <p class="cta-subtitle">{{ 'home.cta.subtitle' | translate }}</p>
       <ion-button class="cta-button" color="light" size="large" (click)="navegarAContacto()">
-        Solicitar Información
+        {{ 'home.cta.button' | translate }}
         <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
       </ion-button>
     </div>
@@ -276,35 +276,35 @@
   <!-- 🔷 SECCIÓN 8: PREGUNTAS FRECUENTES -->
   <section class="faq-section">
     <div class="section-header">
-      <h2 class="section-title">Preguntas Frecuentes</h2>
+      <h2 class="section-title">{{ 'home.faq.title' | translate }}</h2>
     </div>
     
     <div class="faq-list">
       <ion-accordion-group>
         <ion-accordion value="first" class="faq-accordion">
           <ion-item slot="header" class="faq-header">
-            <ion-label class="faq-question-text">¿Cuánto tiempo toma un trabajo promedio?</ion-label>
+            <ion-label class="faq-question-text">{{ 'home.faq.question1.title' | translate }}</ion-label>
           </ion-item>
           <div class="faq-content" slot="content">
-            <p>El tiempo de entrega depende del tipo de prótesis. En promedio, trabajos como coronas toman de 3 a 5 días hábiles, mientras que prótesis completas pueden requerir de 7 a 10 días hábiles.</p>
+            <p>{{ 'home.faq.question1.answer' | translate }}</p>
           </div>
         </ion-accordion>
 
         <ion-accordion value="fourth" class="faq-accordion">
           <ion-item slot="header" class="faq-header">
-            <ion-label class="faq-question-text">¿Qué materiales utilizan?</ion-label>
+            <ion-label class="faq-question-text">{{ 'home.faq.question2.title' | translate }}</ion-label>
           </ion-item>
           <div class="faq-content" slot="content">
-            <p>Trabajamos con materiales premium: zirconia de alta translucidez, porcelanas, acrílicos de grado médico, y aleaciones biocompatibles certificadas. Todos nuestros materiales cumplen con las normativas internacionales de calidad.</p>
+            <p>{{ 'home.faq.question2.answer' | translate }}</p>
           </div>
         </ion-accordion>
 
         <ion-accordion value="fifth" class="faq-accordion">
           <ion-item slot="header" class="faq-header">
-            <ion-label class="faq-question-text">¿Necesito agendar cita para recoger un trabajo?</ion-label>
+            <ion-label class="faq-question-text">{{ 'home.faq.question3.title' | translate }}</ion-label>
           </ion-item>
           <div class="faq-content" slot="content">
-            <p>No es estrictamente necesario, pero es recomendable agendar una cita para asegurar que tu trabajo esté listo y que uno de nuestros técnicos pueda atenderte personalmente. Nuestro horario de atención es de lunes a viernes de 9:00 AM a 6:00 PM y sábados de 9:00 AM a 2:00 PM.</p>
+            <p>{{ 'home.faq.question3.answer' | translate }}</p>
           </div>
         </ion-accordion>
       </ion-accordion-group>
