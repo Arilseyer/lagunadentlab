@@ -7,6 +7,7 @@ import {mailOutline} from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { AuthService } from '../../services/auth.service';
+import { OnlineService } from '../../services/online.service';
 
 
 
@@ -27,7 +28,8 @@ export class ForgotpasswordPage  {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private onlineService: OnlineService
   ) {
     addIcons({
       mailOutline
@@ -59,6 +61,12 @@ export class ForgotpasswordPage  {
       return;
     }
 
+    // Requiere conexión activa
+    if (!this.onlineService.isOnline) {
+      await this.presentToast('Se necesita conexión a internet para este proceso', 'warning');
+      return;
+    }
+
     this.loading = true;
     const { email } = this.form.value;
 
@@ -77,6 +85,11 @@ export class ForgotpasswordPage  {
       await this.presentToast(errorMessage, 'danger');
     }
     this.loading = false;
+  }
+
+  // Exponer observable para deshabilitar botón cuando no hay conexión
+  get isOnline$() {
+    return this.onlineService.isOnline$;
   }
 
   goToLogin() {

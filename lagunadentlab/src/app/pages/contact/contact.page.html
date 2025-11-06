@@ -23,26 +23,26 @@
             </ion-card-title>
           </ion-card-header>
           <ion-card-content class="form-body">
-            <form class="form">
+            <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
               <div class="form-fields">
                 <div class="field">
                   <label class="field-label">Nombre completo</label>
-                  <input type="text" class="field-input" placeholder="Dr. Juan Pérez">
+                  <input type="text" class="field-input" placeholder="Dr. Juan Pérez" formControlName="name">
                 </div>
                 <div class="field">
                   <label class="field-label">Correo electrónico</label>
-                  <input type="email" class="field-input" placeholder="correo@ejemplo.com">
+                  <input type="email" class="field-input" placeholder="correo@ejemplo.com" formControlName="email">
                 </div>
                 <div class="field">
                   <label class="field-label">Teléfono / WhatsApp</label>
-                  <input type="tel" class="field-input" placeholder="+52 123 456 7890">
+                  <input type="tel" class="field-input" placeholder="+52 123 456 7890" formControlName="phone">
                 </div>
                 <div class="field">
                   <label class="field-label">Mensaje</label>
-                  <textarea class="field-input field-textarea" placeholder="Cuéntanos cómo podemos ayudarte..." rows="5"></textarea>
+                  <textarea class="field-input field-textarea" placeholder="Cuéntanos cómo podemos ayudarte..." rows="5" formControlName="message"></textarea>
                 </div>
               </div>
-              <ion-button expand="block" class="btn-primary">
+              <ion-button type="submit" expand="block" class="btn-primary" [disabled]="loading">
                 Enviar mensaje
                 <ion-icon slot="end" name="send-outline"></ion-icon>
               </ion-button>
