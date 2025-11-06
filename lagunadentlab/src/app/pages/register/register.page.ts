@@ -20,6 +20,7 @@ import {
   eyeOff
 } from 'ionicons/icons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { OnlineService } from '../../services/online.service';
 
 @Component({
   selector: 'app-register',
@@ -47,6 +48,7 @@ export class RegisterPage {
     private toastCtrl: ToastController,
     private router: Router,
     private authService: AuthService,
+    private onlineService: OnlineService,
   ) {
     addIcons({ personAddOutline, arrowBackOutline, eye, eyeOff });
 
@@ -94,6 +96,12 @@ export class RegisterPage {
       return;
     }
 
+    // Requiere conexión activa
+    if (!this.onlineService.isOnline) {
+      await this.presentToast('Se necesita conexión a internet para este proceso', 'warning');
+      return;
+    }
+
     this.loading = true;
     try {
       const { fullName, email, phone, password } = this.form.value;
@@ -130,5 +138,10 @@ export class RegisterPage {
       await this.presentToast(err.message || 'Error al registrar', 'danger');
     }
     this.loading = false;
+  }
+
+  // Exponer observable para deshabilitar botón cuando no hay conexión
+  get isOnline$() {
+    return this.onlineService.isOnline$;
   }
 }

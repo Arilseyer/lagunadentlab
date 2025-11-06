@@ -208,6 +208,9 @@
                   <p><ion-icon name="calendar-outline"></ion-icon> {{ formatDate(appointment.date) }}</p>
                   <p><ion-icon name="time-outline"></ion-icon> {{ appointment.time || 'N/A' }}</p>
                 </div>
+                <div *ngIf="appointment._pendingSync" style="color: var(--ion-color-warning); font-size: 12px; margin-top: 4px;">
+                  Sincronizando...
+                </div>
                 <p class="appointment-notes" *ngIf="appointment.notes">{{ appointment.notes }}</p>
               </div>
             </div>

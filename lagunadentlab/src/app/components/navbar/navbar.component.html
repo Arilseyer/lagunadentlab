@@ -2,10 +2,14 @@
   <ion-toolbar class="custom-navbar">
     <!-- Logo a la izquierda -->
     <div class="navbar-logo" slot="start">
-      <div class="logo-container">
-        <div class="logo-icon">LD</div>
-        <span class="logo-text">Laguna Dent Lab</span>
-      </div>
+      <button class="logo-button" (click)="navigateTo('/home')" aria-label="Ir al inicio">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <img src="assets/Diente.png" alt="Laguna Dent Lab" />
+          </div>
+          <span class="logo-text">Laguna Dent Lab</span>
+        </div>
+      </button>
     </div>
 
     <!-- Enlaces de navegación en el centro -->

@@ -52,6 +52,14 @@
           color: var(--primary-500);
           font-size: 18px;
           font-family: 'Poppins', sans-serif;
+          overflow: hidden;
+
+          img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            display: block;
+          }
         }
         
         .logo-text-container {
@@ -151,6 +159,17 @@
         }
       }
     }
+  }
+
+  // Clickable logo button (unstyled)
+  .logo-button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
 
   // Sección de contacto

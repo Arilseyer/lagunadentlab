@@ -5,7 +5,7 @@ Si el usuario no ha verificado su email, muestra advertencia y cierra sesión.
 */
 import { getAuth } from 'firebase/auth';
 
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -16,6 +16,8 @@ import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { logInOutline, eye, eyeOff } from 'ionicons/icons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { OnlineService } from '../../services/online.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -31,18 +33,22 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
     IonicModule
   ]
 })
-export class LoginPage {
+export class LoginPage implements OnInit, OnDestroy {
 
   showPassword = false;
   form: FormGroup;
   loading = false;
+  private authSub?: Subscription;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private data: DataService,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private online: OnlineService,
+    private cdr: ChangeDetectorRef
   ) {
     addIcons({
       logInOutline,
@@ -54,6 +60,24 @@ export class LoginPage {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  ngOnInit(): void {
+    // Si ya hay sesión (y verificada), sal inmediatamente del login
+    this.authSub = this.authService.user$.subscribe(user => {
+      if (user && user.emailVerified) {
+        this.router.navigateByUrl('/profile', { replaceUrl: true });
+      }
+    });
+  }
+
+  // Exponer observable para deshabilitar botón cuando no hay conexión
+  get isOnline$() {
+    return this.online.isOnline$;
+  }
+
+  ngOnDestroy(): void {
+    this.authSub?.unsubscribe();
   }
 
   togglePasswordVisibility() {
@@ -73,7 +97,16 @@ export class LoginPage {
   async onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      await this.presentToast('Completa todos los campos correctamente.', 'danger');
+      this.errorMessage = 'Completa todos los campos correctamente.';
+      await this.presentToast(this.errorMessage, 'danger');
+      return;
+    }
+
+    // Si no hay conexión, no intentes login (Firebase requiere red para autenticar)
+    this.errorMessage = null;
+    if (!this.online.isOnline) {
+      await this.presentToast('Se necesita conexión a internet para este proceso', 'warning');
+      this.errorMessage = 'Se necesita conexión a internet para este proceso';
       return;
     }
 
@@ -81,42 +114,71 @@ export class LoginPage {
     const { email, password } = this.form.value;
 
     try {
-      await this.authService.login(email, password);
+  await this.authService.login(email, password);
       const authInstance = getAuth();
       const user = authInstance.currentUser;
       if (user && !user.emailVerified) {
         await this.presentToast('Debes verificar tu correo antes de iniciar sesión. Revisa tu bandeja de entrada.', 'warning');
         await this.authService.logout();
-        this.loading = false;
         return;
       }
-      // Guardar perfil en Firestore solo si no existe y el email está verificado
+      // Navegar de inmediato; operaciones de perfil en background para no bloquear el UI
+  this.errorMessage = null;
+  await this.presentToast('¡Login exitoso!', 'success');
+      this.router.navigateByUrl('/profile', { replaceUrl: true });
+
+      // Guardar perfil si no existe (no bloquear UI)
       if (user && user.emailVerified) {
         const uid = user.uid;
-        const profile = await this.data.getUserProfile(uid);
-        if (!profile) {
-          try {
-            await this.data.saveUserProfile(uid, {
-              name: user.displayName || '',
-              email: user.email,
-              phone: user.phoneNumber || '',
-              isAdmin: false,
-              createdAt: new Date()
-            });
-          } catch (e) {
-            console.error('Error creando perfil tras login (users/create):', e);
-          }
-        }
+        this.data.getUserProfile(uid)
+          .then(profile => {
+            if (!profile) {
+              return this.data.saveUserProfile(uid, {
+                name: user.displayName || '',
+                email: user.email,
+                phone: user.phoneNumber || '',
+                isAdmin: false,
+                createdAt: new Date()
+              });
+            }
+            return undefined;
+          })
+          .catch(e => console.error('Error creando perfil tras login (users/create):', e));
       }
-      await this.presentToast('¡Login exitoso!', 'success');
-      this.router.navigate(['/profile']);
     } catch (err: any) {
-      if (err.code === 'auth/invalid-credential') {
-        await this.presentToast('Usuario o contraseña incorrectos', 'danger');
-      } else {
-        await this.presentToast(err.message || 'Error al iniciar sesión', 'danger');
+      const code = err?.code || '';
+      let message = 'Error al iniciar sesión';
+      switch (code) {
+        case 'auth/invalid-credential':
+        case 'auth/wrong-password':
+        case 'auth/invalid-password':
+          message = 'Usuario o contraseña incorrectos';
+          break;
+        case 'auth/user-not-found':
+          message = 'El usuario no existe';
+          break;
+        case 'auth/too-many-requests':
+          message = 'Demasiados intentos, intenta más tarde';
+          break;
+        case 'auth/network-request-failed':
+          message = 'Fallo de red, verifica tu conexión';
+          break;
+        default:
+          if (typeof err?.message === 'string' && err.message.trim()) {
+            message = err.message;
+          }
       }
+  // Asegurar que el loader se apague antes de mostrar el toast
+      this.loading = false;
+      try { this.cdr.detectChanges(); } catch {}
+      // Mostrar el toast de error de forma explícita
+  this.errorMessage = message;
+  await this.presentToast(message, 'danger');
+      console.error('Login error:', err);
+    } finally {
+      // Garantizar estado consistente
+      this.loading = false;
+      try { this.cdr.detectChanges(); } catch {}
     }
-    this.loading = false;
   }
 }

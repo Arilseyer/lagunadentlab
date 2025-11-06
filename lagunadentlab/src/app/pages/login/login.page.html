@@ -69,10 +69,17 @@
             Mínimo 6 caracteres
           </span>
         </div>
-
+        <div class="error-message" *ngIf="errorMessage" style="margin-top: 8px; color: var(--ion-color-danger, #eb445a);">
+          {{ errorMessage }}
+        </div>
+        
         <button type="submit" class="btn-login" [disabled]="loading">
           {{ loading ? 'Iniciando sesión...' : 'Iniciar sesión' }}
         </button>
+
+        <div class="offline-hint" *ngIf="(isOnline$ | async) === false" style="margin-top:8px;color:var(--ion-color-warning)">
+          Se necesita conexión a internet para este proceso
+        </div>
 
       </form>
 

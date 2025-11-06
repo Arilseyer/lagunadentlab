@@ -26,12 +26,16 @@ export class AuthService {
   }
 
   async resetPassword(email: string) {
-    // Primero verificar si el email existe
-    const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-    if (signInMethods.length === 0) {
-      throw new Error('auth/user-not-found');
+    // Intentar enviar directamente; si no existe el usuario, Firebase responderá con error
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (e: any) {
+      // Normalizar algunos errores
+      if (e?.code === 'auth/user-not-found') {
+        throw new Error('auth/user-not-found');
+      }
+      throw e;
     }
-    return sendPasswordResetEmail(auth, email);
   }
 
   login(email: string, password: string): Promise<UserCredential> {
