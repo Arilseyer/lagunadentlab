@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { 
   IonContent,
   IonCard,
@@ -24,6 +24,9 @@ import {
 } from 'ionicons/icons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { ToastController } from '@ionic/angular';
+import { OnlineService } from '../../services/online.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-contact',
@@ -33,6 +36,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     
     IonContent,
     IonCard,
@@ -46,7 +50,15 @@ import { FooterComponent } from '../../components/footer/footer.component';
   ]
 })
 export class ContactPage implements OnInit {
-  constructor() {
+  form!: FormGroup;
+  loading = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private toastCtrl: ToastController,
+    private onlineService: OnlineService,
+    private dataService: DataService
+  ) {
     addIcons({
       sendOutline,
       locationOutline,
@@ -59,6 +71,12 @@ export class ContactPage implements OnInit {
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      message: ['', [Validators.required, Validators.minLength(10)]]
+    });
   }
 
   // Método para abrir WhatsApp
@@ -67,5 +85,48 @@ export class ContactPage implements OnInit {
     const mensaje = 'Hola, me interesa conocer más sobre sus servicios de laboratorio dental.';
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
+  }
+
+  async onSubmit() {
+    if (!this.form || this.form.invalid) {
+      this.form?.markAllAsTouched();
+      await this.presentToast('Completa todos los campos correctamente.', 'danger');
+      return;
+    }
+
+    this.loading = true;
+    const { name, email, phone, message } = this.form.value;
+    const payload = {
+      name,
+      email,
+      phone,
+      message,
+      createdAt: new Date(),
+      status: 'nuevo'
+    };
+
+    try {
+      const wasOffline = !this.onlineService.isOnline;
+      await this.dataService.saveContactMessage(payload);
+      if (wasOffline) {
+        await this.presentToast('Mensaje guardado sin conexión, se enviará al reconectar', 'warning');
+      } else {
+        await this.presentToast('Mensaje enviado correctamente.', 'success');
+      }
+      this.form.reset();
+    } catch (err) {
+      console.error('Error guardando mensaje de contacto:', err);
+      if (!this.onlineService.isOnline) {
+        await this.presentToast('Mensaje guardado sin conexión, se enviará al reconectar', 'warning');
+      } else {
+        await this.presentToast('Error al enviar el mensaje. Intenta de nuevo.', 'danger');
+      }
+    }
+    this.loading = false;
+  }
+
+  private async presentToast(message: string, color: 'success' | 'danger' | 'warning' = 'success') {
+    const toast = await this.toastCtrl.create({ message, duration: 2500, color, position: 'bottom' });
+    await toast.present();
   }
 }

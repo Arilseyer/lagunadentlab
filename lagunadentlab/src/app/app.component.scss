@@ -1,0 +1,17 @@
+/* Banner fijo para estado offline */
+.offline-banner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 800; /* por debajo de headers/navbars personalizados */
+	display: flex;
+	justify-content: center;
+	pointer-events: none; /* no bloquear interacciones debajo */
+	padding-top: env(safe-area-inset-top);
+}
+
+.offline-banner ion-chip {
+	margin: 6px auto;
+	pointer-events: none; /* evitar bloquear clics del nav */
+}

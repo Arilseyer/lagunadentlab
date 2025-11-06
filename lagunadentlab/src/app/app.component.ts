@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { ThemeService } from './services/theme.service';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonApp, IonRouterOutlet, IonChip, IonLabel } from '@ionic/angular/standalone';
+import { OnlineService } from './services/online.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  imports: [IonApp, IonRouterOutlet],
+  imports: [CommonModule, IonApp, IonRouterOutlet, IonChip, IonLabel],
 })
-export class AppComponent implements OnInit {
-  constructor(private themeService: ThemeService) {}
+export class AppComponent {
+  isOnline$!: Observable<boolean>;
 
-  ngOnInit() {
-    // El ThemeService se inicializa automáticamente al ser inyectado
-    // Esto asegura que los temas se apliquen correctamente al cargar la app
+  constructor(private onlineService: OnlineService) {
+    this.isOnline$ = this.onlineService.isOnline$;
   }
 }

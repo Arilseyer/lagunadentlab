@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService, CITA_ESTADOS } from '../../services/data.service';
 import { IonicModule, ToastController, AlertController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,9 @@ import { addIcons } from 'ionicons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { AuthService } from '../../services/auth.service';
+import { OnlineService } from '../../services/online.service';
+import { collection, onSnapshot, QueryDocumentSnapshot } from 'firebase/firestore';
+import { db } from 'src/environments/firebase';
 
 interface Cita {
   id: string;
@@ -21,6 +24,7 @@ interface Cita {
   status: string;
   notes?: string;
   createdAt?: any;
+  _pendingSync?: boolean;
 }
 
 @Component({
@@ -30,17 +34,19 @@ interface Cita {
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, NavbarComponent, FooterComponent]
 })
-export class AdmindatesPage implements OnInit {
+export class AdmindatesPage implements OnInit, OnDestroy {
 
   citas: Cita[] = [];
   loading: boolean = false;
   ESTADOS = CITA_ESTADOS;
+  private unsubscribeAppointments?: () => void;
 
   constructor(
     private dataService: DataService,
     private authService: AuthService,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public onlineService: OnlineService
   ) { 
     addIcons({ 
       checkmarkCircleOutline, 
@@ -52,7 +58,14 @@ export class AdmindatesPage implements OnInit {
   }
 
   async ngOnInit() {
-    await this.loadCitas();
+    // Suscripción en tiempo real (cache-first + servidor)
+    this.startAppointmentsSubscription();
+    // Fallback inicial por si la suscripción tarda
+    try { await this.loadCitas(); } catch {}
+  }
+
+  ngOnDestroy(): void {
+    try { this.unsubscribeAppointments?.(); } catch {}
   }
 
   async loadCitas() {
@@ -82,12 +95,66 @@ export class AdmindatesPage implements OnInit {
       
     } catch (error) {
       console.error('Error loading appointments:', error);
-      await this.presentToast('Error al cargar las citas', 'danger');
+      // Evitar molestar con errores cuando no hay conexión: se verá el estado offline con banner y/o mensaje
+      if (this.onlineService.isOnline) {
+        await this.presentToast('Error al cargar las citas', 'danger');
+      }
     }
     this.loading = false;
   }
 
+  private startAppointmentsSubscription() {
+    this.loading = true;
+    const colRef = collection(db, 'appointments');
+    // includeMetadataChanges emite primero caché y luego servidor
+    this.unsubscribeAppointments = onSnapshot(
+      colRef,
+      { includeMetadataChanges: true },
+      async (snapshot) => {
+        try {
+          const base = snapshot.docs.map((d: QueryDocumentSnapshot) => ({ id: d.id, ...d.data(), _pendingSync: d.metadata.hasPendingWrites } as any));
+          // Enriquecer con datos de usuario
+          const enriched = await Promise.all(base.map(async (cita: any) => {
+            try {
+              const profile = await this.dataService.getUserProfile(cita.uid);
+              if (profile) {
+                cita.userName = profile.name;
+                cita.userEmail = profile.email;
+              }
+            } catch {}
+            return cita;
+          }));
+          // Ordenar por fecha más reciente
+          enriched.sort((a: any, b: any) => {
+            const dateA = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+            const dateB = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+            return (dateB as any) - (dateA as any);
+          });
+          this.citas = enriched;
+        } catch (e) {
+          console.error('Error procesando snapshot de citas:', e);
+          if (this.onlineService.isOnline) {
+            await this.presentToast('Error al actualizar la lista de citas', 'danger');
+          }
+        } finally {
+          this.loading = false;
+        }
+      },
+      async (error) => {
+        console.error('Error en onSnapshot de citas:', error);
+        if (this.onlineService.isOnline) {
+          await this.presentToast('Error al escuchar cambios de citas', 'danger');
+        }
+        this.loading = false;
+      }
+    );
+  }
+
   async aprobar(cita: Cita) {
+    if (!this.onlineService.isOnline) {
+      await this.presentToast('Se requiere conexión para gestionar citas', 'warning');
+      return;
+    }
     const alert = await this.alertCtrl.create({
       header: 'Confirmar Aprobación',
       message: `¿Estás seguro de aprobar la cita de ${cita.userName || 'este usuario'}?`,
@@ -117,6 +184,10 @@ export class AdmindatesPage implements OnInit {
   }
 
   async rechazar(cita: Cita) {
+    if (!this.onlineService.isOnline) {
+      await this.presentToast('Se requiere conexión para gestionar citas', 'warning');
+      return;
+    }
     const alert = await this.alertCtrl.create({
       header: 'Confirmar Rechazo',
       message: `¿Estás seguro de rechazar la cita de ${cita.userName || 'este usuario'}? Esta acción eliminará la cita permanentemente.`,
@@ -148,6 +219,10 @@ export class AdmindatesPage implements OnInit {
   }
 
   async completar(cita: Cita) {
+    if (!this.onlineService.isOnline) {
+      await this.presentToast('Se requiere conexión para gestionar citas', 'warning');
+      return;
+    }
     const alert = await this.alertCtrl.create({
       header: 'Confirmar Completación',
       message: `¿Estás seguro de marcar como completada la cita de ${cita.userName || 'este usuario'}?`,

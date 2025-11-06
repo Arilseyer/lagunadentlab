@@ -94,16 +94,23 @@
                         }">
                     {{ cita.status || 'Pendiente' }}
                   </span>
+                  <div class="pending-note" *ngIf="cita._pendingSync" style="color: var(--ion-color-warning); font-size: 12px; margin-top: 4px;">
+                    Sincronizando...
+                  </div>
                 </td>
                 
                 <!-- Acciones -->
                 <td class="col-acciones" data-label="Acciones">
+                  <!-- Mensaje cuando está offline -->
+                  <div class="action-warning" *ngIf="(onlineService.isOnline$ | async) === false">
+                    Se requiere conexión para gestionar citas
+                  </div>
                   <div class="action-buttons">
                     <ion-button 
                       fill="solid" 
                       size="small" 
                       class="btn-action btn-aprobar"
-                      [disabled]="cita.status !== ESTADOS.PENDIENTE"
+                      [disabled]="cita.status !== ESTADOS.PENDIENTE || (onlineService.isOnline$ | async) === false"
                       (click)="aprobar(cita)">
                       <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
                       Aprobar
@@ -113,7 +120,7 @@
                       fill="solid" 
                       size="small" 
                       class="btn-action btn-rechazar"
-                      [disabled]="cita.status !== ESTADOS.PENDIENTE"
+                      [disabled]="cita.status !== ESTADOS.PENDIENTE || (onlineService.isOnline$ | async) === false"
                       (click)="rechazar(cita)">
                       <ion-icon name="close-circle-outline" slot="start"></ion-icon>
                       Rechazar
@@ -123,7 +130,7 @@
                       fill="outline" 
                       size="small" 
                       class="btn-action btn-completar"
-                      [disabled]="cita.status === ESTADOS.PENDIENTE || cita.status === ESTADOS.RECHAZADA || cita.status === ESTADOS.COMPLETADA"
+                      [disabled]="cita.status === ESTADOS.PENDIENTE || cita.status === ESTADOS.RECHAZADA || cita.status === ESTADOS.COMPLETADA || (onlineService.isOnline$ | async) === false"
                       (click)="completar(cita)">
                       <ion-icon name="time-outline" slot="start"></ion-icon>
                       Completar

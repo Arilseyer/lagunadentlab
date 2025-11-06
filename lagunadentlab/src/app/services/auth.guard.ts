@@ -15,12 +15,12 @@ export class AuthGuard implements CanActivate {
       filter(user => user !== undefined),
       take(1),
       map(user => {
-        if (!!user) {
+        // Requiere usuario autenticado y correo verificado
+        if (user && user.emailVerified) {
           return true;
-        } else {
-          this.router.navigate(['/login']);
-          return false;
         }
+        this.router.navigate(['/login']);
+        return false;
       })
     );
   }

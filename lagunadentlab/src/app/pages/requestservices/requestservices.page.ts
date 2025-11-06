@@ -4,6 +4,7 @@ import { NavController, IonicModule, ToastController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { AuthService } from '../../services/auth.service';
+import { OnlineService } from '../../services/online.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { 
@@ -42,10 +43,18 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 export class RequestservicesPage implements OnInit, OnDestroy {
   form: FormGroup;
   serviceTypes: string[] = [
-    'Prótesis Flexibles',
-    'Placas Dentales',
-    'Coronas',
-    'Tecnología Digital'
+    'Prótesis Flexible Bilateral',
+    'Prótesis Flexible Unilateral',
+    'Placas Parcial Acrílica',
+    'Placa Total Acrílica',
+    'Placa Removible Metal Acrílico',
+    'Coronilla Total de Metal',
+    'Coronilla 3/4',
+    'Corona Total de Metal',
+    'Corona de Porcelana',
+    'Corona de Zirconia',
+    'Incrustación Corona Carilla Disilicato',
+    'Escáner Dental'
   ];
 
   availableHours: { value: string, label: string }[] = [];
@@ -70,7 +79,8 @@ export class RequestservicesPage implements OnInit, OnDestroy {
     private navCtrl: NavController,
     private toastCtrl: ToastController,
     private dataService: DataService,
-    private authService: AuthService
+    private authService: AuthService,
+    private onlineService: OnlineService
   ) {
     // Registrar iconos
     addIcons({documentTextOutline,calendarOutline,timeOutline,arrowForwardOutline,sendOutline,locationOutline,callOutline,logoWhatsapp,logoFacebook,mailOutline});
@@ -212,13 +222,24 @@ export class RequestservicesPage implements OnInit, OnDestroy {
       createdAt: new Date()
     };
     try {
+      const wasOffline = !this.onlineService.isOnline;
       await this.dataService.saveAppointment(appointment);
-      await this.presentToast('Cita solicitada correctamente.', 'success');
-      // Navegar al perfil para ver la cita recién creada
+      if (wasOffline) {
+        await this.presentToast('Solicitud guardada sin conexión, se enviará al reconectar', 'warning');
+      } else {
+        await this.presentToast('Cita solicitada correctamente.', 'success');
+      }
+      // Navegar al perfil para ver la cita recién creada (aparece también con escritura local offline)
       this.router.navigate(['/profile']);
     } catch (err) {
       console.error('Error al guardar la cita (appointments/create):', err);
-      await this.presentToast('Error al guardar la cita. Intenta de nuevo.', 'danger');
+      // Si hay error pero estamos offline, aún podría quedar encolado; informa de forma no bloqueante
+      if (!this.onlineService.isOnline) {
+        await this.presentToast('Solicitud guardada sin conexión, se enviará al reconectar', 'warning');
+        this.router.navigate(['/profile']);
+      } else {
+        await this.presentToast('Error al guardar la cita. Intenta de nuevo.', 'danger');
+      }
     }
     this.loading = false;
   }

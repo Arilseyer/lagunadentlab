@@ -3,7 +3,7 @@
  * Permite ver y editar datos personales, con validación y confirmación antes de guardar.
  * Muestra citas del usuario y permite cerrar sesión.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -42,6 +42,9 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { AuthService } from '../../services/auth.service';
 import { DataService, CITA_ESTADOS } from '../../services/data.service';
 import { ToastController, AlertController } from '@ionic/angular';
+import { OnlineService } from '../../services/online.service';
+import { collection, doc, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from 'src/environments/firebase';
 
 
 @Component({
@@ -71,7 +74,7 @@ import { ToastController, AlertController } from '@ionic/angular';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss']
 })
-export class ProfilePage implements OnInit, ViewWillEnter {
+export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
   selectedTab: string = 'info';
   userProfile: any = null;
   currentUser: any = null;
@@ -79,6 +82,8 @@ export class ProfilePage implements OnInit, ViewWillEnter {
   editForm: FormGroup;
   loading: boolean = false;
   appointments: any[] = [];
+  private unsubscribeAppointments?: () => void;
+  private unsubscribeProfile?: () => void;
 
   constructor(
     private authService: AuthService,
@@ -86,7 +91,8 @@ export class ProfilePage implements OnInit, ViewWillEnter {
     private router: Router,
     private fb: FormBuilder,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private onlineService: OnlineService
   ) { 
     addIcons({
       mailOutline,
@@ -109,6 +115,16 @@ export class ProfilePage implements OnInit, ViewWillEnter {
   }
 
   async ngOnInit() {
+    // Redirigir si la sesión se cierra mientras estás en esta página
+    this.authService.user$.subscribe(user => {
+      if (!user) {
+        // Limpiar estado local y salir del perfil
+        this.currentUser = null;
+        this.userProfile = null;
+        this.appointments = [];
+        this.router.navigateByUrl('/home', { replaceUrl: true });
+      }
+    });
     await this.loadUserData();
   }
 
@@ -122,6 +138,8 @@ export class ProfilePage implements OnInit, ViewWillEnter {
     this.currentUser = this.authService.getCurrentUser();
     
     if (this.currentUser) {
+      // Iniciar suscripciones en tiempo real (cache-first + servidor)
+      this.startRealtimeSubscriptions(this.currentUser.uid);
       try {
         this.userProfile = await this.dataService.getUserProfile(this.currentUser.uid);
         if (this.userProfile) {
@@ -148,7 +166,10 @@ export class ProfilePage implements OnInit, ViewWillEnter {
         });
       } catch (error) {
         console.error('Error loading user data:', error);
-        await this.presentToast('Error al cargar datos del usuario', 'danger');
+        // Si no hay conexión, evita mostrar toast de error; el banner global ya indica el estado
+        if (this.onlineService.isOnline) {
+          await this.presentToast('Error al cargar datos del usuario', 'danger');
+        }
       }
     }
     this.loading = false;
@@ -207,8 +228,12 @@ export class ProfilePage implements OnInit, ViewWillEnter {
   async logout() {
     try {
       await this.authService.logout();
+      // Limpiar estado y navegar reemplazando historial para evitar back al perfil
+      this.currentUser = null;
+      this.userProfile = null;
+      this.appointments = [];
       await this.presentToast('Sesión cerrada exitosamente', 'success');
-      this.router.navigateByUrl('/home');
+      await this.router.navigateByUrl('/home', { replaceUrl: true });
     } catch (error) {
       console.error('Error logging out:', error);
       await this.presentToast('Error al cerrar sesión', 'danger');
@@ -260,6 +285,72 @@ export class ProfilePage implements OnInit, ViewWillEnter {
     const d = new Date();
     d.setHours(Number(h), Number(m), 0, 0);
     return d.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', hour12: true });
+  }
+
+  ngOnDestroy(): void {
+    try { this.unsubscribeAppointments?.(); } catch {}
+    try { this.unsubscribeProfile?.(); } catch {}
+  }
+
+  private startRealtimeSubscriptions(uid: string) {
+    // Limpiar suscripciones previas para evitar duplicados
+    try { this.unsubscribeAppointments?.(); } catch {}
+    try { this.unsubscribeProfile?.(); } catch {}
+
+    // Perfil del usuario
+    const userRef = doc(db, 'users', uid);
+    this.unsubscribeProfile = onSnapshot(
+      userRef,
+      { includeMetadataChanges: true },
+      {
+        next: (snap) => {
+          if (snap.exists()) {
+            this.userProfile = snap.data();
+            this.editForm.patchValue({
+              name: this.userProfile?.name || '',
+              phone: this.userProfile?.phone || ''
+            });
+          }
+        },
+        error: (error: unknown) => {
+          console.error('Error en onSnapshot de perfil:', error);
+          if (this.onlineService.isOnline) {
+            this.presentToast('Error al actualizar el perfil', 'danger');
+          }
+        }
+      }
+    );
+
+    // Citas del usuario
+    const apptQuery = query(collection(db, 'appointments'), where('uid', '==', uid));
+    this.unsubscribeAppointments = onSnapshot(
+      apptQuery,
+      { includeMetadataChanges: true },
+      {
+        next: (snap) => {
+          const citas = snap.docs.map(d => ({ id: d.id, ...d.data(), _pendingSync: d.metadata.hasPendingWrites } as any));
+          this.appointments = citas.map(appt => {
+            let status = appt.status;
+            if (!status || status === 'Pendiente') {
+              status = CITA_ESTADOS.PENDIENTE;
+            } else if (status === 'Aprobada') {
+              status = CITA_ESTADOS.APROBADA;
+            } else if (status === 'Rechazada') {
+              status = CITA_ESTADOS.RECHAZADA;
+            } else if (status === 'Completada' || status === 'Completa') {
+              status = CITA_ESTADOS.COMPLETADA;
+            }
+            return { ...appt, status };
+          });
+        },
+        error: (error: unknown) => {
+          console.error('Error en onSnapshot de citas del usuario:', error);
+          if (this.onlineService.isOnline) {
+            this.presentToast('Error al actualizar las citas', 'danger');
+          }
+        }
+      }
+    );
   }
 }
 
