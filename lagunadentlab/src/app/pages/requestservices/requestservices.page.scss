@@ -164,7 +164,7 @@ ion-content {
   border-radius: 12px;
   padding: 10px 12px;
   font-size: 16px;
-  color: var(--dark-500);
+  color: var(--text-primary);
   outline: none;
   transition: all 0.2s ease;
   font-family: 'Poppins', sans-serif;
@@ -221,7 +221,7 @@ select.field-input {
   // Estilos para las opciones del dropdown con bordes redondeados
   option {
     background: var(--neutral-100);
-    color: var(--dark-500);
+    color: var(--text-primary);
     padding: 10px 12px;
     border-radius: 12px;
     margin: 2px;

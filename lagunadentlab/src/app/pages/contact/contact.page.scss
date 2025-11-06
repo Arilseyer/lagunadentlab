@@ -35,7 +35,7 @@ ion-input::part(native):focus, ion-textarea::part(native):focus {
   border-radius: 0.75rem;
   padding: 0.625rem 0.75rem;
   font-size: 1rem;
-  color: var(--dark-500);
+  color: var(--text-primary);
   outline: none;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(10, 35, 66, 0.06);
@@ -167,11 +167,11 @@ ion-content {
 .info-content { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem; }
 .icon-box { width: 44px; height: 44px; border-radius: .75rem; background: var(--primary-50); display:flex; align-items:center; justify-content:center; }
 .icon-primary { color: var(--primary-500); font-size: 1.25rem; }
-.info-title { font-weight: 800; color: var(--dark-500); margin: 0 0 .25rem 0; }
+.info-title { font-weight: 800; color: var(--text-primary); margin: 0 0 .25rem 0; }
 .info-text { color: var(--neutral-700); margin: 0; }
 .schedule { list-style: none; padding: 0; margin: 0; color: var(--neutral-700); }
 .schedule li { margin-bottom: .25rem; }
-.schedule strong { color: var(--dark-500); }
+.schedule strong { color: var(--text-primary); }
 .contact-list { list-style: none; padding: 0; margin: 0; color: var(--neutral-700); }
 .contact-list li { display: flex; gap: .5rem; align-items: center; margin-bottom: .25rem; }
 .contact-list ion-icon { color: var(--primary-500); }

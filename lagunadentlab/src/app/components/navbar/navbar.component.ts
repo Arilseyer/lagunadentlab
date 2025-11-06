@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { IonHeader, IonToolbar, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { globeOutline, sunnyOutline, personCircleOutline, personOutline } from 'ionicons/icons';
+import { globeOutline, sunnyOutline, moonOutline, phonePortraitOutline, personCircleOutline, personOutline } from 'ionicons/icons';
 import { AuthService } from '../../services/auth.service';
+import { ThemeService } from '../../services/theme.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,9 +19,22 @@ import { map } from 'rxjs/operators';
 export class NavbarComponent implements OnInit {
   activeRoute: string = '';
   isLoggedIn$!: Observable<boolean>;
+  currentThemeIcon$!: Observable<string>;
+  themeDescription$!: Observable<string>;
 
-  constructor(private router: Router, private auth: AuthService) { 
-    addIcons({globeOutline,sunnyOutline,personCircleOutline,personOutline});
+  constructor(
+    private router: Router, 
+    private auth: AuthService,
+    private themeService: ThemeService
+  ) { 
+    addIcons({
+      globeOutline,
+      sunnyOutline,
+      moonOutline,
+      phonePortraitOutline,
+      personCircleOutline,
+      personOutline
+    });
   }
 
   ngOnInit() {
@@ -28,6 +42,16 @@ export class NavbarComponent implements OnInit {
     this.isLoggedIn$ = this.auth.user$.pipe(
       map(user => !!user)
     );
+
+    // Observables del tema
+    this.currentThemeIcon$ = this.themeService.currentTheme$.pipe(
+      map(() => this.themeService.getThemeIcon())
+    );
+
+    this.themeDescription$ = this.themeService.currentTheme$.pipe(
+      map(() => this.themeService.getThemeDescription())
+    );
+    
     // Detectar la ruta activa al inicializar
     this.setActiveRoute(this.router.url);
     
@@ -58,5 +82,19 @@ export class NavbarComponent implements OnInit {
 
   navigateTo(route: string) {
     this.router.navigate([route]);
+  }
+
+  /**
+   * Alterna el tema cuando se hace clic en el botón
+   */
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
+
+  /**
+   * Obtiene el título para el botón de tema
+   */
+  getThemeButtonTitle(): string {
+    return `Cambiar tema - Actual: ${this.themeService.getThemeDescription()}`;
   }
 }

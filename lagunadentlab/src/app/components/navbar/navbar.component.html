@@ -35,8 +35,11 @@
         </button>
         
         <!-- Botón de tema -->
-        <button class="action-button theme-btn">
-          <ion-icon name="sunny-outline"></ion-icon>
+        <button 
+          class="action-button theme-btn" 
+          (click)="toggleTheme()"
+          [title]="getThemeButtonTitle()">
+          <ion-icon [name]="currentThemeIcon$ | async"></ion-icon>
         </button>
         
         <!-- Botón Iniciar Sesión -->
