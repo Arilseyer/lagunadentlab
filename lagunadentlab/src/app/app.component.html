@@ -1,4 +1,18 @@
 <ion-app>
+  <!-- Global loading overlay -->
+  <div *ngIf="(loading$ | async) === true" class="global-loader" role="status" aria-live="polite">
+    <div class="loader-card">
+      <lottie-player
+        src="assets/animations/clean-tooth.json"
+        background="transparent"
+        speed="1"
+        style="width: 160px; height: 160px;"
+        loop
+        autoplay>
+      </lottie-player>
+      <ion-label>{{ 'common.loading' | translate }}</ion-label>
+    </div>
+  </div>
   <!-- Banner global de conectividad -->
   <div *ngIf="(isOnline$ | async) === false" class="offline-banner" role="status" aria-live="polite">
     <ion-chip color="medium" [outline]="true">

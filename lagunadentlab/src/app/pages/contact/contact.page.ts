@@ -28,6 +28,7 @@ import { ToastController } from '@ionic/angular';
 import { OnlineService } from '../../services/online.service';
 import { DataService } from '../../services/data.service';
 import { TranslatePipe } from '../../pipes/translate.pipe';
+import { OwnerEmailService } from '../../services/owner-email.service';
 
 @Component({
   selector: 'app-contact',
@@ -59,7 +60,8 @@ export class ContactPage implements OnInit {
     private fb: FormBuilder,
     private toastCtrl: ToastController,
     private onlineService: OnlineService,
-    private dataService: DataService
+    private dataService: DataService,
+    private ownerEmail: OwnerEmailService
   ) {
     addIcons({
       sendOutline,
@@ -115,6 +117,8 @@ export class ContactPage implements OnInit {
       } else {
         await this.presentToast('Mensaje enviado correctamente.', 'success');
       }
+      // Enviar copia al dueño por EmailJS (no bloqueante)
+      try { await this.ownerEmail.sendOwnerContact(payload); } catch (e) { console.warn('EmailJS contacto (owner) fallo:', e); }
       this.form.reset();
     } catch (err) {
       console.error('Error guardando mensaje de contacto:', err);

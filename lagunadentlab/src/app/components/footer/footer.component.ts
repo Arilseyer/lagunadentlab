@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { IonIcon } from '@ionic/angular/standalone';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 import { addIcons } from 'ionicons';
 import { 
   logoFacebook, 
@@ -19,7 +20,7 @@ import {
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonIcon]
+  imports: [CommonModule, IonIcon, TranslatePipe]
 })
 export class FooterComponent {
 
