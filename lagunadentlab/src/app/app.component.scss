@@ -1,29 +1,3 @@
-.global-loader {
-	position: fixed;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: color-mix(in lch, var(--ion-background-color) 80%, transparent);
-	backdrop-filter: blur(2px);
-	z-index: 9999;
-
-	.loader-card {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 12px;
-		padding: 20px 24px;
-		border-radius: 16px;
-		background: var(--ion-card-background, rgba(255,255,255,0.85));
-		color: var(--ion-text-color);
-		box-shadow: 0 6px 24px rgba(0,0,0,0.15);
-	}
-}
-
-:host-context(body.dark) .global-loader .loader-card {
-	background: rgba(22, 24, 28, 0.85);
-}
 /* Banner fijo para estado offline */
 .offline-banner {
 	position: fixed;
