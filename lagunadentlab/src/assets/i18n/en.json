@@ -407,34 +407,21 @@
   },
   "footer": {
     "company": "Laguna Dent Lab",
-    "subtitle": "Dental Prosthetics",
     "description": "Leader in high-quality dental prosthetics",
-    "quick_links": "Quick Links",
     "links": {
-      "home": "Home",
       "about": "About",
       "services": "Services",
       "contact": "Contact",
       "privacy": "Privacy",
       "terms": "Terms"
     },
-    "contact_title": "Contact",
-    "address": {
-      "line1": "Blvd. Revolución 587 E",
-      "line2": "Centro, Torreón"
-    },
-    "hours": {
-      "weekdays": "Mon - Fri: 9:00 AM - 6:00 PM",
-      "saturday": "Saturday: 9:00 AM - 2:00 PM"
-    },
-    "go_home": "Go to home",
     "social": {
       "follow": "Follow us",
       "facebook": "Facebook",
       "twitter": "Twitter",
       "instagram": "Instagram"
     },
-    "copyright": "© 2025 Laguna Dent Lab. All rights reserved."
+    "copyright": "© 2024 Laguna Dent Lab. All rights reserved."
   },
   "appointment": {
     "title": "Request Service",

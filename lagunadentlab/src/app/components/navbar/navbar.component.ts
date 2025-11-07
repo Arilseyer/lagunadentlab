@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
   currentThemeIcon$!: Observable<string>;
   themeDescription$!: Observable<string>;
   currentLanguageCode$!: Observable<string>;
-  logoSrc$!: Observable<string>;
 
   constructor(
     private router: Router, 
@@ -55,11 +54,6 @@ export class NavbarComponent implements OnInit {
 
     this.themeDescription$ = this.themeService.currentTheme$.pipe(
       map(() => this.themeService.getThemeDescription())
-    );
-
-    // Logo reactivo según modo oscuro
-    this.logoSrc$ = this.themeService.isDarkMode$.pipe(
-      map(isDark => isDark ? 'assets/DienteOscuro.png' : 'assets/Diente.png')
     );
 
     // Observable del idioma
