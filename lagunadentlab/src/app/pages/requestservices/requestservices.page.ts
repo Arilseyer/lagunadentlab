@@ -24,6 +24,7 @@ import {
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { TranslatePipe } from '../../pipes/translate.pipe';
+import { OwnerEmailService } from '../../services/owner-email.service';
 
 @Component({
   selector: 'app-requestservices',
@@ -82,7 +83,8 @@ export class RequestservicesPage implements OnInit, OnDestroy {
     private toastCtrl: ToastController,
     private dataService: DataService,
     private authService: AuthService,
-    private onlineService: OnlineService
+    private onlineService: OnlineService,
+    private ownerEmail: OwnerEmailService
   ) {
     // Registrar iconos
     addIcons({documentTextOutline,calendarOutline,timeOutline,arrowForwardOutline,sendOutline,locationOutline,callOutline,logoWhatsapp,logoFacebook,mailOutline});
@@ -231,6 +233,8 @@ export class RequestservicesPage implements OnInit, OnDestroy {
       } else {
         await this.presentToast('Cita solicitada correctamente.', 'success');
       }
+      // Enviar notificación al dueño (no bloqueante)
+      try { await this.ownerEmail.sendOwnerAppointment(appointment as any); } catch (e) { console.warn('EmailJS appointment (owner) fallo:', e); }
       // Navegar al perfil para ver la cita recién creada (aparece también con escritura local offline)
       this.router.navigate(['/profile']);
     } catch (err) {

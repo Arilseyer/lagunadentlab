@@ -7,20 +7,20 @@
       <!-- Columna 1: Logo y descripción -->
       <div class="footer-section company-info">
         <div class="footer-logo">
-          <button class="logo-button" (click)="navigateTo('/home')" aria-label="Ir al inicio">
+          <button class="logo-button" (click)="navigateTo('/home')" [attr.aria-label]="('footer.go_home' | translate)">
             <div class="logo-container">
               <div class="logo-icon">
                 <img src="assets/Diente.png" alt="Laguna Dent Lab" />
               </div>
               <div class="logo-text-container">
-                <span class="logo-text">Laguna Dent Lab</span>
-                <span class="logo-subtitle">Prótesis Dental</span>
+                <span class="logo-text">{{ 'footer.company' | translate }}</span>
+                <span class="logo-subtitle">{{ 'footer.subtitle' | translate }}</span>
               </div>
             </div>
           </button>
         </div>
         <p class="company-description">
-          Laboratorio dental con 15 años de experiencia en prótesis de alta calidad
+          {{ 'footer.description' | translate }}
         </p>
         
         <!-- Iconos sociales -->
@@ -39,23 +39,23 @@
 
       <!-- Columna 2: Enlaces rápidos -->
       <div class="footer-section quick-links">
-        <h3 class="section-title">Enlaces Rápidos</h3>
+        <h3 class="section-title">{{ 'footer.quick_links' | translate }}</h3>
         <ul class="links-list">
-          <li><a (click)="navigateTo('/home')" class="footer-link">Inicio</a></li>
-          <li><a (click)="navigateTo('/services')" class="footer-link">Servicios</a></li>
-          <li><a (click)="navigateTo('/about')" class="footer-link">Nosotros</a></li>
-          <li><a (click)="navigateTo('/contact')" class="footer-link">Contacto</a></li>
+          <li><a (click)="navigateTo('/home')" class="footer-link">{{ 'footer.links.home' | translate }}</a></li>
+          <li><a (click)="navigateTo('/services')" class="footer-link">{{ 'footer.links.services' | translate }}</a></li>
+          <li><a (click)="navigateTo('/about')" class="footer-link">{{ 'footer.links.about' | translate }}</a></li>
+          <li><a (click)="navigateTo('/contact')" class="footer-link">{{ 'footer.links.contact' | translate }}</a></li>
         </ul>
       </div>
 
       <!-- Columna 3: Información de contacto -->
       <div class="footer-section contact-info">
-        <h3 class="section-title">Contacto</h3>
+        <h3 class="section-title">{{ 'footer.contact_title' | translate }}</h3>
         <div class="contact-item">
           <ion-icon name="location-outline"></ion-icon>
           <div class="contact-text">
-            <span>Blvd. Revolución 587 ote</span>
-            <span>Col. Centro, Torreón</span>
+            <span>{{ 'footer.address.line1' | translate }}</span>
+            <span>{{ 'footer.address.line2' | translate }}</span>
           </div>
         </div>
         <div class="contact-item">
@@ -65,8 +65,8 @@
         <div class="contact-item">
           <ion-icon name="time-outline"></ion-icon>
           <div class="contact-text">
-            <span>Lun - Vie: 9:00 AM - 6:00 PM</span>
-            <span>Sábado: 9:00 AM - 2:00 PM</span>
+            <span>{{ 'footer.hours.weekdays' | translate }}</span>
+            <span>{{ 'footer.hours.saturday' | translate }}</span>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
 
     <!-- Copyright -->
     <div class="footer-bottom">
-      <p>&copy; 2025 Laguna Dent Lab. Todos los derechos reservados.</p>
+      <p>{{ 'footer.copyright' | translate }}</p>
     </div>
 
   </div>
