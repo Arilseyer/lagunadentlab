@@ -27,6 +27,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { ToastController } from '@ionic/angular';
 import { OnlineService } from '../../services/online.service';
 import { DataService } from '../../services/data.service';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-contact',
@@ -46,7 +47,8 @@ import { DataService } from '../../services/data.service';
     IonButton,
     IonIcon,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TranslatePipe
   ]
 })
 export class ContactPage implements OnInit {

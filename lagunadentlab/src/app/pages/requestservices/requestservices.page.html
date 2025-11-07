@@ -7,8 +7,8 @@
     
     <!-- 🔹 ENCABEZADO DE PÁGINA -->
     <div class="header-section">
-      <h1 class="page-title">Solicitar Servicio</h1>
-      <p class="page-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+      <h1 class="page-title">{{ 'appointment.title' | translate }}</h1>
+      <p class="page-subtitle">{{ 'appointment.subtitle' | translate }}</p>
     </div>
 
     <!-- � TARJETA DEL FORMULARIO PRINCIPAL -->
@@ -17,7 +17,7 @@
       <!-- Título del formulario -->
       <div class="form-title-section">
         <ion-icon name="document-text-outline" class="form-icon"></ion-icon>
-        <h2 class="form-title">Información del Servicio</h2>
+        <h2 class="form-title">{{ 'appointment.form_title' | translate }}</h2>
       </div>
 
       <!-- Formulario -->
@@ -28,27 +28,27 @@
           
           <!-- Nombre completo -->
           <div class="form-field">
-            <label class="field-label">Nombre completo *</label>
-            <input type="text" class="field-input" formControlName="name" placeholder="Dr. Juan Pérez" [readonly]="isLoggedIn" />
+            <label class="field-label">{{ 'appointment.full_name' | translate }} *</label>
+            <input type="text" class="field-input" formControlName="name" placeholder="{{ 'appointment.full_name_placeholder' | translate }}" [readonly]="isLoggedIn" />
           </div>
 
           <!-- Teléfono / WhatsApp -->
           <div class="form-field">
-            <label class="field-label">Teléfono / WhatsApp *</label>
-            <input type="tel" class="field-input" formControlName="phone" placeholder="+52 123 456 7890" [readonly]="isLoggedIn" />
+            <label class="field-label">{{ 'appointment.phone_whatsapp' | translate }} *</label>
+            <input type="tel" class="field-input" formControlName="phone" placeholder="{{ 'appointment.phone_placeholder' | translate }}" [readonly]="isLoggedIn" />
           </div>
 
           <!-- Correo electrónico -->
           <div class="form-field form-field-full">
-            <label class="field-label">Correo electrónico *</label>
-            <input type="email" class="field-input" formControlName="email" placeholder="correo@ejemplo.com" [readonly]="isLoggedIn" />
+            <label class="field-label">{{ 'appointment.email' | translate }} *</label>
+            <input type="email" class="field-input" formControlName="email" placeholder="{{ 'appointment.email_placeholder' | translate }}" [readonly]="isLoggedIn" />
           </div>
 
           <!-- Tipo de servicio -->
           <div class="form-field form-field-full">
-            <label class="field-label">Tipo de servicio *</label>
+            <label class="field-label">{{ 'appointment.service_type' | translate }} *</label>
             <select class="field-input" formControlName="serviceType">
-              <option value="" disabled selected>Selecciona un servicio</option>
+              <option value="" disabled selected>{{ 'appointment.select_service' | translate }}</option>
               <option *ngFor="let service of serviceTypes" [value]="service">{{ service }}</option>
             </select>
           </div>
@@ -57,10 +57,10 @@
           <div class="form-field">
             <label class="field-label">
               <ion-icon name="calendar-outline" class="field-icon"></ion-icon>
-              Fecha preferida *
+              {{ 'appointment.preferred_date' | translate }} *
             </label>
             <div class="input-with-icon">
-              <input type="date" class="field-input" formControlName="date" placeholder="dd/mm/aaaa" #dateInput />
+              <input type="date" class="field-input" formControlName="date" placeholder="{{ 'appointment.date_placeholder' | translate }}" #dateInput />
               <ion-icon name="calendar-outline" class="input-icon" (click)="dateInput.showPicker()"></ion-icon>
             </div>
           </div>
@@ -69,18 +69,18 @@
           <div class="form-field">
             <label class="field-label">
               <ion-icon name="time-outline" class="field-icon"></ion-icon>
-              Hora preferida *
+              {{ 'appointment.preferred_time' | translate }} *
             </label>
             <div class="input-with-icon">
-              <input type="time" class="field-input" formControlName="time" placeholder="--:-- --" #timeInput />
+              <input type="time" class="field-input" formControlName="time" placeholder="{{ 'appointment.time_placeholder' | translate }}" #timeInput />
               <ion-icon name="time-outline" class="input-icon" (click)="timeInput.showPicker()"></ion-icon>
             </div>
           </div>
 
           <!-- Notas adicionales -->
           <div class="form-field form-field-full">
-            <label class="field-label">Notas adicionales</label>
-            <textarea class="field-input field-textarea" formControlName="notes" placeholder="Especificaciones del trabajo, urgencias, etc." rows="3"></textarea>
+            <label class="field-label">{{ 'appointment.additional_notes' | translate }}</label>
+            <textarea class="field-input field-textarea" formControlName="notes" placeholder="{{ 'appointment.notes_placeholder' | translate }}" rows="3"></textarea>
           </div>
 
         </div>
@@ -88,10 +88,10 @@
         <!-- Botones -->
         <div class="button-group">
           <button type="button" class="btn-cancel" (click)="goBack()">
-            Cancelar
+            {{ 'appointment.cancel' | translate }}
           </button>
           <button type="submit" class="btn-submit">
-            Enviar Solicitud
+            {{ 'appointment.send_request' | translate }}
             <ion-icon name="arrow-forward-outline" class="btn-icon"></ion-icon>
           </button>
         </div>
@@ -101,7 +101,7 @@
 
     <!-- 🔹 BLOQUE INFORMATIVO INFERIOR -->
     <div class="info-note">
-      <strong>Nota:</strong> Nos pondremos en contacto contigo dentro de las próximas 24 horas para confirmar tu cita y discutir los detalles del servicio.
+      <strong>{{ 'appointment.note_label' | translate }}:</strong> {{ 'appointment.note_text' | translate }}
     </div>
 
   </div>

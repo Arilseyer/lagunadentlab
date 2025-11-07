@@ -17,16 +17,16 @@
       <nav class="nav-links">
         <a (click)="navigateTo('/home')" 
            class="nav-link" 
-           [class.active]="activeRoute === 'home'">Inicio</a>
+           [class.active]="activeRoute === 'home'">{{ 'navbar.home' | translate }}</a>
         <a (click)="navigateTo('/services')" 
            class="nav-link" 
-           [class.active]="activeRoute === 'services'">Servicios</a>
+           [class.active]="activeRoute === 'services'">{{ 'navbar.services' | translate }}</a>
         <a (click)="navigateTo('/about')" 
            class="nav-link" 
-           [class.active]="activeRoute === 'about'">Nosotros</a>
+           [class.active]="activeRoute === 'about'">{{ 'navbar.about' | translate }}</a>
         <a (click)="navigateTo('/contact')" 
            class="nav-link" 
-           [class.active]="activeRoute === 'contact'">Contacto</a>
+           [class.active]="activeRoute === 'contact'">{{ 'navbar.contact' | translate }}</a>
       </nav>
     </div>
 
@@ -34,23 +34,30 @@
     <div class="navbar-end" slot="end">
       <div class="navbar-actions">
         <!-- Botón de idioma -->
-        <button class="action-button language-btn">
+        <button 
+          class="action-button language-btn" 
+          (click)="toggleLanguage()"
+          [title]="getLanguageButtonTitle()">
           <ion-icon name="globe-outline"></ion-icon>
+          <span class="language-code">{{ currentLanguageCode$ | async }}</span>
         </button>
         
         <!-- Botón de tema -->
-        <button class="action-button theme-btn">
-          <ion-icon name="sunny-outline"></ion-icon>
+        <button 
+          class="action-button theme-btn" 
+          (click)="toggleTheme()"
+          [title]="getThemeButtonTitle()">
+          <ion-icon [name]="currentThemeIcon$ | async"></ion-icon>
         </button>
         
         <!-- Botón Iniciar Sesión -->
         <button *ngIf="!(isLoggedIn$ | async)" class="auth-button login-btn" (click)="navigateTo('/login')">
-          Iniciar Sesión
+          {{ 'navbar.login' | translate }}
         </button>
 
         <!-- Botón Registrarse -->
         <button *ngIf="!(isLoggedIn$ | async)" class="auth-button register-btn" (click)="navigateTo('/register')">
-          Registrarse
+          {{ 'navbar.register' | translate }}
         </button>
 
         <!-- Botón de Perfil -->

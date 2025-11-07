@@ -43,6 +43,7 @@ import { AuthService } from '../../services/auth.service';
 import { DataService, CITA_ESTADOS } from '../../services/data.service';
 import { ToastController, AlertController } from '@ionic/angular';
 import { OnlineService } from '../../services/online.service';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 import { collection, doc, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from 'src/environments/firebase';
 
@@ -69,7 +70,8 @@ import { db } from 'src/environments/firebase';
     IonLabel,
     IonInput,
     IonButton,
-    NavbarComponent
+    NavbarComponent,
+    TranslatePipe
   ],
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss']

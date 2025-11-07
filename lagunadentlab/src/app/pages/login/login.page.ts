@@ -18,6 +18,7 @@ import { logInOutline, eye, eyeOff } from 'ionicons/icons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { OnlineService } from '../../services/online.service';
 import { Subscription } from 'rxjs';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ import { Subscription } from 'rxjs';
     ReactiveFormsModule,
     RouterLink,
     NavbarComponent,
-    IonicModule
+    IonicModule,
+    TranslatePipe
   ]
 })
 export class LoginPage implements OnInit, OnDestroy {

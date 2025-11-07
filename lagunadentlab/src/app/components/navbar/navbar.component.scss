@@ -20,6 +20,10 @@
   justify-content: space-between;
   width: 100%;
   box-shadow: 0 2px 8px rgba(10, 35, 66, 0.1);
+  background: var(--background);
+  color: var(--color);
+  border-bottom: 1px solid var(--neutral-300);
+  transition: all 0.2s ease-in-out;
 }
 
 // Logo container
@@ -322,4 +326,27 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+/** Botón de idioma específico **/
+.language-btn {
+  position: relative;
+  min-width: 60px !important;
+  width: auto !important;
+  padding: 0 0.5rem !important;
+  gap: 0.25rem;
+  
+  .language-code {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: inherit;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  &:hover {
+    .language-code {
+      color: var(--primary-500);
+    }
+  }
 }

@@ -6,7 +6,7 @@
 
     <!-- Volver al inicio - fuera del card -->
     <a routerLink="/" class="back-link">
-      ← Volver al inicio
+      ← {{ 'auth.back_home' | translate }}
     </a>
 
     <!-- Card Login -->
@@ -18,33 +18,33 @@
       </div>
 
       <!-- Títulos -->
-      <h1 class="login-title">Iniciar sesión</h1>
-      <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
+      <h1 class="login-title">{{ 'auth.login.title' | translate }}</h1>
+      <p class="login-subtitle">{{ 'auth.login.subtitle' | translate }}</p>
 
       <!-- Formulario -->
       <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
         
         <div class="form-field">
-          <label class="field-label">Correo electrónico</label>
+          <label class="field-label">{{ 'auth.login.email' | translate }}</label>
           <input 
             type="email" 
             class="field-input" 
-            placeholder="correo@ejemplo.com" 
+            placeholder="{{ 'auth.login.email_placeholder' | translate }}" 
             formControlName="email"
             [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched"
           />
           <span class="error-message" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
-            El correo es requerido
+            {{ 'auth.login.email_required' | translate }}
           </span>
           <span class="error-message" *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
-            Correo inválido
+            {{ 'auth.login.email_invalid' | translate }}
           </span>
         </div>
 
         <div class="form-field">
           <div class="field-row">
-            <label class="field-label">Contraseña</label>
-            <a routerLink="/forgotpassword" class="forgot-link">¿Olvidaste tu contraseña?</a>
+            <label class="field-label">{{ 'auth.login.password' | translate }}</label>
+            <a routerLink="/forgotpassword" class="forgot-link">{{ 'auth.login.forgot' | translate }}</a>
           </div>
           <div class="password-input-container">
             <input 
@@ -63,10 +63,10 @@
             </button>
           </div>
           <span class="error-message" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
-            La contraseña es requerida
+            {{ 'auth.login.password_required' | translate }}
           </span>
           <span class="error-message" *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
-            Mínimo 6 caracteres
+            {{ 'auth.login.password_minlength' | translate }}
           </span>
         </div>
         <div class="error-message" *ngIf="errorMessage" style="margin-top: 8px; color: var(--ion-color-danger, #eb445a);">
@@ -74,19 +74,19 @@
         </div>
         
         <button type="submit" class="btn-login" [disabled]="loading">
-          {{ loading ? 'Iniciando sesión...' : 'Iniciar sesión' }}
+          {{ loading ? ('auth.login.loading' | translate) : ('auth.login.submit' | translate) }}
         </button>
 
         <div class="offline-hint" *ngIf="(isOnline$ | async) === false" style="margin-top:8px;color:var(--ion-color-warning)">
-          Se necesita conexión a internet para este proceso
+          {{ 'auth.offline_message' | translate }}
         </div>
 
       </form>
 
       <!-- Link a registro -->
       <div class="register-link-section">
-        <span>¿No tienes cuenta?</span>
-        <a routerLink="/register" class="register-btn">Regístrate</a>
+        <span>{{ 'auth.login.no_account' | translate }}</span>
+        <a routerLink="/register" class="register-btn">{{ 'auth.login.register_link' | translate }}</a>
       </div>
 
     </div>

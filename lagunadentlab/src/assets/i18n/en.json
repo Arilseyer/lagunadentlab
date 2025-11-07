@@ -1,0 +1,449 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services", 
+    "about": "About Us",
+    "contact": "Contact",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "profile": "Profile",
+    "logout": "Sign Out"
+  },
+  "home": {
+    "hero": {
+      "title": "Innovation and Quality in Dental Prosthetics",
+      "subtitle": "At Laguna Dent Lab, we create high-quality dental prosthetics with cutting-edge technology and an unwavering commitment to excellence.",
+      "cta": "Request Your Quote",
+      "cta_secondary": "View Our Services"
+    },
+    "stats": {
+      "experience": "Years of Experience",
+      "clients": "Satisfied Clients", 
+      "products": "Products Delivered",
+      "success": "Success Rate"
+    },
+    "features": {
+      "quality": {
+        "title": "Quality",
+        "description": "Certified materials and precise processes in every job"
+      },
+      "speed": {
+        "title": "Fast Service",
+        "description": "Efficient delivery without compromising quality"
+      },
+      "personalized": {
+        "title": "Personalized Attention",
+        "description": "Dental solutions adapted to each need"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Cutting-edge technology and constant training"
+      }
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "We provide a wide range of prosthetic solutions with the highest quality standards",
+      "crown_porcelain": "Porcelain and Zirconia Crowns",
+      "implants": "Dental Implants",
+      "prosthetics": "Fixed and Removable Prosthetics",
+      "acrylic": "Acrylic Plates",
+      "guards": "Occlusal Guards",
+      "view_all": "View All Services"
+    },
+    "technology": {
+      "title": "Cutting-Edge Technology",
+      "subtitle": "We use state-of-the-art equipment to guarantee precise and quality results",
+      "scanner_title": "3D Digital Scanner",
+      "scanner_desc": "Meticulous high-precision models",
+      "cadcam_title": "CAD/CAM System",
+      "cadcam_desc": "Computer-aided design",
+      "materials_title": "Premium Materials",
+      "materials_desc": "Zirconia, latest generation porcelains",
+      "features": [
+        "High-precision intraoral scanner",
+        "Computer-aided design (CAD)",
+        "High-speed CNC milling machines",
+        "Certified biocompatible materials",
+        "Rigorous quality control"
+      ]
+    },
+    "testimonials": {
+      "title": "What our clients say",
+      "subtitle": "Proof of quality from our dentists who trust our work and service",
+      "testimonial1": {
+        "text": "I have been working with Laguna Dent Lab for 5 years. The quality of their prosthetics has been exceptional and the personalized attention has made the difference in my patients' satisfaction.",
+        "author": "Dr. Mario González",
+        "title": "General Dentist"
+      },
+      "testimonial2": {
+        "text": "Their precision in every job and delivery times are exceptional. They have helped me tremendously in complex rehabilitation cases. Highly recommended.",
+        "author": "Dr. Carlos Hernández",
+        "title": "Rehabilitation Specialist"
+      }
+    },
+    "process": {
+      "title": "Our Work Process",
+      "subtitle": "An optimized process to guarantee the best quality in every delivery",
+      "step1": {
+        "title": "Reception",
+        "description": "We receive and verify impressions or digital files"
+      },
+      "step2": {
+        "title": "Design",
+        "description": "We design with precision using advanced CAD/CAM technology"
+      },
+      "step3": {
+        "title": "Manufacturing",
+        "description": "We manufacture with cutting-edge technology and high-quality materials"
+      },
+      "step4": {
+        "title": "Quality Control",
+        "description": "We verify every detail before delivery"
+      }
+    },
+    "cta": {
+      "title": "Ready to work with us?",
+      "subtitle": "Join the hundreds of dentists who trust our work and service",
+      "button": "Request Information"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "question1": {
+        "title": "How long does an average job take?",
+        "answer": "Delivery time depends on the type of prosthesis. On average, jobs like crowns take 3 to 5 business days, while complete prostheses may require 7 to 10 business days."
+      },
+      "question2": {
+        "title": "What materials do you use?",
+        "answer": "We work with premium materials: high-translucency zirconia, porcelains, medical-grade acrylics, and certified biocompatible alloys. All our materials comply with international quality standards."
+      },
+      "question3": {
+        "title": "Do I need to schedule an appointment to pick up a job?",
+        "answer": "It's not strictly necessary, but it's recommended to schedule an appointment to ensure your work is ready and that one of our technicians can personally assist you. Our business hours are Monday to Friday from 9:00 AM to 6:00 PM and Saturdays from 9:00 AM to 2:00 PM."
+      }
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Our Services",
+      "subtitle": "Comprehensive dental prosthetic solutions with advanced technology"
+    },
+    "badges": {
+      "popular": "Popular"
+    },
+    "buttons": {
+      "request": "Request Service"
+    },
+    "flexible": {
+      "title": "Flexible Prosthetics",
+      "partial": "Partial Flexible",
+      "total": "Complete Flexible",
+      "metallic": "Flexible with Metal Clasps"
+    },
+    "plates": {
+      "title": "Dental Plates",
+      "total_acrylic": "Complete Acrylic Plate",
+      "partial_acrylic": "Partial Acrylic Plate",
+      "temporary": "Temporary Plate",
+      "occlusal_guard": "Occlusal Guard"
+    },
+    "crowns": {
+      "title": "Crowns",
+      "zirconia": "Zirconia Crown",
+      "porcelain": "Porcelain Crown",
+      "metal_porcelain": "Metal-Porcelain Crown",
+      "inlays": "Inlays"
+    },
+    "digital": {
+      "title": "Digital Technology",
+      "scanning": "Intraoral 3D Scanning",
+      "cadcam": "CAD/CAM Design",
+      "milling": "Digital Milling",
+      "printing": "3D Printing"
+    },
+    "process": {
+      "title": "Our Work Process",
+      "description": "We have state-of-the-art equipment that allows us to offer millimetric precision, optimized delivery times and superior aesthetic finishes. Our investment in CAD/CAM technology guarantees consistent results of the highest quality.",
+      "step1": {
+        "title": "Reception and Analysis",
+        "description": "We receive and analyze your case with digital scanning technology"
+      },
+      "step2": {
+        "title": "Custom Design",
+        "description": "We design with millimetric precision using specialized software"
+      },
+      "step3": {
+        "title": "Quality Manufacturing",
+        "description": "We manufacture with premium materials and advanced techniques"
+      },
+      "step4": {
+        "title": "Control and Delivery",
+        "description": "We verify every detail before delivering your prosthesis"
+      }
+    },
+    "technology": {
+      "title": "Cutting-Edge Technology",
+      "description": "We have state-of-the-art equipment that allows us to offer millimetric precision, optimized delivery times and superior aesthetic finishes. Our investment in CAD/CAM technology guarantees consistent results of the highest quality.",
+      "scanner": "Intraoral 3D Digital Scanner",
+      "cadcam_system": "CAD/CAM Design System",
+      "milling_machine": "Precision Digital Milling Machine",
+      "printer": "Professional 3D Printer"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About Us",
+      "subtitle": "15 years of experience creating perfect smiles"
+    },
+    "tabs": {
+      "history": "History",
+      "mission": "Mission",
+      "vision": "Vision"
+    },
+    "history": {
+      "title": "Our History",
+      "description": "Laguna Dent Lab emerged from the need to deliver better quality prosthetics to patients, as there weren't many options in the market that could satisfy this need. Due to this problem, we decided to start the laboratory. Along the way we have encountered various complications, but we have been resolving them and at this point, we feel satisfied with the work we have achieved and every day we are advancing further on this path."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To offer personalized dental solutions through the manufacturing of high-quality pieces, plates and prosthetics, using reliable materials, precise processes and specialized technology. Our commitment is to support dentists and specialists to improve the functionality, aesthetics and quality of life of their patients, always maintaining responsible, ethical and efficient service."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the reference dental laboratory in the region, recognized for quality, precision and innovation in the elaboration of dental pieces, plates and prosthetics, contributing to patient well-being and confidence through collaborative work with dental health professionals."
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "Principles that guide every decision and action in our laboratory",
+      "quality": {
+        "title": "Quality",
+        "description": "Commitment to excellence in every job performed"
+      },
+      "responsibility": {
+        "title": "Responsibility",
+        "description": "Fulfillment and reliability in every delivery"
+      },
+      "honesty": {
+        "title": "Honesty",
+        "description": "Transparency and sincerity in our relationships"
+      },
+      "discipline": {
+        "title": "Discipline",
+        "description": "Method and order in all our processes"
+      }
+    },
+    "principles": {
+      "title": "Our Principles",
+      "respect": "Mutual respect between team and clients",
+      "communication": "Clear and transparent communication",
+      "improvement": "Continuous improvement in processes and techniques",
+      "ethics": "Professional ethics in every decision"
+    },
+    "team": {
+      "title": "Our Team",
+      "member": {
+        "name": "Dr. Saúl Rubén Ramírez Mora",
+        "role": "Director and Founder",
+        "description": "Dr. Saúl Rubén Ramírez Mora is the manager and owner of the laboratory, in addition to having his own dental office. He is a Dental Surgeon graduated from the Faculty of Dentistry of the Autonomous University of Coahuila and is currently pursuing a master's degree in dental implantology. With 15 years of experience in the dental field and 4 years leading the laboratory, he is distinguished by his constant professional updating and for promoting the training of his team, with the objective of always providing the highest quality care.",
+        "specialty1": "Dental Prosthetics Specialist",
+        "specialty2": "CAD/CAM Technology Certification",
+        "specialty3": "Continuous Training"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact",
+      "subtitle": "We are here to help you. Contact us through any means"
+    },
+    "form": {
+      "title": "Send us a message",
+      "name": "Full name",
+      "name_placeholder": "Dr. John Doe",
+      "email": "Email address",
+      "email_placeholder": "email@example.com",
+      "phone": "Phone / WhatsApp",
+      "phone_placeholder": "+52 123 456 7890",
+      "message": "Message",
+      "message_placeholder": "Tell us how we can help you...",
+      "send": "Send message"
+    },
+    "info": {
+      "location": {
+        "title": "Location",
+        "address": "Blvrd. Revolución 587 ote",
+        "neighborhood": "Col. Centro"
+      },
+      "schedule": {
+        "title": "Schedule",
+        "weekdays": "Monday - Friday",
+        "weekdays_hours": "9:00 AM - 6:00 PM",
+        "saturday": "Saturday",
+        "saturday_hours": "9:00 AM - 2:00 PM",
+        "sunday": "Sunday",
+        "closed": "Closed"
+      },
+      "contact": {
+        "title": "Contact Us",
+        "whatsapp": "8701498192",
+        "facebook": "Laguna Dent Lab",
+        "email": "lagunadentmaster@gmail.com"
+      }
+    },
+    "emergency": {
+      "title": "Do you have an emergency?",
+      "description": "Contact us directly via WhatsApp for immediate attention",
+      "button": "Open WhatsApp"
+    }
+  },
+  "auth": {
+    "back_home": "Back to home",
+    "offline_message": "Internet connection is required for this process",
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Enter your credentials to continue",
+      "email": "Email address",
+      "email_placeholder": "email@example.com",
+      "email_required": "Email is required",
+      "email_invalid": "Invalid email",
+      "password": "Password",
+      "password_required": "Password is required",
+      "password_minlength": "Minimum 6 characters",
+      "forgot": "Forgot your password?",
+      "submit": "Sign In",
+      "loading": "Signing in...",
+      "no_account": "Don't have an account?",
+      "register_link": "Sign up"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join us today",
+      "name": "Full name",
+      "name_placeholder": "Your full name",
+      "name_required": "Name is required",
+      "email": "Email address",
+      "email_placeholder": "your@email.com",
+      "email_required": "Email is required",
+      "email_invalid": "Invalid email format",
+      "phone": "Phone",
+      "phone_placeholder": "Your phone number",
+      "phone_required": "Phone is required",
+      "phone_invalid": "Invalid phone format",
+      "password": "Password",
+      "password_required": "Password is required",
+      "password_minlength": "Minimum 6 characters",
+      "confirm_password": "Confirm password",
+      "confirm_password_required": "Please confirm your password",
+      "passwords_mismatch": "Passwords don't match",
+      "create_account": "Create account",
+      "creating": "Creating account...",
+      "internet_required": "Internet connection is required for this process",
+      "terms": "I accept the terms and conditions",
+      "submit": "Create Account",
+      "have_account": "Already have an account?",
+      "login_link": "Sign in"
+    },
+    "forgot": {
+      "title": "Reset Password",
+      "subtitle": "Enter your email to reset your password",
+      "email": "Email address",
+      "submit": "Send",
+      "back": "Back to sign in"
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your personal information and review your appointments",
+    "user_default": "User",
+    "email_default": "email@example.com",
+    "not_registered": "Not registered",
+    "member_since": "Member since",
+    "logout": "Sign Out",
+    "information_tab": "Information",
+    "appointments_tab": "My Appointments",
+    "edit_button": "Edit",
+    "cancel_button": "Cancel",
+    "save_button": "Save",
+    "saving": "Saving...",
+    "personal_info_title": "Personal Information",
+    "personal_info_subtitle": "Your contact information",
+    "full_name": "Full name",
+    "email": "Email address",
+    "phone": "Phone",
+    "full_name_placeholder": "Your full name",
+    "phone_placeholder": "(871) 123-4567",
+    "name_required": "Name is required",
+    "phone_required": "Phone is required",
+    "phone_invalid": "Invalid format (10-15 digits)",
+    "email_cannot_modify": "Email cannot be modified",
+    "appointments_title": "My Appointments",
+    "appointments_subtitle": "Scheduled appointments history",
+    "no_appointments": "You don't have any appointments scheduled yet.",
+    "schedule_here": "Schedule here",
+    "service_default": "Service",
+    "status_pending": "Pending",
+    "syncing": "Syncing...",
+    "personal_info": "Personal Information",
+    "orders": "My Orders",
+    "settings": "Settings"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "view_more": "View more",
+    "view_less": "View less"
+  },
+  "footer": {
+    "company": "Laguna Dent Lab",
+    "description": "Leader in high-quality dental prosthetics",
+    "links": {
+      "about": "About",
+      "services": "Services",
+      "contact": "Contact",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "social": {
+      "follow": "Follow us",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    },
+    "copyright": "© 2024 Laguna Dent Lab. All rights reserved."
+  },
+  "appointment": {
+    "title": "Request Service",
+    "subtitle": "Complete the form and we will contact you",
+    "form_title": "Service Information",
+    "full_name": "Full name",
+    "full_name_placeholder": "Dr. John Smith",
+    "phone_whatsapp": "Phone / WhatsApp",
+    "phone_placeholder": "+1 123 456 7890",
+    "email": "Email address",
+    "email_placeholder": "email@example.com",
+    "service_type": "Service type",
+    "select_service": "Select a service",
+    "preferred_date": "Preferred date",
+    "date_placeholder": "mm/dd/yyyy",
+    "preferred_time": "Preferred time",
+    "time_placeholder": "--:-- --",
+    "additional_notes": "Additional notes",
+    "notes_placeholder": "Job specifications, urgencies, etc.",
+    "cancel": "Cancel",
+    "send_request": "Send Request",
+    "note_label": "Note",
+    "note_text": "We will contact you within the next 24 hours to confirm your appointment and discuss service details."
+  }
+}

@@ -20,6 +20,7 @@ import {
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-about',
@@ -34,7 +35,8 @@ import { FooterComponent } from '../../components/footer/footer.component';
     IonIcon,
     IonImg,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TranslatePipe
   ]
 })
 export class AboutPage implements OnInit {

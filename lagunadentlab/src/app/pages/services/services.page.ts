@@ -6,13 +6,14 @@ import {layersOutline, checkmarkCircleOutline, ribbonOutline, desktopOutline,
 import { addIcons } from 'ionicons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, NavbarComponent, FooterComponent, RouterLink]
+  imports: [IonContent, IonIcon, NavbarComponent, FooterComponent, RouterLink, TranslatePipe]
 })
 export class ServicesPage implements OnInit {
 

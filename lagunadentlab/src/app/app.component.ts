@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonApp, IonRouterOutlet, IonChip, IonLabel } from '@ionic/angular/standalone';
-import { OnlineService } from './services/online.service';
 import { Observable } from 'rxjs';
+import { OnlineService } from './services/online.service';
 
 @Component({
   selector: 'app-root',

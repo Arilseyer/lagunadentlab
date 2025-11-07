@@ -156,3 +156,124 @@ ion-content {
     font-size: 1rem;
   }
 }
+
+/* =====================================================
+   VARIABLES DE TEXTO ADAPTATIVAS (LIGHT MODE)
+   ===================================================== */
+:root {
+  /* Variables para texto que se adapta automáticamente al tema */
+  --text-primary: var(--dark-500);     /* Texto principal - negro en light */
+  --text-secondary: var(--neutral-700); /* Texto secundario - gris medio en light */
+  --text-tertiary: var(--neutral-600);  /* Texto terciario - gris claro en light */
+}
+
+/* =====================================================
+   SISTEMA DE DARK MODE GLOBAL
+   ===================================================== */
+
+/** Dark Mode - Solo se aplica cuando body tiene la clase 'dark' **/
+body.dark {
+  /* Invertir variables neutrales para dark mode */
+  --neutral-100: var(--dark-500); /* Fondo principal oscuro */
+  --neutral-200: var(--dark-400); /* Fondos de superficie */
+  --neutral-300: var(--dark-300); /* Bordes sutiles */
+  --neutral-400: #374151; /* Bordes más visibles */
+  --neutral-500: #6b7280; /* Elementos deshabilitados */
+  --neutral-600: #9ca3af; /* Texto secundario */
+  --neutral-700: #d1d5db; /* Texto principal */
+  --neutral-800: #e5e7eb; /* Texto enfatizado */
+  --neutral-900: #f9fafb; /* Texto muy enfatizado */
+
+  /* Variables específicas para texto que siempre debe ser adaptativo */
+  --text-primary: var(--neutral-700); /* Texto principal adaptativo */
+  --text-secondary: var(--neutral-600); /* Texto secundario adaptativo */
+  --text-tertiary: var(--neutral-500); /* Texto terciario adaptativo */
+  
+  /* Ajustar colores primarios para mejor contraste en dark */
+  --primary-50: #1e3a8a;
+  --primary-100: #3b82f6;
+  --primary-200: #60a5fa;
+  --primary-300: #93c5fd;
+  --primary-400: #bfdbfe;
+  --primary-500: #dbeafe;
+  --primary-600: #eff6ff;
+  
+  /* Ajustar colores secundarios */
+  --secondary-200: #1f2937;
+  --secondary-300: #374151;
+  --secondary-400: #4b5563;
+  --secondary-500: #6b7280;
+  --secondary-600: #9ca3af;
+  --secondary-700: #d1d5db;
+  --secondary-800: #e5e7eb;
+  --secondary-900: #f3f4f6;
+
+  /* Complementos de tema para dark */
+  --light-blue-500: #1e40af; /* Azul más oscuro para fondos */
+
+  /* Variables específicas de Ionic para dark mode */
+  --ion-background-color: var(--dark-500);
+  --ion-background-color-rgb: 10, 12, 17;
+  
+  --ion-text-color: #e5e7eb;
+  --ion-text-color-rgb: 229, 231, 235;
+  
+  --ion-color-step-50: #1f2937;
+  --ion-color-step-100: #374151;
+  --ion-color-step-150: #4b5563;
+  --ion-color-step-200: #6b7280;
+  --ion-color-step-300: #9ca3af;
+  --ion-color-step-400: #d1d5db;
+  --ion-color-step-450: #e5e7eb;
+  --ion-color-step-500: #f3f4f6;
+  
+  /* Toolbar y navegación */
+  --ion-toolbar-background: var(--dark-400);
+  --ion-toolbar-color: #e5e7eb;
+  --ion-toolbar-border-color: #374151;
+  
+  /* Cards y superficies */
+  --ion-card-background: var(--dark-400);
+  --ion-card-color: #e5e7eb;
+  
+  /* Items */
+  --ion-item-background: var(--dark-400);
+  --ion-item-color: #e5e7eb;
+  
+  /* Inputs */
+  --ion-placeholder-color: #9ca3af;
+  
+  /* Sombras para dark mode */
+  --ion-shadow-color: rgba(0, 0, 0, 0.5);
+
+  
+}
+
+/* Transiciones suaves para cambios de tema */
+* {
+  transition: background-color 0.2s ease-in-out, 
+              color 0.2s ease-in-out, 
+              border-color 0.2s ease-in-out,
+              box-shadow 0.2s ease-in-out;
+}
+
+/* Asegurar que todos los elementos usen las variables actualizadas */
+body.dark {
+  background-color: var(--neutral-100) !important;
+  color: var(--neutral-700) !important;
+}
+
+/* Adaptación automática al tema del sistema */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light):not(.theme-dark) {
+    /* Solo si no hay preferencia manual, aplicar dark automáticamente */
+    body:not(.dark) {
+      --neutral-100: var(--dark-500);
+      --neutral-200: var(--dark-400);
+      --neutral-300: var(--dark-300);
+      --neutral-700: #d1d5db;
+      --neutral-800: #e5e7eb;
+      --neutral-900: #f9fafb;
+    }
+  }
+}

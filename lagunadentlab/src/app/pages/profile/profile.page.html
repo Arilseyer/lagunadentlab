@@ -4,8 +4,8 @@
   
   <!-- Hero Section -->
   <div class="hero-section">
-    <h1 class="hero-title">Mi Perfil</h1>
-    <p class="hero-subtitle">Administra tu información personal y revisa tus citas</p>
+    <h1 class="hero-title">{{ 'profile.title' | translate }}</h1>
+    <p class="hero-subtitle">{{ 'profile.subtitle' | translate }}</p>
   </div>
 
   <!-- Main Grid Layout -->
@@ -18,19 +18,19 @@
           <ion-card-content class="profile-content">
             
             <!-- Nombre y Email -->
-            <h2 class="profile-name">{{ userProfile?.name || 'Usuario' }}</h2>
-            <p class="profile-email">{{ currentUser?.email || 'email@ejemplo.com' }}</p>
+            <h2 class="profile-name">{{ userProfile?.name || ('profile.user_default' | translate) }}</h2>
+            <p class="profile-email">{{ currentUser?.email || ('profile.email_default' | translate) }}</p>
             
             <!-- Información Adicional -->
             <div class="contact-info">
               <ion-item lines="none" class="info-item">
                 <ion-icon slot="start" name="call-outline"></ion-icon>
-                <ion-label class="compact-label">{{ userProfile?.phone || 'No registrado' }}</ion-label>
+                <ion-label class="compact-label">{{ userProfile?.phone || ('profile.not_registered' | translate) }}</ion-label>
               </ion-item>
               
               <ion-item lines="none" class="info-item">
                 <ion-icon slot="start" name="calendar-outline"></ion-icon>
-                <ion-label class="compact-label">Miembro desde {{ formatDate(userProfile?.createdAt) }}</ion-label>
+                <ion-label class="compact-label">{{ 'profile.member_since' | translate }} {{ formatDate(userProfile?.createdAt) }}</ion-label>
               </ion-item>
             </div>
 
@@ -41,7 +41,7 @@
               class="logout-button"
               (click)="logout()">
               <ion-icon slot="start" name="log-out-outline"></ion-icon>
-              Cerrar Sesión
+              {{ 'profile.logout' | translate }}
             </ion-button>
             
           </ion-card-content>
@@ -60,32 +60,32 @@
               [class.active]="selectedTab === 'info'"
               (click)="selectedTab = 'info'">
               <ion-icon name="person-outline"></ion-icon>
-              <span>Información</span>
+              <span>{{ 'profile.information_tab' | translate }}</span>
             </button>
             <button 
               class="custom-tab-button" 
               [class.active]="selectedTab === 'orders'"
               (click)="selectedTab = 'orders'">
               <ion-icon name="receipt-outline"></ion-icon>
-              <span>Mis Citas</span>
+              <span>{{ 'profile.appointments_tab' | translate }}</span>
             </button>
           </div>
 
           <!-- Botón Editar al lado derecho -->
           <button class="edit-button" *ngIf="selectedTab === 'info' && !isEditing" (click)="toggleEdit()">
             <ion-icon name="create-outline"></ion-icon>
-            <span>Editar</span>
+            <span>{{ 'profile.edit_button' | translate }}</span>
           </button>
           
           <!-- Botones Guardar/Cancelar cuando está editando -->
           <div class="edit-actions" *ngIf="selectedTab === 'info' && isEditing">
             <button class="cancel-button" (click)="toggleEdit()">
               <ion-icon name="close-outline"></ion-icon>
-              <span>Cancelar</span>
+              <span>{{ 'profile.cancel_button' | translate }}</span>
             </button>
             <button class="save-button" (click)="saveProfile()" [disabled]="loading">
               <ion-icon name="save-outline"></ion-icon>
-              <span>{{ loading ? 'Guardando...' : 'Guardar' }}</span>
+              <span>{{ loading ? ('profile.saving' | translate) : ('profile.save_button' | translate) }}</span>
             </button>
           </div>
         </div>
@@ -94,8 +94,8 @@
         <ion-card *ngIf="selectedTab === 'info'" class="compact-info-card">
           <ion-card-header class="compact-card-header">
             <div class="header-content">
-              <ion-card-title class="compact-title">Información Personal</ion-card-title>
-              <ion-card-subtitle class="compact-subtitle">Tu información de contacto</ion-card-subtitle>
+              <ion-card-title class="compact-title">{{ 'profile.personal_info_title' | translate }}</ion-card-title>
+              <ion-card-subtitle class="compact-subtitle">{{ 'profile.personal_info_subtitle' | translate }}</ion-card-subtitle>
             </div>
           </ion-card-header>
           
@@ -107,8 +107,8 @@
                 <ion-item lines="none" class="compact-form-item" disabled>
                   <ion-icon slot="start" name="person-outline"></ion-icon>
                   <div class="field-content">
-                    <h3>Nombre completo</h3>
-                    <p>{{ userProfile?.name || 'No registrado' }}</p>
+                    <h3>{{ 'profile.full_name' | translate }}</h3>
+                    <p>{{ userProfile?.name || ('profile.not_registered' | translate) }}</p>
                   </div>
                 </ion-item>
               </div>
@@ -117,8 +117,8 @@
                 <ion-item lines="none" class="compact-form-item" disabled>
                   <ion-icon slot="start" name="mail-outline"></ion-icon>
                   <div class="field-content">
-                    <h3>Correo electrónico</h3>
-                    <p>{{ currentUser?.email || 'No registrado' }}</p>
+                    <h3>{{ 'profile.email' | translate }}</h3>
+                    <p>{{ currentUser?.email || ('profile.not_registered' | translate) }}</p>
                   </div>
                 </ion-item>
               </div>
@@ -127,8 +127,8 @@
                 <ion-item lines="none" class="compact-form-item" disabled>
                   <ion-icon slot="start" name="call-outline"></ion-icon>
                   <div class="field-content">
-                    <h3>Teléfono</h3>
-                    <p>{{ userProfile?.phone || 'No registrado' }}</p>
+                    <h3>{{ 'profile.phone' | translate }}</h3>
+                    <p>{{ userProfile?.phone || ('profile.not_registered' | translate) }}</p>
                   </div>
                 </ion-item>
               </div>
@@ -137,44 +137,44 @@
             <!-- Modo Edición -->
             <form [formGroup]="editForm" *ngIf="isEditing">
               <div class="form-field">
-                <label class="field-label">Nombre completo</label>
+                <label class="field-label">{{ 'profile.full_name' | translate }}</label>
                 <ion-input 
                   type="text" 
                   class="field-input" 
-                  placeholder="Tu nombre completo"
+                  placeholder="{{ 'profile.full_name_placeholder' | translate }}"
                   formControlName="name"
                   [class.invalid]="editForm.get('name')?.invalid && editForm.get('name')?.touched">
                 </ion-input>
                 <span class="error-message" *ngIf="editForm.get('name')?.hasError('required') && editForm.get('name')?.touched">
-                  El nombre es requerido
+                  {{ 'profile.name_required' | translate }}
                 </span>
               </div>
 
               <div class="form-field">
-                <label class="field-label">Correo electrónico</label>
+                <label class="field-label">{{ 'profile.email' | translate }}</label>
                 <ion-input 
                   type="email" 
                   class="field-input" 
                   [value]="currentUser?.email"
                   disabled>
                 </ion-input>
-                <span class="help-text">El correo no se puede modificar</span>
+                <span class="help-text">{{ 'profile.email_cannot_modify' | translate }}</span>
               </div>
 
               <div class="form-field">
-                <label class="field-label">Teléfono</label>
+                <label class="field-label">{{ 'profile.phone' | translate }}</label>
                 <ion-input 
                   type="tel" 
                   class="field-input" 
-                  placeholder="(871) 123-4567"
+                  placeholder="{{ 'profile.phone_placeholder' | translate }}"
                   formControlName="phone"
                   [class.invalid]="editForm.get('phone')?.invalid && editForm.get('phone')?.touched">
                 </ion-input>
                 <span class="error-message" *ngIf="editForm.get('phone')?.hasError('required') && editForm.get('phone')?.touched">
-                  El teléfono es requerido
+                  {{ 'profile.phone_required' | translate }}
                 </span>
                 <span class="error-message" *ngIf="editForm.get('phone')?.hasError('pattern') && editForm.get('phone')?.touched">
-                  Formato inválido (10-15 dígitos)
+                  {{ 'profile.phone_invalid' | translate }}
                 </span>
               </div>
             </form>
@@ -186,22 +186,22 @@
         <ion-card *ngIf="selectedTab === 'orders'" class="compact-orders-card">
           <ion-card-header class="compact-card-header">
             <div class="header-content">
-              <ion-card-title class="compact-title">Mis Citas</ion-card-title>
-              <ion-card-subtitle class="compact-subtitle">Historial de citas agendadas</ion-card-subtitle>
+              <ion-card-title class="compact-title">{{ 'profile.appointments_title' | translate }}</ion-card-title>
+              <ion-card-subtitle class="compact-subtitle">{{ 'profile.appointments_subtitle' | translate }}</ion-card-subtitle>
             </div>
           </ion-card-header>
           
           <ion-card-content class="compact-card-content">
             <div *ngIf="appointments.length === 0" class="empty-orders">
-              <p>No tienes citas agendadas aún. <a routerLink="/appointment" class="agenda-link">Agenda aquí</a>.</p>
+              <p>{{ 'profile.no_appointments' | translate }} <a routerLink="/appointment" class="agenda-link">{{ 'profile.schedule_here' | translate }}</a>.</p>
             </div>
 
             <div *ngIf="appointments.length > 0" class="appointments-list">
               <div *ngFor="let appointment of appointments" class="appointment-item">
                 <div class="appointment-header">
-                  <h3>{{ appointment.serviceType || 'Servicio' }}</h3>
+                  <h3>{{ appointment.serviceType || ('profile.service_default' | translate) }}</h3>
                   <span class="status-badge" [ngClass]="'status-' + getStatusColor(appointment.status)">
-                    {{ appointment.status || 'Pendiente' }}
+                    {{ appointment.status || ('profile.status_pending' | translate) }}
                   </span>
                 </div>
                 <div class="appointment-details">
@@ -209,7 +209,7 @@
                   <p><ion-icon name="time-outline"></ion-icon> {{ appointment.time || 'N/A' }}</p>
                 </div>
                 <div *ngIf="appointment._pendingSync" style="color: var(--ion-color-warning); font-size: 12px; margin-top: 4px;">
-                  Sincronizando...
+                  {{ 'profile.syncing' | translate }}
                 </div>
                 <p class="appointment-notes" *ngIf="appointment.notes">{{ appointment.notes }}</p>
               </div>

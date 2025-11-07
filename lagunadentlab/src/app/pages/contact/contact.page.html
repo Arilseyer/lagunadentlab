@@ -5,8 +5,8 @@
   <!-- 🔷 SECCIÓN 1: ENCABEZADO -->
   <section class="hero">
     <div class="hero-container">
-      <h1 class="hero-title">Contacto</h1>
-      <p class="hero-subtitle">Estamos aquí para ayudarte. Contáctanos por cualquier medio</p>
+      <h1 class="hero-title">{{ 'contact.hero.title' | translate }}</h1>
+      <p class="hero-subtitle">{{ 'contact.hero.subtitle' | translate }}</p>
     </div>
   </section>
 
@@ -19,31 +19,31 @@
           <ion-card-header class="form-header">
             <ion-card-title class="form-title">
               <ion-icon name="send-outline" class="title-icon"></ion-icon>
-              Envíanos un mensaje
+              {{ 'contact.form.title' | translate }}
             </ion-card-title>
           </ion-card-header>
           <ion-card-content class="form-body">
             <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
               <div class="form-fields">
                 <div class="field">
-                  <label class="field-label">Nombre completo</label>
-                  <input type="text" class="field-input" placeholder="Dr. Juan Pérez" formControlName="name">
+                  <label class="field-label">{{ 'contact.form.name' | translate }}</label>
+                  <input type="text" class="field-input" placeholder="{{ 'contact.form.name_placeholder' | translate }}" formControlName="name">
                 </div>
                 <div class="field">
-                  <label class="field-label">Correo electrónico</label>
-                  <input type="email" class="field-input" placeholder="correo@ejemplo.com" formControlName="email">
+                  <label class="field-label">{{ 'contact.form.email' | translate }}</label>
+                  <input type="email" class="field-input" placeholder="{{ 'contact.form.email_placeholder' | translate }}" formControlName="email">
                 </div>
                 <div class="field">
-                  <label class="field-label">Teléfono / WhatsApp</label>
-                  <input type="tel" class="field-input" placeholder="+52 123 456 7890" formControlName="phone">
+                  <label class="field-label">{{ 'contact.form.phone' | translate }}</label>
+                  <input type="tel" class="field-input" placeholder="{{ 'contact.form.phone_placeholder' | translate }}" formControlName="phone">
                 </div>
                 <div class="field">
-                  <label class="field-label">Mensaje</label>
-                  <textarea class="field-input field-textarea" placeholder="Cuéntanos cómo podemos ayudarte..." rows="5" formControlName="message"></textarea>
+                  <label class="field-label">{{ 'contact.form.message' | translate }}</label>
+                  <textarea class="field-input field-textarea" placeholder="{{ 'contact.form.message_placeholder' | translate }}" rows="5" formControlName="message"></textarea>
                 </div>
               </div>
               <ion-button type="submit" expand="block" class="btn-primary" [disabled]="loading">
-                Enviar mensaje
+                {{ 'contact.form.send' | translate }}
                 <ion-icon slot="end" name="send-outline"></ion-icon>
               </ion-button>
             </form>
@@ -60,8 +60,8 @@
                 <ion-icon name="location-outline" class="icon-primary"></ion-icon>
               </div>
               <div>
-                <h3 class="info-title">Ubicación</h3>
-                <p class="info-text">Blvrd. Revolución 587 ote<br />Col. Centro</p>
+                <h3 class="info-title">{{ 'contact.info.location.title' | translate }}</h3>
+                <p class="info-text">{{ 'contact.info.location.address' | translate }}<br />{{ 'contact.info.location.neighborhood' | translate }}</p>
               </div>
             </ion-card-content>
           </ion-card>
@@ -72,11 +72,11 @@
                 <ion-icon name="time-outline" class="icon-primary"></ion-icon>
               </div>
               <div>
-                <h3 class="info-title">Horario</h3>
+                <h3 class="info-title">{{ 'contact.info.schedule.title' | translate }}</h3>
                 <ul class="schedule">
-                  <li><strong>Lunes - Viernes:</strong> 9:00 AM - 6:00 PM</li>
-                  <li><strong>Sábado:</strong> 9:00 AM - 2:00 PM</li>
-                  <li><strong>Domingo:</strong> Cerrado</li>
+                  <li><strong>{{ 'contact.info.schedule.weekdays' | translate }}:</strong> {{ 'contact.info.schedule.weekdays_hours' | translate }}</li>
+                  <li><strong>{{ 'contact.info.schedule.saturday' | translate }}:</strong> {{ 'contact.info.schedule.saturday_hours' | translate }}</li>
+                  <li><strong>{{ 'contact.info.schedule.sunday' | translate }}:</strong> {{ 'contact.info.schedule.closed' | translate }}</li>
                 </ul>
               </div>
             </ion-card-content>
@@ -88,11 +88,11 @@
                 <ion-icon name="call-outline" class="icon-primary"></ion-icon>
               </div>
               <div>
-                <h3 class="info-title">Contáctanos</h3>
+                <h3 class="info-title">{{ 'contact.info.contact.title' | translate }}</h3>
                 <ul class="contact-list">
-                  <li><ion-icon name="logo-whatsapp"></ion-icon> 8701498192</li>
-                  <li><ion-icon name="logo-facebook"></ion-icon> Laguna Dent Lab</li>
-                  <li><ion-icon name="mail-outline"></ion-icon> lagunadentmaster@gmail.com</li>
+                  <li><ion-icon name="logo-whatsapp"></ion-icon> {{ 'contact.info.contact.whatsapp' | translate }}</li>
+                  <li><ion-icon name="logo-facebook"></ion-icon> {{ 'contact.info.contact.facebook' | translate }}</li>
+                  <li><ion-icon name="mail-outline"></ion-icon> {{ 'contact.info.contact.email' | translate }}</li>
                 </ul>
               </div>
             </ion-card-content>
@@ -100,10 +100,10 @@
           <!-- CTA Urgencias -->
           <ion-card class="cta-card">
             <ion-card-content class="cta-content">
-              <h3>¿Tienes una urgencia?</h3>
-              <p>Contáctanos directamente por WhatsApp para atención inmediata</p>
+              <h3>{{ 'contact.emergency.title' | translate }}</h3>
+              <p>{{ 'contact.emergency.description' | translate }}</p>
               <ion-button class="cta-btn" fill="solid" (click)="abrirWhatsApp()">
-                Abrir WhatsApp
+                {{ 'contact.emergency.button' | translate }}
                 <ion-icon slot="end" name="logo-whatsapp"></ion-icon>
               </ion-button>
             </ion-card-content>
