@@ -407,34 +407,21 @@
   },
   "footer": {
     "company": "Laguna Dent Lab",
-    "subtitle": "Prótesis Dental",
     "description": "Líder en prótesis dentales de alta calidad",
-    "quick_links": "Enlaces Rápidos",
     "links": {
-      "home": "Inicio",
       "about": "Acerca de", 
       "services": "Servicios",
       "contact": "Contacto",
       "privacy": "Privacidad",
       "terms": "Términos"
     },
-    "contact_title": "Contacto",
-    "address": {
-      "line1": "Blvd. Revolución 587 ote",
-      "line2": "Col. Centro, Torreón"
-    },
-    "hours": {
-      "weekdays": "Lun - Vie: 9:00 AM - 6:00 PM",
-      "saturday": "Sábado: 9:00 AM - 2:00 PM"
-    },
-    "go_home": "Ir al inicio",
     "social": {
       "follow": "Síguenos",
       "facebook": "Facebook", 
       "twitter": "Twitter",
       "instagram": "Instagram"
     },
-    "copyright": "© 2025 Laguna Dent Lab. Todos los derechos reservados."
+    "copyright": "© 2024 Laguna Dent Lab. Todos los derechos reservados."
   },
   "appointment": {
     "title": "Solicitar Servicio",

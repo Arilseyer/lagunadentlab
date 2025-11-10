@@ -60,11 +60,6 @@ export class NavbarComponent implements OnInit {
       map(() => this.themeService.getThemeDescription())
     );
 
-    // Logo reactivo según modo oscuro
-    this.logoSrc$ = this.themeService.isDarkMode$.pipe(
-      map(isDark => isDark ? 'assets/DienteOscuro.png' : 'assets/Diente.png')
-    );
-
     // Observable del idioma
     this.currentLanguageCode$ = this.translationService.currentLanguage$.pipe(
       map(() => this.translationService.getNextLanguageCode())

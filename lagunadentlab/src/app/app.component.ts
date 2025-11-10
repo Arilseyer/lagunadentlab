@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonApp, IonRouterOutlet, IonChip, IonLabel } from '@ionic/angular/standalone';
 import { Observable } from 'rxjs';
@@ -12,13 +12,10 @@ import { ApprovalNotificationService } from './services/approval-notification.se
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  imports: [CommonModule, IonApp, IonRouterOutlet, IonChip, IonLabel, TranslatePipe],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [CommonModule, IonApp, IonRouterOutlet, IonChip, IonLabel],
 })
 export class AppComponent {
   isOnline$!: Observable<boolean>;
-  loading$ = new BehaviorSubject<boolean>(true);
-  private pendingLoads = 1; // start with 1 to cover initial boot
 
   constructor(private onlineService: OnlineService, private router: Router, private approvalNotifications: ApprovalNotificationService) {
     this.isOnline$ = this.onlineService.isOnline$;
