@@ -1,0 +1,120 @@
+<ion-header [translucent]="false" class="main-header">
+  <ion-toolbar class="custom-navbar">
+    <!-- Logo a la izquierda -->
+    <div class="navbar-logo" slot="start">
+      <button class="logo-button" (click)="navigateTo('/home')" aria-label="Ir al inicio">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <img src="assets/Diente.png" alt="Laguna Dent Lab" />
+          </div>
+          <span class="logo-text">Laguna Dent Lab</span>
+        </div>
+      </button>
+    </div>
+
+   <!-- Enlaces de navegación en el centro (desktop) -->
+   <div class="navbar-center desktop-only">
+      <nav class="nav-links">
+        <a (click)="navigateTo('/home')" 
+           class="nav-link" 
+           [class.active]="activeRoute === 'home'">{{ 'navbar.home' | translate }}</a>
+        <a (click)="navigateTo('/services')" 
+           class="nav-link" 
+           [class.active]="activeRoute === 'services'">{{ 'navbar.services' | translate }}</a>
+        <a (click)="navigateTo('/about')" 
+           class="nav-link" 
+           [class.active]="activeRoute === 'about'">{{ 'navbar.about' | translate }}</a>
+        <a (click)="navigateTo('/contact')" 
+           class="nav-link" 
+           [class.active]="activeRoute === 'contact'">{{ 'navbar.contact' | translate }}</a>
+      </nav>
+    </div>
+
+    <!-- Botones a la derecha -->
+    <div class="navbar-end" slot="end">
+      <div class="navbar-actions desktop-only">
+        <!-- Botón de idioma -->
+        <button 
+          class="action-button language-btn" 
+          (click)="toggleLanguage()"
+          [title]="getLanguageButtonTitle()">
+          <ion-icon name="globe-outline"></ion-icon>
+          <span class="language-code">{{ currentLanguageCode$ | async }}</span>
+        </button>
+        
+        <!-- Botón de tema -->
+        <button 
+          class="action-button theme-btn" 
+          (click)="toggleTheme()"
+          [title]="getThemeButtonTitle()">
+          <ion-icon [name]="currentThemeIcon$ | async"></ion-icon>
+        </button>
+        
+        <!-- Botón Iniciar Sesión -->
+        <button *ngIf="!(isLoggedIn$ | async)" class="auth-button login-btn" (click)="navigateTo('/login')">
+          {{ 'navbar.login' | translate }}
+        </button>
+
+        <!-- Botón Registrarse -->
+        <button *ngIf="!(isLoggedIn$ | async)" class="auth-button register-btn" (click)="navigateTo('/register')">
+          {{ 'navbar.register' | translate }}
+        </button>
+
+        <!-- Botón de Perfil -->
+        <button *ngIf="(isLoggedIn$ | async)" class="profile-button" (click)="navigateTo('/profile')">
+          <ion-icon name="person-outline"></ion-icon>
+        </button>
+      </div>
+      <!-- Botón hamburguesa (móvil) -->
+      <button class="hamburger-btn mobile-only" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen" aria-controls="mobileMenu" aria-label="Abrir menú">
+        <ion-icon [name]="isMenuOpen ? 'close-outline' : 'menu-outline'"></ion-icon>
+      </button>
+    </div>
+  </ion-toolbar>
+
+  <!-- Menú móvil -->
+  <div id="mobileMenu" class="mobile-menu" [class.open]="isMenuOpen" (click)="onBackdropClick()">
+    <div class="mobile-menu-panel" (click)="$event.stopPropagation()">
+      <div class="mobile-menu-header">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <img [src]="logoSrc$ | async" alt="Laguna Dent Lab" />
+          </div>
+          <span class="logo-text">Laguna Dent Lab</span>
+        </div>
+        <button class="close-btn" (click)="closeMenu()" aria-label="Cerrar menú">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <nav class="mobile-links">
+        <a (click)="navigateTo('/home'); closeMenu()" class="mobile-link" [class.active]="activeRoute === 'home'">{{ 'navbar.home' | translate }}</a>
+        <a (click)="navigateTo('/services'); closeMenu()" class="mobile-link" [class.active]="activeRoute === 'services'">{{ 'navbar.services' | translate }}</a>
+        <a (click)="navigateTo('/about'); closeMenu()" class="mobile-link" [class.active]="activeRoute === 'about'">{{ 'navbar.about' | translate }}</a>
+        <a (click)="navigateTo('/contact'); closeMenu()" class="mobile-link" [class.active]="activeRoute === 'contact'">{{ 'navbar.contact' | translate }}</a>
+      </nav>
+
+      <div class="mobile-divider"></div>
+
+      <div class="mobile-actions">
+        <button class="action-button language-btn" (click)="toggleLanguage()" [title]="getLanguageButtonTitle()">
+          <ion-icon name="globe-outline"></ion-icon>
+          <span class="language-code">{{ currentLanguageCode$ | async }}</span>
+        </button>
+        <button class="action-button theme-btn" (click)="toggleTheme()" [title]="getThemeButtonTitle()">
+          <ion-icon [name]="currentThemeIcon$ | async"></ion-icon>
+        </button>
+
+        <ng-container *ngIf="!(isLoggedIn$ | async); else mobileProfile">
+          <button class="auth-button login-btn" (click)="navigateTo('/login'); closeMenu()">{{ 'navbar.login' | translate }}</button>
+          <button class="auth-button register-btn" (click)="navigateTo('/register'); closeMenu()">{{ 'navbar.register' | translate }}</button>
+        </ng-container>
+        <ng-template #mobileProfile>
+          <button class="profile-button" (click)="navigateTo('/profile'); closeMenu()">
+            <ion-icon name="person-outline"></ion-icon>
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</ion-header>

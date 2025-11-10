@@ -1,0 +1,393 @@
+// 🎨 Base del contenido
+ion-content {
+  --background: var(--neutral-100);
+  font-family: 'Poppins', sans-serif;
+}
+
+// 🔷 SECCIÓN 1: ENCABEZADO PRINCIPAL
+.hero-section {
+  background: var(--neutral-100);
+  padding: 1.5rem 1rem 4rem 1rem;
+  text-align: center;
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--primary-500);
+    margin: 0 0 1rem 0;
+
+    @media (min-width: 768px) {
+      font-size: 2.25rem;
+    }
+  }
+
+  .hero-subtitle {
+    font-family: 'Poppins', sans-serif;
+    color: var(--neutral-700);
+    font-size: 1rem;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 768px) {
+      font-size: 1.125rem;
+    }
+  }
+}
+
+// 🔷 SECCIÓN 2: CUADRÍCULA DE SERVICIOS
+.services-grid-section {
+  padding: 3rem 1rem;
+  background: var(--neutral-100);
+
+  .services-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+}
+
+// 🔹 Tarjetas de Servicio
+.service-card {
+  background: var(--neutral-100);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(var(--shadow-color-rgb), 0.08);
+  padding: 1.5rem;
+  border: 1px solid var(--neutral-200);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(var(--shadow-color-rgb), 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  .service-icon-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .service-icon-circle {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-500);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 1.5rem;
+      color: var(--neutral-100);
+    }
+  }
+
+  .service-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary-500);
+    margin: 0;
+
+    @media (min-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  .popular-badge {
+    background: var(--secondary-800);
+    color: var(--neutral-100);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+}
+
+.service-list {
+  flex: 1;
+  margin-bottom: 1.5rem;
+
+  .service-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--neutral-700);
+
+    ion-icon {
+      color: var(--primary-500);
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+
+    span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.service-button {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--primary-400);
+  }
+
+  ion-icon {
+    font-size: 1rem;
+  }
+}
+
+// 🔷 SECCIÓN 3: NUESTRO PROCESO DE TRABAJO
+.process-section {
+  background: var(--primary-500);
+  padding: 4rem 1rem;
+
+  .process-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .process-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--neutral-100);
+    margin: 0 0 1rem 0;
+
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .process-description {
+    font-family: 'Poppins', sans-serif;
+    color: var(--neutral-300);
+    font-size: 1rem;
+    margin: 0 0 3rem 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.process-step {
+  background: var(--neutral-100);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.06);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+
+  .process-icon-circle {
+    width: 56px;
+    height: 56px;
+    background: var(--primary-500);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+
+    ion-icon {
+      font-size: 1.375rem;
+      color: var(--neutral-100);
+    }
+  }
+
+  .process-step-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-500);
+    margin: 0 0 0.75rem 0;
+
+    @media (min-width: 768px) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .process-step-desc {
+    font-family: 'Poppins', sans-serif;
+    color: var(--neutral-700);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+// 🔷 SECCIÓN 4: TECNOLOGÍA DE VANGUARDIA
+.tech-section {
+  background: var(--neutral-100);
+  padding: 4rem 1rem;
+
+  .tech-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+    }
+  }
+
+  .tech-content {
+    .tech-icon-circle {
+      width: 56px;
+      height: 56px;
+      background: var(--primary-500);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      ion-icon {
+        font-size: 1.375rem;
+        color: var(--neutral-100);
+      }
+    }
+
+    .tech-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary-500);
+      margin: 0 0 1rem 0;
+
+      @media (min-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    .tech-description {
+      font-family: 'Poppins', sans-serif;
+      color: var(--neutral-700);
+      font-size: 1rem;
+      margin: 0 0 2rem 0;
+      line-height: 1.6;
+    }
+
+    .tech-list {
+      .tech-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+
+        ion-icon {
+          color: var(--primary-500);
+          font-size: 1.125rem;
+          flex-shrink: 0;
+        }
+
+        span {
+          font-family: 'Poppins', sans-serif;
+          color: var(--neutral-700);
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+
+  .tech-image {
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(var(--shadow-color-rgb), 0.08);
+      object-fit: cover;
+    }
+  }
+}
+
+// 🔷 Responsive Design
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .services-grid-section {
+    padding: 2rem 1rem;
+  }
+
+  .process-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .tech-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .service-card {
+    padding: 1.25rem;
+  }
+
+  .process-step {
+    padding: 1.25rem;
+  }
+}

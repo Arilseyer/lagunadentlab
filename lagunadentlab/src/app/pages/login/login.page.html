@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+
+  <div class="login-container">
+
+    <!-- Volver al inicio - fuera del card -->
+    <a routerLink="/" class="back-link">
+      ← {{ 'auth.back_home' | translate }}
+    </a>
+
+    <!-- Card Login -->
+    <div class="login-card">
+
+      <!-- Ícono superior -->
+      <div class="icon-wrapper">
+        <ion-icon name="log-in-outline"></ion-icon>
+      </div>
+
+      <!-- Títulos -->
+      <h1 class="login-title">{{ 'auth.login.title' | translate }}</h1>
+      <p class="login-subtitle">{{ 'auth.login.subtitle' | translate }}</p>
+
+      <!-- Formulario -->
+      <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        
+        <div class="form-field">
+          <label class="field-label">{{ 'auth.login.email' | translate }}</label>
+          <input 
+            type="email" 
+            class="field-input" 
+            placeholder="{{ 'auth.login.email_placeholder' | translate }}" 
+            formControlName="email"
+            [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+          />
+          <span class="error-message" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+            {{ 'auth.login.email_required' | translate }}
+          </span>
+          <span class="error-message" *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+            {{ 'auth.login.email_invalid' | translate }}
+          </span>
+        </div>
+
+        <div class="form-field">
+          <div class="field-row">
+            <label class="field-label">{{ 'auth.login.password' | translate }}</label>
+            <a routerLink="/forgotpassword" class="forgot-link">{{ 'auth.login.forgot' | translate }}</a>
+          </div>
+          <div class="password-input-container">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              class="field-input password-input" 
+              placeholder="••••••••" 
+              formControlName="password"
+              [class.invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+            />
+            <button 
+              type="button" 
+              class="password-toggle-btn" 
+              (click)="togglePasswordVisibility()"
+            >
+              <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+            </button>
+          </div>
+          <span class="error-message" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+            {{ 'auth.login.password_required' | translate }}
+          </span>
+          <span class="error-message" *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+            {{ 'auth.login.password_minlength' | translate }}
+          </span>
+        </div>
+        <div class="error-message" *ngIf="errorMessage" style="margin-top: 8px; color: var(--ion-color-danger, #eb445a);">
+          {{ errorMessage }}
+        </div>
+        
+        <button type="submit" class="btn-login" [disabled]="loading">
+          {{ loading ? ('auth.login.loading' | translate) : ('auth.login.submit' | translate) }}
+        </button>
+
+        <div class="offline-hint" *ngIf="(isOnline$ | async) === false" style="margin-top:8px;color:var(--ion-color-warning)">
+          {{ 'auth.offline_message' | translate }}
+        </div>
+
+      </form>
+
+      <!-- Link a registro -->
+      <div class="register-link-section">
+        <span>{{ 'auth.login.no_account' | translate }}</span>
+        <a routerLink="/register" class="register-btn">{{ 'auth.login.register_link' | translate }}</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

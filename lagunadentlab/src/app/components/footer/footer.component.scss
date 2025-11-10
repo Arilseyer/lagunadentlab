@@ -1,0 +1,263 @@
+// Footer moderno con diseño minimalista
+.main-footer {
+  background: var(--primary-500);
+  color: var(--neutral-100);
+  margin: 0;
+  padding: 60px 0 30px;
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+  flex-shrink: 0;
+  font-family: 'Poppins', sans-serif;
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  // Grid principal de 3 columnas
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr;
+    gap: 60px;
+    margin-bottom: 40px;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+  }
+
+  // Sección de información de la empresa
+  .company-info {
+    .footer-logo {
+      margin-bottom: 16px;
+      
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        
+        .logo-icon {
+          width: 48px;
+          height: 48px;
+          background: var(--primary-100);
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          color: var(--primary-500);
+          font-size: 18px;
+          font-family: 'Poppins', sans-serif;
+          overflow: hidden;
+
+          img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            display: block;
+          }
+        }
+        
+        .logo-text-container {
+          display: flex;
+          flex-direction: column;
+          
+          .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--neutral-100);
+            line-height: 1.2;
+            font-family: 'Poppins', sans-serif;
+          }
+          
+          .logo-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--secondary-400);
+            line-height: 1.2;
+            font-family: 'Poppins', sans-serif;
+          }
+        }
+      }
+    }
+
+    .company-description {
+      color: var(--secondary-300);
+      line-height: 1.5;
+      margin-bottom: 24px;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .social-media {
+      display: flex;
+      gap: 12px;
+      
+      .social-btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--primary-400);
+        background: transparent;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--secondary-300);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        
+        &:hover {
+          background: var(--primary-400);
+          color: var(--neutral-100);
+          border-color: var(--primary-300);
+          transform: translateY(-1px);
+        }
+        
+        ion-icon {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  // Secciones de enlaces
+  .quick-links,
+  .contact-info {
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--primary-100);
+      font-family: 'Poppins';
+    }
+    
+    .links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: 12px;
+        
+        .footer-link {
+          color: var(--secondary-300);
+          text-decoration: none;
+          transition: color 0.3s ease;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 400;
+          font-family: 'Poppins', sans-serif;
+          
+          &:hover {
+            color: var(--primary-200);
+          }
+        }
+      }
+    }
+  }
+
+  // Clickable logo button (unstyled)
+  .logo-button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  // Sección de contacto
+  .contact-info {
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--secondary-300);
+      font-size: 14px;
+      font-weight: 400;
+      font-family: 'Poppins', sans-serif;
+      
+      ion-icon {
+        color: var(--primary-100);
+        font-size: 18px;
+        min-width: 18px;
+        margin-top: 2px;
+      }
+      
+      .contact-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.4;
+        
+        span:first-child {
+          margin-bottom: 2px;
+        }
+      }
+    }
+  }
+
+  // Separador
+  .footer-divider {
+    height: 1px;
+    background: var(--primary-400);
+    margin: 0 -20px 24px;
+  }
+
+  // Sección inferior - Copyright
+  .footer-bottom {
+    text-align: center;
+    
+    p {
+      margin: 0;
+      color: var(--secondary-400);
+      font-size: 13px;
+      font-weight: 400;
+      font-family: 'Poppins', sans-serif;
+    }
+  }
+}
+
+// Responsive para tablets
+@media (max-width: 992px) {
+  .main-footer {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      
+      .company-info {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+}
+
+// Responsive para móviles
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 40px 0 20px;
+    
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .company-info {
+      text-align: center;
+      
+      .social-media {
+        justify-content: center;
+      }
+    }
+    
+    .footer-bottom {
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,160 @@
+<app-navbar></app-navbar>
+
+<ion-content class="admin-content">
+  <div class="container">
+    
+    <!-- Encabezado -->
+    <div class="header">
+      <div>
+        <h1 class="title">Gestión de Citas</h1>
+        <p class="subtitle">Administra todas las citas del laboratorio dental</p>
+      </div>
+      <ion-button fill="outline" class="btn-refresh" (click)="loadCitas()">
+        <ion-icon name="refresh-outline" slot="start"></ion-icon>
+        Actualizar
+      </ion-button>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-value">{{ getCitasPendientes() }}</div>
+        <div class="stat-label">Pendientes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ getCitasAprobadas() }}</div>
+        <div class="stat-label">Aprobadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ getCitasCompletadas() }}</div>
+        <div class="stat-label">Completadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ citas.length }}</div>
+        <div class="stat-label">Total</div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading-container">
+      <p>Cargando citas...</p>
+    </div>
+
+    <!-- No hay citas -->
+    <div *ngIf="!loading && citas.length === 0" class="empty-state">
+      <p>No hay citas registradas</p>
+    </div>
+
+    <!-- Tabla de citas -->
+    <ion-card class="table-card" *ngIf="!loading && citas.length > 0">
+      <ion-card-content class="table-content">
+        <div class="table-wrapper">
+          <table class="citas-table">
+            <thead>
+              <tr>
+                <th class="col-usuario">Usuario</th>
+                <th class="col-servicio">Servicio</th>
+                <th class="col-fecha">Fecha</th>
+                <th class="col-estado">Estado</th>
+                <th class="col-acciones">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cita of citas" class="table-row">
+                <!-- Usuario -->
+                <td class="col-usuario" data-label="Usuario">
+                  <div class="user-info">
+                    <div class="user-name">{{ cita.userName || 'Usuario' }}</div>
+                    <div class="user-email">{{ cita.userEmail || cita.uid }}</div>
+                  </div>
+                </td>
+                
+                <!-- Servicio -->
+                <td class="col-servicio" data-label="Servicio">
+                  <div class="service-name">{{ cita.serviceType || 'N/A' }}</div>
+                  <div class="service-notes" *ngIf="cita.notes">{{ cita.notes }}</div>
+                </td>
+                
+                <!-- Fecha -->
+                <td class="col-fecha" data-label="Fecha">
+                  <div class="date-info">
+                    <div class="date">{{ formatDate(cita.date) }}</div>
+                    <div class="time">{{ cita.time || 'N/A' }}</div>
+                  </div>
+                </td>
+                
+                <!-- Estado -->
+                <td class="col-estado" data-label="Estado">
+                  <span class="status-badge" 
+                        [ngClass]="{
+                          'status-pendiente': cita.status === ESTADOS.PENDIENTE,
+                          'status-aprobada': cita.status === ESTADOS.APROBADA,
+                          'status-rechazada': cita.status === ESTADOS.RECHAZADA,
+                          'status-completada': cita.status === ESTADOS.COMPLETADA
+                        }">
+                    {{ cita.status || 'Pendiente' }}
+                  </span>
+                  <div class="pending-note" *ngIf="cita._pendingSync" style="color: var(--ion-color-warning); font-size: 12px; margin-top: 4px;">
+                    Sincronizando...
+                  </div>
+                </td>
+                
+                <!-- Acciones -->
+                <td class="col-acciones" data-label="Acciones">
+                  <!-- Mensaje cuando está offline -->
+                  <div class="action-warning" *ngIf="(onlineService.isOnline$ | async) === false">
+                    Se requiere conexión para gestionar citas
+                  </div>
+                  <div class="action-buttons">
+                    <ion-button 
+                      fill="solid" 
+                      size="small" 
+                      class="btn-action btn-aprobar"
+                      [disabled]="cita.status !== ESTADOS.PENDIENTE || (onlineService.isOnline$ | async) === false"
+                      (click)="aprobar(cita)">
+                      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+                      Aprobar
+                    </ion-button>
+                    
+                    <ion-button 
+                      fill="solid" 
+                      size="small" 
+                      class="btn-action btn-rechazar"
+                      [disabled]="cita.status !== ESTADOS.PENDIENTE || (onlineService.isOnline$ | async) === false"
+                      (click)="rechazar(cita)">
+                      <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+                      Rechazar
+                    </ion-button>
+                    
+                    <ion-button 
+                      fill="outline" 
+                      size="small" 
+                      class="btn-action btn-completar"
+                      [disabled]="cita.status === ESTADOS.PENDIENTE || cita.status === ESTADOS.RECHAZADA || cita.status === ESTADOS.COMPLETADA || (onlineService.isOnline$ | async) === false"
+                      (click)="completar(cita)">
+                      <ion-icon name="time-outline" slot="start"></ion-icon>
+                      Completar
+                    </ion-button>
+
+                    <ion-button 
+                      fill="outline" 
+                      size="small" 
+                      color="danger"
+                      class="btn-action btn-eliminar"
+                      (click)="eliminar(cita)">
+                      <ion-icon name="trash-outline" slot="start"></ion-icon>
+                      Eliminar
+                    </ion-button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+  <app-footer></app-footer>
+</ion-content>
+

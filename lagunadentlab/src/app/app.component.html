@@ -1,3 +1,11 @@
 <ion-app>
+  <!-- Banner global de conectividad -->
+  <div *ngIf="(isOnline$ | async) === false" class="offline-banner" role="status" aria-live="polite">
+    <ion-chip color="medium" [outline]="true">
+      <ion-label>Sin conexión — trabajando offline</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- Contenido de las páginas -->
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

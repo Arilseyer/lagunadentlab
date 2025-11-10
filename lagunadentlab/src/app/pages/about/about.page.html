@@ -1,0 +1,144 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+
+  <!-- 🔷 SECCIÓN 1: ENCABEZADO -->
+  <section class="about-hero">
+    <div class="hero-inner">
+      <h1 class="about-title">{{ 'about.hero.title' | translate }}</h1>
+      <p class="about-subtitle">{{ 'about.hero.subtitle' | translate }}</p>
+    </div>
+  </section>
+
+  <!-- 🔷 SECCIÓN 2: PESTAÑAS -->
+  <div class="tabs-buttons">
+    <button class="service-button" [class.active]="selectedTab === 'historia'" (click)="setSelectedTab('historia')">
+      {{ 'about.tabs.history' | translate }}
+    </button>
+    <button class="service-button" [class.active]="selectedTab === 'mision'" (click)="setSelectedTab('mision')">
+      {{ 'about.tabs.mission' | translate }}
+    </button>
+    <button class="service-button" [class.active]="selectedTab === 'vision'" (click)="setSelectedTab('vision')">
+      {{ 'about.tabs.vision' | translate }}
+    </button>
+  </div>
+
+  <div class="tabs-content">
+    <!-- 🔷 SECCIÓN 3: HISTORIA -->
+    <div class="tab-content" *ngIf="selectedTab === 'historia'">
+      <div class="history-grid">
+        <ion-img class="history-image" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80" alt="Laboratorio dental"></ion-img>
+        <div class="timeline">
+          <h2 class="timeline-title">{{ 'about.history.title' | translate }}</h2>
+          <p class="history-text">
+            {{ 'about.history.description' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Misión -->
+    <div class="tab-content" *ngIf="selectedTab === 'mision'">
+      <div class="history-grid">
+        <ion-img class="history-image" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80" alt="Misión"></ion-img>
+        <div class="timeline">
+          <h2 class="timeline-title">{{ 'about.mission.title' | translate }}</h2>
+          <p class="mission-text">
+            {{ 'about.mission.description' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visión -->
+    <div class="tab-content" *ngIf="selectedTab === 'vision'">
+      <div class="history-grid">
+        <ion-img class="history-image" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80" alt="Visión"></ion-img>
+        <div class="timeline">
+          <h2 class="timeline-title">{{ 'about.vision.title' | translate }}</h2>
+          <p class="vision-text">
+            {{ 'about.vision.description' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔷 SECCIÓN 4: VALORES -->
+  <section class="values-section">
+    <h2 class="section-title">{{ 'about.values.title' | translate }}</h2>
+    <p class="section-subtitle">{{ 'about.values.subtitle' | translate }}</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="trophy-outline"></ion-icon></div>
+        <h3>{{ 'about.values.quality.title' | translate }}</h3>
+        <p>{{ 'about.values.quality.description' | translate }}</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="checkmark-circle-outline"></ion-icon></div>
+        <h3>{{ 'about.values.responsibility.title' | translate }}</h3>
+        <p>{{ 'about.values.responsibility.description' | translate }}</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="heart-outline"></ion-icon></div>
+        <h3>{{ 'about.values.honesty.title' | translate }}</h3>
+        <p>{{ 'about.values.honesty.description' | translate }}</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><ion-icon name="bulb-outline"></ion-icon></div>
+        <h3>{{ 'about.values.discipline.title' | translate }}</h3>
+        <p>{{ 'about.values.discipline.description' | translate }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔷 SECCIÓN 5: PRINCIPIOS -->
+  <section class="principles-section">
+    <h2 class="section-title">{{ 'about.principles.title' | translate }}</h2>
+    <div class="principles-card">
+      <div class="principles-grid">
+        <div class="principle-item">
+          <ion-icon name="checkmark-circle" class="check"></ion-icon>
+          <span>{{ 'about.principles.respect' | translate }}</span>
+        </div>
+        <div class="principle-item">
+          <ion-icon name="checkmark-circle" class="check"></ion-icon>
+          <span>{{ 'about.principles.communication' | translate }}</span>
+        </div>
+        <div class="principle-item">
+          <ion-icon name="checkmark-circle" class="check"></ion-icon>
+          <span>{{ 'about.principles.improvement' | translate }}</span>
+        </div>
+        <div class="principle-item">
+          <ion-icon name="checkmark-circle" class="check"></ion-icon>
+          <span>{{ 'about.principles.ethics' | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔷 SECCIÓN 6: EQUIPO -->
+  <section class="team-section">
+    <h2 class="section-title">{{ 'about.team.title' | translate }}</h2>
+    <div class="team-card">
+      <div class="avatar">SR</div>
+      <div class="team-info">
+        <div class="member-name">{{ 'about.team.member.name' | translate }}</div>
+        <span class="role-badge">{{ 'about.team.member.role' | translate }}</span>
+        <p class="member-desc">
+        {{ 'about.team.member.description' | translate }}
+        </p>
+        <ul class="member-list">
+          <li><ion-icon name="ellipse" class="dot"></ion-icon> {{ 'about.team.member.specialty1' | translate }}</li>
+          <li><ion-icon name="ellipse" class="dot"></ion-icon> {{ 'about.team.member.specialty2' | translate }}</li>
+          <li><ion-icon name="ellipse" class="dot"></ion-icon> {{ 'about.team.member.specialty3' | translate }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER DENTRO DEL CONTENIDO -->
+  <app-footer></app-footer>
+
+</ion-content>
+

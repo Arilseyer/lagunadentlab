@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+  
+  <!-- 🔷 CONTENEDOR PRINCIPAL CENTRADO -->
+  <div class="main-container">
+    
+    <!-- 🔹 ENCABEZADO DE PÁGINA -->
+    <div class="header-section">
+      <h1 class="page-title">{{ 'appointment.title' | translate }}</h1>
+      <p class="page-subtitle">{{ 'appointment.subtitle' | translate }}</p>
+    </div>
+
+    <!-- � TARJETA DEL FORMULARIO PRINCIPAL -->
+    <div class="form-card">
+      
+      <!-- Título del formulario -->
+      <div class="form-title-section">
+        <ion-icon name="document-text-outline" class="form-icon"></ion-icon>
+        <h2 class="form-title">{{ 'appointment.form_title' | translate }}</h2>
+      </div>
+
+      <!-- Formulario -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="service-form">
+        
+        <!-- Grid de campos -->
+        <div class="form-grid">
+          
+          <!-- Nombre completo -->
+          <div class="form-field">
+            <label class="field-label">{{ 'appointment.full_name' | translate }} *</label>
+            <input type="text" class="field-input" formControlName="name" placeholder="{{ 'appointment.full_name_placeholder' | translate }}" [readonly]="isLoggedIn" />
+          </div>
+
+          <!-- Teléfono / WhatsApp -->
+          <div class="form-field">
+            <label class="field-label">{{ 'appointment.phone_whatsapp' | translate }} *</label>
+            <input type="tel" class="field-input" formControlName="phone" placeholder="{{ 'appointment.phone_placeholder' | translate }}" [readonly]="isLoggedIn" />
+          </div>
+
+          <!-- Correo electrónico -->
+          <div class="form-field form-field-full">
+            <label class="field-label">{{ 'appointment.email' | translate }} *</label>
+            <input type="email" class="field-input" formControlName="email" placeholder="{{ 'appointment.email_placeholder' | translate }}" [readonly]="isLoggedIn" />
+          </div>
+
+          <!-- Tipo de servicio -->
+          <div class="form-field form-field-full">
+            <label class="field-label">{{ 'appointment.service_type' | translate }} *</label>
+            <select class="field-input" formControlName="serviceType">
+              <option value="" disabled selected>{{ 'appointment.select_service' | translate }}</option>
+              <option *ngFor="let service of serviceTypes" [value]="service">{{ service }}</option>
+            </select>
+          </div>
+
+          <!-- Fecha preferida -->
+          <div class="form-field">
+            <label class="field-label">
+              <ion-icon name="calendar-outline" class="field-icon"></ion-icon>
+              {{ 'appointment.preferred_date' | translate }} *
+            </label>
+            <div class="input-with-icon">
+              <input type="date" class="field-input" formControlName="date" placeholder="{{ 'appointment.date_placeholder' | translate }}" #dateInput />
+              
+            </div>
+          </div>
+
+          <!-- Hora preferida -->
+          <div class="form-field">
+            <label class="field-label">
+              <ion-icon name="time-outline" class="field-icon"></ion-icon>
+              {{ 'appointment.preferred_time' | translate }} *
+            </label>
+            <div class="input-with-icon">
+              <input type="time" class="field-input" formControlName="time" placeholder="{{ 'appointment.time_placeholder' | translate }}" #timeInput />
+              
+            </div>
+          </div>
+
+          <!-- Notas adicionales -->
+          <div class="form-field form-field-full">
+            <label class="field-label">{{ 'appointment.additional_notes' | translate }}</label>
+            <textarea class="field-input field-textarea" formControlName="notes" placeholder="{{ 'appointment.notes_placeholder' | translate }}" rows="3"></textarea>
+          </div>
+
+        </div>
+
+        <!-- Botones -->
+        <div class="button-group">
+          <button type="button" class="btn-cancel" (click)="goBack()">
+            {{ 'appointment.cancel' | translate }}
+          </button>
+          <button type="submit" class="btn-submit">
+            {{ 'appointment.send_request' | translate }}
+            <ion-icon name="arrow-forward-outline" class="btn-icon"></ion-icon>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- 🔹 BLOQUE INFORMATIVO INFERIOR -->
+    <div class="info-note">
+      <strong>{{ 'appointment.note_label' | translate }}:</strong> {{ 'appointment.note_text' | translate }}
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+
+</ion-content>
+

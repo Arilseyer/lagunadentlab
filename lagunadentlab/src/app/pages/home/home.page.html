@@ -1,0 +1,317 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+  
+  <!-- 🔷 SECCIÓN 1: HERO -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1 class="hero-title">{{ 'home.hero.title' | translate }}</h1>
+        <p class="hero-subtitle">
+          {{ 'home.hero.subtitle' | translate }}
+        </p>
+        <div class="hero-buttons">
+          <ion-button class="btn-primary" size="default" (click)="navegarASolicitudServicios()">
+            {{ 'home.hero.cta' | translate }}
+          </ion-button>
+          <ion-button class="btn-outline" fill="outline" size="default" (click)="navegarANosotros()">
+            {{ 'home.hero.cta_secondary' | translate }}
+          </ion-button>
+        </div>
+      </div>
+      
+      <div class="hero-image-wrapper">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Laboratorio Dental" class="hero-image" />
+        <div class="hero-badge">
+          <div class="badge-number">15+</div>
+          <div class="badge-text">Años de experiencia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR (métricas azul marino) -->
+  <section class="stats-bar">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">{{ 'home.stats.experience' | translate }}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">5,000+</div>
+        <div class="stat-label">{{ 'home.stats.products' | translate }}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">200+</div>
+        <div class="stat-label">{{ 'home.stats.clients' | translate }}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">{{ 'home.stats.success' | translate }}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ��� SECCIÓN 2: ¿POR QUÉ ELEGIRNOS? -->
+  <section class="why-us-section">
+    <div class="section-header">
+      <h2 class="section-title">{{ 'home.services.title' | translate }}</h2>
+      <p class="section-subtitle">{{ 'home.services.subtitle' | translate }}</p>
+    </div>
+    
+    <div class="cards-grid">
+      <ion-card class="feature-card">
+        <ion-card-content>
+          <div class="card-icon">
+            <ion-icon name="ribbon-outline"></ion-icon>
+          </div>
+          <h3>{{ 'home.features.quality.title' | translate }}</h3>
+          <p>{{ 'home.features.quality.description' | translate }}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="feature-card">
+        <ion-card-content>
+          <div class="card-icon">
+            <ion-icon name="flash-outline"></ion-icon>
+          </div>
+          <h3>{{ 'home.features.speed.title' | translate }}</h3>
+          <p>{{ 'home.features.speed.description' | translate }}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="feature-card">
+        <ion-card-content>
+          <div class="card-icon">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+          <h3>{{ 'home.features.personalized.title' | translate }}</h3>
+          <p>{{ 'home.features.personalized.description' | translate }}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="feature-card">
+        <ion-card-content>
+          <div class="card-icon">
+            <ion-icon name="bulb-outline"></ion-icon>
+          </div>
+          <h3>{{ 'home.features.innovation.title' | translate }}</h3>
+          <p>{{ 'home.features.innovation.description' | translate }}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </section>
+
+  <!-- ��� SECCIÓN 3: NUESTROS SERVICIOS -->
+  <section class="services-section">
+    <div class="two-col-layout">
+      <div class="image-col">
+        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=700&q=80" alt="Servicios Dentales" />
+      </div>
+      
+      <div class="text-col">
+        <h2 class="section-title">{{ 'home.services.title' | translate }}</h2>
+        <p class="section-description">{{ 'home.services.subtitle' | translate }}</p>
+        
+        <ul class="service-list">
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <span>{{ 'home.services.crown_porcelain' | translate }}</span>
+          </li>
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <span>{{ 'home.services.implants' | translate }}</span>
+          </li>  
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <span>{{ 'home.services.prosthetics' | translate }}</span>
+          </li>
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <span>{{ 'home.services.acrylic' | translate }}</span>
+          </li>
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <span>{{ 'home.services.guards' | translate }}</span>
+          </li>
+        </ul>
+        
+        <ion-button class="btn-outline" fill="outline" (click)="navegarAServicios()">
+          {{ 'home.services.view_all' | translate }}
+          <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ��� SECCIÓN 4: TECNOLOGÍA DE VANGUARDIA -->
+  <section class="tech-section">
+    <div class="two-col-layout reverse">
+      <div class="text-col">
+        <h2 class="section-title">{{ 'home.technology.title' | translate }}</h2>
+        <p class="section-description">{{ 'home.technology.subtitle' | translate }}</p>
+        
+        <ul class="tech-list">
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <div>
+              <strong>{{ 'home.technology.scanner_title' | translate }}:</strong> {{ 'home.technology.scanner_desc' | translate }}
+            </div>
+          </li>
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <div>
+              <strong>{{ 'home.technology.cadcam_title' | translate }}:</strong> {{ 'home.technology.cadcam_desc' | translate }}
+            </div>
+          </li>
+          <li>
+            <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            <div>
+              <strong>{{ 'home.technology.materials_title' | translate }}:</strong> {{ 'home.technology.materials_desc' | translate }}
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="image-col">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=700&q=80" alt="Tecnología Dental" />
+      </div>
+    </div>
+  </section>
+
+  <!-- �� SECCIÓN 5: TESTIMONIOS -->
+  <section class="testimonials-section">
+    <div class="section-header">
+      <h2 class="section-title">{{ 'home.testimonials.title' | translate }}</h2>
+      <p class="section-subtitle">{{ 'home.testimonials.subtitle' | translate }}</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <ion-card class="testimonial-card">
+        <ion-card-content>
+          <div class="stars">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p class="testimonial-text">
+            "{{ 'home.testimonials.testimonial1.text' | translate }}"
+          </p>
+          <div class="author-info">
+            <div class="author-name">{{ 'home.testimonials.testimonial1.author' | translate }}</div>
+            <div class="author-title">{{ 'home.testimonials.testimonial1.title' | translate }}</div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="testimonial-card">
+        <ion-card-content>
+          <div class="stars">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p class="testimonial-text">
+            "{{ 'home.testimonials.testimonial2.text' | translate }}"
+          </p>
+          <div class="author-info">
+            <div class="author-name">{{ 'home.testimonials.testimonial2.author' | translate }}</div>
+            <div class="author-title">{{ 'home.testimonials.testimonial2.title' | translate }}</div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </section>
+
+  <!-- ��� SECCIÓN 6: PROCESO DE TRABAJO -->
+  <section class="process-section">
+    <div class="section-header">
+      <h2 class="section-title">{{ 'home.process.title' | translate }}</h2>
+      <p class="section-subtitle">{{ 'home.process.subtitle' | translate }}</p>
+    </div>
+    
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-number">01</div>
+        <h3>{{ 'home.process.step1.title' | translate }}</h3>
+        <p>{{ 'home.process.step1.description' | translate }}</p>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">02</div>
+        <h3>{{ 'home.process.step2.title' | translate }}</h3>
+        <p>{{ 'home.process.step2.description' | translate }}</p>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">03</div>
+        <h3>{{ 'home.process.step3.title' | translate }}</h3>
+        <p>{{ 'home.process.step3.description' | translate }}</p>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">04</div>
+        <h3>{{ 'home.process.step4.title' | translate }}</h3>
+        <p>{{ 'home.process.step4.description' | translate }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ��� SECCIÓN 7: CTA (CALL TO ACTION) -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2 class="cta-title">{{ 'home.cta.title' | translate }}</h2>
+      <p class="cta-subtitle">{{ 'home.cta.subtitle' | translate }}</p>
+      <ion-button class="cta-button" color="light" size="large" (click)="navegarAContacto()">
+        {{ 'home.cta.button' | translate }}
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </section>
+
+  <!-- 🔷 SECCIÓN 8: PREGUNTAS FRECUENTES -->
+  <section class="faq-section">
+    <div class="section-header">
+      <h2 class="section-title">{{ 'home.faq.title' | translate }}</h2>
+    </div>
+    
+    <div class="faq-list">
+      <ion-accordion-group>
+        <ion-accordion value="first" class="faq-accordion">
+          <ion-item slot="header" class="faq-header">
+            <ion-label class="faq-question-text">{{ 'home.faq.question1.title' | translate }}</ion-label>
+          </ion-item>
+          <div class="faq-content" slot="content">
+            <p>{{ 'home.faq.question1.answer' | translate }}</p>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion value="fourth" class="faq-accordion">
+          <ion-item slot="header" class="faq-header">
+            <ion-label class="faq-question-text">{{ 'home.faq.question2.title' | translate }}</ion-label>
+          </ion-item>
+          <div class="faq-content" slot="content">
+            <p>{{ 'home.faq.question2.answer' | translate }}</p>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion value="fifth" class="faq-accordion">
+          <ion-item slot="header" class="faq-header">
+            <ion-label class="faq-question-text">{{ 'home.faq.question3.title' | translate }}</ion-label>
+          </ion-item>
+          <div class="faq-content" slot="content">
+            <p>{{ 'home.faq.question3.answer' | translate }}</p>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+  </section>
+
+  <!-- FOOTER DENTRO DEL CONTENIDO -->
+  <app-footer></app-footer>
+
+</ion-content>

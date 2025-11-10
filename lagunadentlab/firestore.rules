@@ -1,0 +1,67 @@
+rules_version='2'
+
+service cloud.firestore {
+  // Reglas recomendadas para producción:
+  // - users: creación por el propio usuario con isAdmin=false, sólo admin (claim) puede cambiar isAdmin
+  // - appointments: creación sólo por el usuario autenticado con uid coincidente y status inicial 'Pendiente'
+  // - lectura/actualización: usuarios sólo sobre sus propios documentos, admins mediante claim custom 'admin'
+
+  match /databases/{database}/documents {
+
+    // Colección users: cada usuario tiene su documento /users/{uid}
+    match /users/{userId} {
+      // Crear: autenticado y creando su propio documento; isAdmin debe ser false
+      allow create: if request.auth != null
+                     && request.auth.uid == userId
+                     && request.resource.data.isAdmin == false;
+
+      // Read: el propio usuario o un admin
+      allow read: if request.auth != null && (
+        request.auth.uid == userId || request.auth.token.admin == true
+      );
+
+      // Update: el propio usuario puede actualizar su perfil, pero no puede cambiar isAdmin.
+      // Un admin (custom claim) puede actualizar isAdmin.
+      allow update: if request.auth != null && (
+        (
+          request.auth.uid == userId
+          && request.resource.data.isAdmin == resource.data.isAdmin
+        ) || request.auth.token.admin == true
+      );
+
+      // Delete: sólo admin
+      allow delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Colección appointments
+    match /appointments/{appointmentId} {
+      // Create: autenticado, uid en el documento debe ser el del auth, status debe ser 'Pendiente'
+      allow create: if request.auth != null
+                     && request.resource.data.uid == request.auth.uid
+                     && request.resource.data.status == 'Pendiente';
+
+      // Read: el propietario o admin
+      // IMPORTANTE: en lecturas (incluyendo queries) se usa resource.data, no request.resource
+      allow read: if request.auth != null && (
+        resource.data.uid == request.auth.uid || request.auth.token.admin == true
+      );
+
+      // Update: el propietario puede actualizar si no cambia uid; admins pueden actualizar todo
+      allow update: if request.auth != null && (
+        (request.auth.uid == resource.data.uid && request.resource.data.uid == resource.data.uid)
+        || request.auth.token.admin == true
+      );
+
+      // Delete: propietario o admin
+      allow delete: if request.auth != null && (
+        request.auth.uid == resource.data.uid || request.auth.token.admin == true
+      );
+    }
+
+    // Por defecto: sólo admins pueden leer/escribir otras rutas
+    match /{document=**} {
+      allow read, write: if request.auth != null && request.auth.token.admin == true;
+    }
+  }
+}
+

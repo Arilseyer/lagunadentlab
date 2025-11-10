@@ -1,0 +1,162 @@
+// ===== PÁGINA DE ERROR 404 =====
+// Tipografía unificada Poppins
+* {
+  font-family: 'Poppins';
+}
+
+// Contenedor principal de la página
+.error-page {
+  --ion-background-color: var(--neutral-100);
+  min-height: 100vh;
+  overflow-x: hidden; // Evita scroll horizontal
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--neutral-100); // Fondo liso sin gradiente
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+// ===== CÓDIGO 404 SIN CÍRCULO =====
+.error-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+
+  .number {
+    font-size: 120px;
+    font-weight: 800;
+    color: var(--primary-700);
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(66, 165, 245, 0.2);
+  }
+}
+
+// ===== CONTENIDO DEL ERROR =====
+.error-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.error-description {
+  font-size: 16px;
+  color: var(--neutral-600);
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ===== BOTÓN DE INICIO (ESTILO OSCURO) =====
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.home-btn {
+  --background: var(--dark-500); // Color oscuro del global.scss
+  --background-activated: var(--dark-600);
+  --background-hover: var(--dark-600);
+  --color: var(--neutral-100); // Texto blanco del global.scss
+  --border-radius: 12px;
+  --padding-start: 32px;
+  --padding-end: 32px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  height: auto;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(10, 12, 17, 0.2);
+  transition: all 0.3s ease;
+  
+  // Centrado perfecto del texto
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 12, 17, 0.3);
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px 12px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .content-wrapper {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+
+  .error-code {
+    gap: 4px;
+    margin-bottom: 24px;
+
+    .number {
+      font-size: 64px;
+    }
+  }
+
+  .error-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .error-description {
+    font-size: 15px;
+    margin-bottom: 28px;
+    padding: 0 4px;
+  }
+
+  .home-btn {
+    width: 100%;
+    max-width: 260px;
+    --padding-start: 24px;
+    --padding-end: 24px;
+    font-size: 15px;
+  }
+}
+
+// ===== TABLET RESPONSIVE =====
+@media (min-width: 769px) and (max-width: 1024px) {
+  .error-code .number {
+    font-size: 80px;
+  }
+
+  .error-title {
+    font-size: 25px;
+  }
+
+  .content-wrapper {
+    padding: 0 20px;
+  }
+}
+

@@ -1,0 +1,226 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+  
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1 class="hero-title">{{ 'profile.title' | translate }}</h1>
+    <p class="hero-subtitle">{{ 'profile.subtitle' | translate }}</p>
+  </div>
+
+  <!-- Main Grid Layout -->
+  <ion-grid class="main-grid">
+    <ion-row>
+      
+      <!-- Columna Izquierda - Información del Perfil -->
+      <ion-col size="12" size-md="4" class="profile-column">
+        <ion-card class="perfil-card">
+          <ion-card-content class="profile-content">
+            
+            <!-- Nombre y Email -->
+            <h2 class="profile-name">{{ userProfile?.name || ('profile.user_default' | translate) }}</h2>
+            <p class="profile-email">{{ currentUser?.email || ('profile.email_default' | translate) }}</p>
+            
+            <!-- Información Adicional -->
+            <div class="contact-info">
+              <ion-item lines="none" class="info-item">
+                <ion-icon slot="start" name="call-outline"></ion-icon>
+                <ion-label class="compact-label">{{ userProfile?.phone || ('profile.not_registered' | translate) }}</ion-label>
+              </ion-item>
+              
+              <ion-item lines="none" class="info-item">
+                <ion-icon slot="start" name="calendar-outline"></ion-icon>
+                <ion-label class="compact-label">{{ 'profile.member_since' | translate }} {{ formatDate(userProfile?.createdAt) }}</ion-label>
+              </ion-item>
+            </div>
+
+            <!-- Botón de Cerrar Sesión -->
+            <ion-button 
+              expand="block" 
+              color="danger" 
+              class="logout-button"
+              (click)="logout()">
+              <ion-icon slot="start" name="log-out-outline"></ion-icon>
+              {{ 'profile.logout' | translate }}
+            </ion-button>
+            
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Columna Derecha - Pestañas e Información -->
+      <ion-col size="12" size-md="8" class="content-column">
+        
+        <!-- Contenedor de navegación con botones y editar -->
+        <div class="navigation-container">
+          <!-- Botones de Navegación estilo Services - Botones normales -->
+          <div class="custom-tabs">
+            <button 
+              class="custom-tab-button" 
+              [class.active]="selectedTab === 'info'"
+              (click)="selectedTab = 'info'">
+              <ion-icon name="person-outline"></ion-icon>
+              <span>{{ 'profile.information_tab' | translate }}</span>
+            </button>
+            <button 
+              class="custom-tab-button" 
+              [class.active]="selectedTab === 'orders'"
+              (click)="selectedTab = 'orders'">
+              <ion-icon name="receipt-outline"></ion-icon>
+              <span>{{ 'profile.appointments_tab' | translate }}</span>
+            </button>
+          </div>
+
+          <!-- Botón Editar al lado derecho -->
+          <button class="edit-button" *ngIf="selectedTab === 'info' && !isEditing" (click)="toggleEdit()">
+            <ion-icon name="create-outline"></ion-icon>
+            <span>{{ 'profile.edit_button' | translate }}</span>
+          </button>
+          
+          <!-- Botones Guardar/Cancelar cuando está editando -->
+          <div class="edit-actions" *ngIf="selectedTab === 'info' && isEditing">
+            <button class="cancel-button" (click)="toggleEdit()">
+              <ion-icon name="close-outline"></ion-icon>
+              <span>{{ 'profile.cancel_button' | translate }}</span>
+            </button>
+            <button class="save-button" (click)="saveProfile()" [disabled]="loading">
+              <ion-icon name="save-outline"></ion-icon>
+              <span>{{ loading ? ('profile.saving' | translate) : ('profile.save_button' | translate) }}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Contenido de Información -->
+        <ion-card *ngIf="selectedTab === 'info'" class="compact-info-card">
+          <ion-card-header class="compact-card-header">
+            <div class="header-content">
+              <ion-card-title class="compact-title">{{ 'profile.personal_info_title' | translate }}</ion-card-title>
+              <ion-card-subtitle class="compact-subtitle">{{ 'profile.personal_info_subtitle' | translate }}</ion-card-subtitle>
+            </div>
+          </ion-card-header>
+          
+          <ion-card-content class="compact-card-content">
+            
+            <!-- Modo Vista -->
+            <div *ngIf="!isEditing">
+              <div class="form-field">
+                <ion-item lines="none" class="compact-form-item" disabled>
+                  <ion-icon slot="start" name="person-outline"></ion-icon>
+                  <div class="field-content">
+                    <h3>{{ 'profile.full_name' | translate }}</h3>
+                    <p>{{ userProfile?.name || ('profile.not_registered' | translate) }}</p>
+                  </div>
+                </ion-item>
+              </div>
+              
+              <div class="form-field">
+                <ion-item lines="none" class="compact-form-item" disabled>
+                  <ion-icon slot="start" name="mail-outline"></ion-icon>
+                  <div class="field-content">
+                    <h3>{{ 'profile.email' | translate }}</h3>
+                    <p>{{ currentUser?.email || ('profile.not_registered' | translate) }}</p>
+                  </div>
+                </ion-item>
+              </div>
+              
+              <div class="form-field">
+                <ion-item lines="none" class="compact-form-item" disabled>
+                  <ion-icon slot="start" name="call-outline"></ion-icon>
+                  <div class="field-content">
+                    <h3>{{ 'profile.phone' | translate }}</h3>
+                    <p>{{ userProfile?.phone || ('profile.not_registered' | translate) }}</p>
+                  </div>
+                </ion-item>
+              </div>
+            </div>
+
+            <!-- Modo Edición -->
+            <form [formGroup]="editForm" *ngIf="isEditing">
+              <div class="form-field">
+                <label class="field-label">{{ 'profile.full_name' | translate }}</label>
+                <ion-input 
+                  type="text" 
+                  class="field-input" 
+                  placeholder="{{ 'profile.full_name_placeholder' | translate }}"
+                  formControlName="name"
+                  [class.invalid]="editForm.get('name')?.invalid && editForm.get('name')?.touched">
+                </ion-input>
+                <span class="error-message" *ngIf="editForm.get('name')?.hasError('required') && editForm.get('name')?.touched">
+                  {{ 'profile.name_required' | translate }}
+                </span>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">{{ 'profile.email' | translate }}</label>
+                <ion-input 
+                  type="email" 
+                  class="field-input" 
+                  [value]="currentUser?.email"
+                  disabled>
+                </ion-input>
+                <span class="help-text">{{ 'profile.email_cannot_modify' | translate }}</span>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">{{ 'profile.phone' | translate }}</label>
+                <ion-input 
+                  type="tel" 
+                  class="field-input" 
+                  placeholder="{{ 'profile.phone_placeholder' | translate }}"
+                  formControlName="phone"
+                  [class.invalid]="editForm.get('phone')?.invalid && editForm.get('phone')?.touched">
+                </ion-input>
+                <span class="error-message" *ngIf="editForm.get('phone')?.hasError('required') && editForm.get('phone')?.touched">
+                  {{ 'profile.phone_required' | translate }}
+                </span>
+                <span class="error-message" *ngIf="editForm.get('phone')?.hasError('pattern') && editForm.get('phone')?.touched">
+                  {{ 'profile.phone_invalid' | translate }}
+                </span>
+              </div>
+            </form>
+            
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Contenido de Pedidos -->
+        <ion-card *ngIf="selectedTab === 'orders'" class="compact-orders-card">
+          <ion-card-header class="compact-card-header">
+            <div class="header-content">
+              <ion-card-title class="compact-title">{{ 'profile.appointments_title' | translate }}</ion-card-title>
+              <ion-card-subtitle class="compact-subtitle">{{ 'profile.appointments_subtitle' | translate }}</ion-card-subtitle>
+            </div>
+          </ion-card-header>
+          
+          <ion-card-content class="compact-card-content">
+            <div *ngIf="appointments.length === 0" class="empty-orders">
+              <p>{{ 'profile.no_appointments' | translate }} <a routerLink="/appointment" class="agenda-link">{{ 'profile.schedule_here' | translate }}</a>.</p>
+            </div>
+
+            <div *ngIf="appointments.length > 0" class="appointments-list">
+              <div *ngFor="let appointment of appointments" class="appointment-item">
+                <div class="appointment-header">
+                  <h3>{{ appointment.serviceType || ('profile.service_default' | translate) }}</h3>
+                  <span class="status-badge" [ngClass]="'status-' + getStatusColor(appointment.status)">
+                    {{ appointment.status || ('profile.status_pending' | translate) }}
+                  </span>
+                </div>
+                <div class="appointment-details">
+                  <p><ion-icon name="calendar-outline"></ion-icon> {{ formatDate(appointment.date) }}</p>
+                  <p><ion-icon name="time-outline"></ion-icon> {{ appointment.time || 'N/A' }}</p>
+                </div>
+                <div *ngIf="appointment._pendingSync" style="color: var(--ion-color-warning); font-size: 12px; margin-top: 4px;">
+                  {{ 'profile.syncing' | translate }}
+                </div>
+                <p class="appointment-notes" *ngIf="appointment.notes">{{ appointment.notes }}</p>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+
