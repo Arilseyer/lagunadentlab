@@ -6,6 +6,7 @@ import { OnlineService } from './services/online.service';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { ApprovalNotificationService } from './services/approval-notification.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent {
   loading$ = new BehaviorSubject<boolean>(true);
   private pendingLoads = 1; // start with 1 to cover initial boot
 
-  constructor(private onlineService: OnlineService, private router: Router) {
+  constructor(private onlineService: OnlineService, private router: Router, private approvalNotifications: ApprovalNotificationService) {
     this.isOnline$ = this.onlineService.isOnline$;
 
     // Track router navigation to show/hide global loader
@@ -40,5 +41,8 @@ export class AppComponent {
       this.pendingLoads = 0;
       this.loading$.next(false);
     }, 1500);
+
+    // Iniciar listener de notificaciones de aprobación de citas
+    this.approvalNotifications.start();
   }
 }

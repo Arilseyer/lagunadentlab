@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { IonHeader, IonToolbar, IonIcon } from '@ionic/angular/standalone';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 import { addIcons } from 'ionicons';
-import { globeOutline, sunnyOutline, moonOutline, phonePortraitOutline, personCircleOutline, personOutline } from 'ionicons/icons';
+import { globeOutline, sunnyOutline, moonOutline, phonePortraitOutline, personCircleOutline, personOutline, menuOutline, closeOutline } from 'ionicons/icons';
 import { AuthService } from '../../services/auth.service';
 import { ThemeService } from '../../services/theme.service';
 import { TranslationService } from '../../services/translation.service';
@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   themeDescription$!: Observable<string>;
   currentLanguageCode$!: Observable<string>;
   logoSrc$!: Observable<string>;
+  isMenuOpen = false;
 
   constructor(
     private router: Router, 
@@ -38,7 +39,9 @@ export class NavbarComponent implements OnInit {
       moonOutline,
       phonePortraitOutline,
       personCircleOutline,
-      personOutline
+      personOutline,
+      menuOutline,
+      closeOutline
     });
   }
 
@@ -74,6 +77,7 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.setActiveRoute(event.url);
+        this.closeMenu();
       }
     });
   }
@@ -98,6 +102,14 @@ export class NavbarComponent implements OnInit {
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
+
+  // Mobile menu control
+  toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
+  closeMenu() { this.isMenuOpen = false; }
+  onBackdropClick() { this.closeMenu(); }
+
+  @HostListener('document:keydown.escape')
+  onEsc() { if (this.isMenuOpen) this.closeMenu(); }
 
   /**
    * Alterna el tema cuando se hace clic en el botón
