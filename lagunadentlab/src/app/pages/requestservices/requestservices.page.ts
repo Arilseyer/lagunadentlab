@@ -24,6 +24,7 @@ import {
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { TranslatePipe } from '../../pipes/translate.pipe';
+import { OwnerEmailService } from '../../services/owner-email.service';
 
 @Component({
   selector: 'app-requestservices',
@@ -82,7 +83,8 @@ export class RequestservicesPage implements OnInit, OnDestroy {
     private toastCtrl: ToastController,
     private dataService: DataService,
     private authService: AuthService,
-    private onlineService: OnlineService
+    private onlineService: OnlineService,
+    private ownerEmailService: OwnerEmailService
   ) {
     // Registrar iconos
     addIcons({documentTextOutline,calendarOutline,timeOutline,arrowForwardOutline,sendOutline,locationOutline,callOutline,logoWhatsapp,logoFacebook,mailOutline});
@@ -134,6 +136,17 @@ export class RequestservicesPage implements OnInit, OnDestroy {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
+    // Asegurar que no quede foco dentro de esta página cuando se destruya
+    this.blurActiveElement();
+  }
+
+  // Ionic lifecycle: al abandonar la vista, limpiar el foco para evitar conflictos con aria-hidden del ion-page
+  ionViewWillLeave() {
+    this.blurActiveElement();
+  }
+
+  ionViewDidLeave() {
+    this.blurActiveElement();
   }
 
   // Cambia el set de horas cuando cambia la fecha
@@ -231,6 +244,11 @@ export class RequestservicesPage implements OnInit, OnDestroy {
       } else {
         await this.presentToast('Cita solicitada correctamente.', 'success');
       }
+      // Enviar notificación por correo al propietario (solo si hay conexión)
+      if (this.onlineService.isOnline) {
+        // No bloquear la UX por el envío de correo; se maneja internamente
+        this.ownerEmailService.sendAppointmentNotification(appointment);
+      }
       // Navegar al perfil para ver la cita recién creada (aparece también con escritura local offline)
       this.router.navigate(['/profile']);
     } catch (err) {
@@ -253,5 +271,20 @@ export class RequestservicesPage implements OnInit, OnDestroy {
 
   goBack() {
     this.router.navigate(['/home']);
+  }
+
+  // Utilidad: quita el foco del elemento activo si pertenece a esta página
+  private blurActiveElement() {
+    try {
+      const active = document.activeElement as HTMLElement | null;
+      if (!active) return;
+      // Si el elemento activo está dentro de esta página, quitar foco
+      const host = document.querySelector('app-requestservices');
+      if (host && active && host.contains(active)) {
+        active.blur();
+      }
+    } catch {
+      // no-op
+    }
   }
 }
