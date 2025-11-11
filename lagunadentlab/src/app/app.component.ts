@@ -16,6 +16,9 @@ import { ApprovalNotificationService } from './services/approval-notification.se
 })
 export class AppComponent {
   isOnline$!: Observable<boolean>;
+  // Loader reactivo global y contador de navegaciones pendientes
+  loading$ = new BehaviorSubject<boolean>(true);
+  private pendingLoads = 1;
 
   constructor(private onlineService: OnlineService, private router: Router, private approvalNotifications: ApprovalNotificationService) {
     this.isOnline$ = this.onlineService.isOnline$;
