@@ -27,6 +27,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { ToastController } from '@ionic/angular';
 import { OnlineService } from '../../services/online.service';
 import { DataService } from '../../services/data.service';
+import { EmailService } from '../../services/email.service';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
@@ -59,7 +60,8 @@ export class ContactPage implements OnInit {
     private fb: FormBuilder,
     private toastCtrl: ToastController,
     private onlineService: OnlineService,
-    private dataService: DataService
+    private dataService: DataService,
+    private emailService: EmailService
   ) {
     addIcons({
       sendOutline,
@@ -110,6 +112,21 @@ export class ContactPage implements OnInit {
     try {
       const wasOffline = !this.onlineService.isOnline;
       await this.dataService.saveContactMessage(payload);
+      
+      // Enviar notificación por correo al propietario (solo si hay conexión)
+      if (this.onlineService.isOnline && this.emailService.isConfigured()) {
+        try {
+          console.log('[Contact] Intentando enviar email...');
+          await this.emailService.sendContactMessage(payload);
+          console.log('[Contact] ✅ Email enviado correctamente');
+        } catch (emailError) {
+          console.error('[Contact] ❌ Error enviando correo de notificación:', emailError);
+          // No bloquear la UX por el fallo del correo
+        }
+      } else {
+        console.warn('[Contact] Email NO enviado. Online:', this.onlineService.isOnline, 'Configured:', this.emailService.isConfigured());
+      }
+
       if (wasOffline) {
         await this.presentToast('Mensaje guardado sin conexión, se enviará al reconectar', 'warning');
       } else {

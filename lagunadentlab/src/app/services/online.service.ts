@@ -40,12 +40,16 @@ export class OnlineService {
 
   private async handleOnlineChange(isOnline: boolean) {
     this.online$.next(isOnline);
-    const toast = await this.toastCtrl.create({
-      message: isOnline ? 'Conexión restaurada' : 'Sin conexión',
-      duration: 1800,
-      color: isOnline ? 'success' : 'medium',
-      position: 'bottom',
-    });
-    await toast.present();
+    // Solo mostrar toast cuando se pierde la conexión, no cuando se restaura
+    // para evitar toasts molestos que interfieren con otros mensajes
+    if (!isOnline) {
+      const toast = await this.toastCtrl.create({
+        message: 'Sin conexión',
+        duration: 1800,
+        color: 'medium',
+        position: 'bottom',
+      });
+      await toast.present();
+    }
   }
 }

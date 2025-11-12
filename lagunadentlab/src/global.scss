@@ -262,18 +262,3 @@ body.dark {
   background-color: var(--neutral-100) !important;
   color: var(--neutral-700) !important;
 }
-
-/* Adaptación automática al tema del sistema */
-@media (prefers-color-scheme: dark) {
-  :root:not(.theme-light):not(.theme-dark) {
-    /* Solo si no hay preferencia manual, aplicar dark automáticamente */
-    body:not(.dark) {
-      --neutral-100: var(--dark-500);
-      --neutral-200: var(--dark-400);
-      --neutral-300: var(--dark-300);
-      --neutral-700: #d1d5db;
-      --neutral-800: #e5e7eb;
-      --neutral-900: #f9fafb;
-    }
-  }
-}
