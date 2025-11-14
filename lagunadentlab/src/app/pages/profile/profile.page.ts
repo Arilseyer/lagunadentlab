@@ -74,7 +74,6 @@ import { Subscription } from 'rxjs';
     IonInput,
     IonButton,
     NavbarComponent,
-    LottieLoaderComponent,
     TranslatePipe
   ],
   templateUrl: './profile.page.html',
