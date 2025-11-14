@@ -145,7 +145,7 @@ export class LoginPage implements OnInit, OnDestroy {
             }
             return undefined;
           })
-          .catch(e => console.error('Error creando perfil tras login (users/create):', e));
+          .catch(e => console.error('Error creando perfil tras login:', e));
       }
     } catch (err: any) {
       const code = err?.code || '';

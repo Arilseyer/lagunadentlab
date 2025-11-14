@@ -7,12 +7,15 @@ import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationErr
 import { BehaviorSubject } from 'rxjs';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { ApprovalNotificationService } from './services/approval-notification.service';
+import { PendingEmailsService } from './services/pending-emails.service';
+import { PendingProfileService } from './services/pending-profile.service';
+import { LottieLoaderComponent } from './components/lottie-loader/lottie-loader.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  imports: [CommonModule, IonApp, IonRouterOutlet, IonChip, IonLabel],
+  imports: [CommonModule, IonApp, IonRouterOutlet, IonChip, IonLabel, LottieLoaderComponent],
 })
 export class AppComponent {
   isOnline$!: Observable<boolean>;
@@ -20,7 +23,13 @@ export class AppComponent {
   loading$ = new BehaviorSubject<boolean>(true);
   private pendingLoads = 1;
 
-  constructor(private onlineService: OnlineService, private router: Router, private approvalNotifications: ApprovalNotificationService) {
+  constructor(
+    private onlineService: OnlineService, 
+    private router: Router, 
+    private approvalNotifications: ApprovalNotificationService,
+    private pendingEmailsService: PendingEmailsService,
+    private pendingProfileService: PendingProfileService
+  ) {
     this.isOnline$ = this.onlineService.isOnline$;
 
     // Track router navigation to show/hide global loader

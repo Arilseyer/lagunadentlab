@@ -60,6 +60,27 @@ export class NavbarComponent implements OnInit {
       map(() => this.themeService.getThemeDescription())
     );
 
+    // Observable del logo según el tema
+    this.logoSrc$ = this.themeService.currentTheme$.pipe(
+      map(theme => {
+        // Si el tema es 'dark', usar logo oscuro
+        if (theme === 'dark') {
+          return 'assets/DienteOscuro.png';
+        }
+        // Si el tema es 'light', usar logo claro
+        if (theme === 'light') {
+          return 'assets/Diente.png';
+        }
+        // Si el tema es 'auto', detectar preferencia del sistema
+        if (theme === 'auto') {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          return prefersDark ? 'assets/DienteOscuro.png' : 'assets/Diente.png';
+        }
+        // Por defecto, logo claro
+        return 'assets/Diente.png';
+      })
+    );
+
     // Observable del idioma
     this.currentLanguageCode$ = this.translationService.currentLanguage$.pipe(
       map(() => this.translationService.getNextLanguageCode())

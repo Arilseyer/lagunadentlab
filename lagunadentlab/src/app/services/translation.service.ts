@@ -51,11 +51,12 @@ export class TranslationService {
    */
   async loadLanguage(language: Language): Promise<void> {
     try {
-      // Cargar traducciones usando fetch para evitar problemas con importaciones dinámicas
-      const response = await fetch(`assets/i18n/${language}.json`);
+      // Cargar traducciones con ruta absoluta para evitar problemas de base href o rutas relativas
+      const url = this.getI18nUrl(language);
+      const response = await fetch(url, { cache: 'no-cache' });
       
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status} at ${url}`);
       }
       
       const translations = await response.json();
@@ -76,6 +77,22 @@ export class TranslationService {
       if (language === 'en') {
         this.loadLanguage('es');
       }
+    }
+  }
+
+  /**
+   * Construye la URL absoluta a los archivos de i18n bajo /assets/i18n
+   * Usar ruta absoluta evita problemas cuando el app corre detrás de subrutas o diferentes base href
+   */
+  private getI18nUrl(language: Language): string {
+    // Construir URL usando la base actual del documento para soportar subrutas/custom domains
+    try {
+      const base = (typeof document !== 'undefined' && document.baseURI) ? document.baseURI : '/';
+      const url = new URL(`assets/i18n/${language}.json`, base);
+      return url.toString();
+    } catch {
+      // Fallback a ruta absoluta en caso de fallo
+      return `/assets/i18n/${language}.json`;
     }
   }
 

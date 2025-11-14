@@ -1,8 +1,14 @@
 export const environment = {
-  production: true
+  production: true,
+  emailJsConfig: {
+    publicKey: 'OwFETnPu6p8W-xQBI',
+    serviceId: 'service_bo8oj4m',
+    templates : {
+      contactOwner: 'template_x0fm25s',
+      requestService: 'template_6mjc8kj'
+    }
+  }
 };
-
-
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC8Xc-cLJdvm-CC5zyy_V_wlAWxZpb4yP4",

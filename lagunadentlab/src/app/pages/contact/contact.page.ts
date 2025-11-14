@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { 
@@ -28,6 +28,10 @@ import { ToastController } from '@ionic/angular';
 import { OnlineService } from '../../services/online.service';
 import { DataService } from '../../services/data.service';
 import { TranslatePipe } from '../../pipes/translate.pipe';
+import { OwnerEmailService} from '../../services/owner-email.service';
+import { Subscription } from 'rxjs';
+import { PendingEmailsService } from '../../services/pending-emails.service';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-contact',
@@ -51,15 +55,19 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
     TranslatePipe
   ]
 })
-export class ContactPage implements OnInit {
+export class ContactPage implements OnInit, OnDestroy {
   form!: FormGroup;
   loading = false;
+  private onlineSub?: Subscription;
+  private offlineToastShown = false;
 
   constructor(
     private fb: FormBuilder,
     private toastCtrl: ToastController,
     private onlineService: OnlineService,
-    private dataService: DataService
+    private dataService: DataService,
+    private pendingEmailsService: PendingEmailsService,
+    private emailService: EmailService
   ) {
     addIcons({
       sendOutline,
@@ -79,6 +87,25 @@ export class ContactPage implements OnInit {
       phone: ['', [Validators.required]],
       message: ['', [Validators.required, Validators.minLength(10)]]
     });
+
+    // Avisos de conexión/desconexión mientras estás en esta página
+    this.onlineSub = this.onlineService.isOnline$.subscribe(async (isOnline) => {
+      if (!isOnline) {
+        if (!this.offlineToastShown) {
+          await this.presentToast('Estás sin conexión: el mensaje se enviará al reconectar.', 'warning');
+          this.offlineToastShown = true;
+        }
+      } else {
+        if (this.offlineToastShown) {
+          await this.presentToast('Conexión recuperada: tus datos se sincronizarán automáticamente.', 'success');
+        }
+        this.offlineToastShown = false;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.onlineSub) this.onlineSub.unsubscribe();
   }
 
   // Método para abrir WhatsApp
@@ -110,15 +137,37 @@ export class ContactPage implements OnInit {
     try {
       const wasOffline = !this.onlineService.isOnline;
       await this.dataService.saveContactMessage(payload);
+      
+      // Enviar email o encolarlo si está offline
       if (wasOffline) {
+        // Encolar para enviar cuando recupere conexión
+        this.pendingEmailsService.enqueueContactEmail(payload);
+        console.log('[Contact] Email encolado para envío posterior');
         await this.presentToast('Mensaje guardado sin conexión, se enviará al reconectar', 'warning');
       } else {
-        await this.presentToast('Mensaje enviado correctamente.', 'success');
+        // Intentar enviar inmediatamente si hay conexión
+        if (this.emailService.isConfigured()) {
+          try {
+            await this.emailService.sendContactMessage(payload);
+            console.log('[Contact] Email enviado correctamente');
+            await this.presentToast('Mensaje enviado correctamente.', 'success');
+          } catch (emailError) {
+            console.error('[Contact] Error enviando email:', emailError);
+            // Si falla, encolar para reintento
+            this.pendingEmailsService.enqueueContactEmail(payload);
+            await this.presentToast('Mensaje guardado, pero el email se enviará más tarde.', 'warning');
+          }
+        } else {
+          await this.presentToast('Mensaje enviado correctamente.', 'success');
+        }
       }
+      
       this.form.reset();
     } catch (err) {
       console.error('Error guardando mensaje de contacto:', err);
       if (!this.onlineService.isOnline) {
+        // Ya se encoló o se mostrará el toast de offline
+        this.pendingEmailsService.enqueueContactEmail(payload);
         await this.presentToast('Mensaje guardado sin conexión, se enviará al reconectar', 'warning');
       } else {
         await this.presentToast('Error al enviar el mensaje. Intenta de nuevo.', 'danger');
