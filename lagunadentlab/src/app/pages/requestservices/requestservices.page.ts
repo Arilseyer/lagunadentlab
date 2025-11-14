@@ -25,6 +25,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 import { OwnerEmailService } from '../../services/owner-email.service';
+import { PendingEmailsService } from '../../services/pending-emails.service';
 
 @Component({
   selector: 'app-requestservices',
@@ -67,6 +68,8 @@ export class RequestservicesPage implements OnInit, OnDestroy {
   isLoggedIn = false;
   loading = false;
   private userSubscription?: Subscription;
+  private onlineSub?: Subscription;
+  private offlineToastShown = false;
 
   customPopoverOptions = {
     header: 'Tipo de servicio',
@@ -84,7 +87,8 @@ export class RequestservicesPage implements OnInit, OnDestroy {
     private dataService: DataService,
     private authService: AuthService,
     private onlineService: OnlineService,
-    private ownerEmailService: OwnerEmailService
+    private ownerEmailService: OwnerEmailService,
+    private pendingEmailsService: PendingEmailsService
   ) {
     // Registrar iconos
     addIcons({documentTextOutline,calendarOutline,timeOutline,arrowForwardOutline,sendOutline,locationOutline,callOutline,logoWhatsapp,logoFacebook,mailOutline});
@@ -129,12 +133,33 @@ export class RequestservicesPage implements OnInit, OnDestroy {
         this.form.patchValue({ name: '', email: '', phone: '' });
       }
     });
+
+    // Mostrar aviso específico cuando no hay conexión en esta página de solicitud
+    this.onlineSub = this.onlineService.isOnline$.subscribe(async (isOnline) => {
+      if (!isOnline) {
+        if (!this.offlineToastShown) {
+          // Aviso claro para el formulario de servicios
+          await this.presentToast('Estás sin conexión: la cita no se enviará hasta que vuelvas a tener conexión.', 'warning');
+          this.offlineToastShown = true;
+        }
+      } else {
+        // Si veníamos de estar offline en esta página, anuncia reconexión
+        if (this.offlineToastShown) {
+          await this.presentToast('Conexión recuperada: tus datos se sincronizarán automáticamente.', 'success');
+        }
+        // Permitir mostrar el aviso de nuevo si se pierde la conexión otra vez
+        this.offlineToastShown = false;
+      }
+    });
   }
 
   ngOnDestroy() {
     // Limpiar suscripción para evitar memory leaks
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
+    }
+    if (this.onlineSub) {
+      this.onlineSub.unsubscribe();
     }
     // Asegurar que no quede foco dentro de esta página cuando se destruya
     this.blurActiveElement();
@@ -241,31 +266,51 @@ export class RequestservicesPage implements OnInit, OnDestroy {
     console.log('[RequestServices] Date value:', this.form.value.date);
     console.log('[RequestServices] Time value:', this.form.value.time);
     
-    // Verificar estado de conexión ANTES de intentar guardar
-    const isOffline = !this.onlineService.isOnline;
+    // Verificar estado de conexión ANTES de intentar guardar (maneja carreras)
+    let isOffline =
+      !this.onlineService.isOnline ||
+      this.onlineService.wasRecentlyOffline(2500) ||
+      (typeof navigator !== 'undefined' && navigator && navigator.onLine === false);
+
+    if (!isOffline) {
+      const reachable = await this.onlineService.isNetworkReachable(1200);
+      isOffline = !reachable;
+    }
+    // Si está offline, informar inmediatamente al usuario antes de guardar
+    if (isOffline) {
+      await this.presentToast('Cita guardada localmente. Verifica tu conexión para que se sincronice.', 'warning');
+    }
     
     try {
       await this.dataService.saveAppointment(appointment);
       
-      // Intentar enviar correo inmediatamente si hay conexión
-      if (!isOffline && this.ownerEmailService.isConfigured()) {
-        try {
-          console.log('[RequestServices] Intentando enviar email de notificación...');
-          await this.ownerEmailService.sendAppointmentNotification(appointment);
-          console.log('[RequestServices] ✅ Email de notificación enviado correctamente');
-          await this.presentToast('Cita solicitada y notificación enviada correctamente.', 'success');
-        } catch (emailError) {
-          console.error('[RequestServices] ❌ Error enviando notificación de correo:', emailError);
-          // Guardar exitoso pero email falló
-          await this.presentToast('Cita guardada, pero no se pudo enviar la notificación por email.', 'warning');
+      // Enviar email o encolarlo si está offline
+      if (isOffline) {
+        // Encolar para enviar cuando recupere conexión
+        if (this.ownerEmailService.isConfigured()) {
+          this.pendingEmailsService.enqueueAppointmentEmail(appointment);
+          console.log('[RequestServices] Email de cita encolado para envío posterior');
         }
-      } else if (isOffline) {
-        // Guardado offline - el email no se enviará
-        await this.presentToast('Cita guardada localmente. Verifica tu conexión para que se sincronice.', 'warning');
+        // Toast ya mostrado antes del guardado
       } else {
-        // Online pero email no configurado
-        console.warn('[RequestServices] Email NO enviado - Servicio no configurado');
-        await this.presentToast('Cita guardada correctamente.', 'success');
+        // Intentar enviar correo inmediatamente si hay conexión
+        if (this.ownerEmailService.isConfigured()) {
+          try {
+            console.log('[RequestServices] Intentando enviar email de notificación...');
+            await this.ownerEmailService.sendAppointmentNotification(appointment);
+            console.log('[RequestServices] ✅ Email de notificación enviado correctamente');
+            await this.presentToast('Cita solicitada y notificación enviada correctamente.', 'success');
+          } catch (emailError) {
+            console.error('[RequestServices] ❌ Error enviando notificación de correo:', emailError);
+            // Si falla, encolar para reintento
+            this.pendingEmailsService.enqueueAppointmentEmail(appointment);
+            await this.presentToast('Cita guardada, pero el email se enviará más tarde.', 'warning');
+          }
+        } else {
+          // Online pero email no configurado
+          console.warn('[RequestServices] Email NO enviado - Servicio no configurado');
+          await this.presentToast('Cita guardada correctamente.', 'success');
+        }
       }
       
       // Navegar al perfil para ver la cita recién creada
@@ -274,7 +319,7 @@ export class RequestservicesPage implements OnInit, OnDestroy {
       console.error('Error al guardar la cita (appointments/create):', err);
       // Si hay error pero estamos offline, aún podría quedar encolado
       if (isOffline) {
-        await this.presentToast('Cita guardada localmente, se sincronizará al reconectar.', 'warning');
+        // Ya avisamos previamente que quedó guardada localmente; evitar duplicar
         this.router.navigate(['/profile']);
       } else {
         await this.presentToast('Error al guardar la cita. Intenta de nuevo.', 'danger');

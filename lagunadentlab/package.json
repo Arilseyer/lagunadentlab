@@ -34,6 +34,8 @@
     "axios": "^1.13.1",
     "firebase": "^12.5.0",
     "ionicons": "^7.0.0",
+    "lottie-web": "^5.13.0",
+    "ngx-lottie": "^20.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

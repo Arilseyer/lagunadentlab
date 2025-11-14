@@ -1,4 +1,11 @@
 <ion-app>
+  <!-- Animación de carga global -->
+  <app-lottie-loader 
+    *ngIf="(loading$ | async)"
+    [fullscreen]="true"
+    [message]="'Cargando...'"
+  ></app-lottie-loader>
+
   <!-- Banner global de conectividad -->
   <div *ngIf="(isOnline$ | async) === false" class="offline-banner" role="status" aria-live="polite">
     <ion-chip color="medium" [outline]="true">

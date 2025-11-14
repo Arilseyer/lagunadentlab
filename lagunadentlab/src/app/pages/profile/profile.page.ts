@@ -39,13 +39,16 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { LottieLoaderComponent } from '../../components/lottie-loader/lottie-loader.component';
 import { AuthService } from '../../services/auth.service';
 import { DataService, CITA_ESTADOS } from '../../services/data.service';
 import { ToastController, AlertController } from '@ionic/angular';
 import { OnlineService } from '../../services/online.service';
+import { PendingProfileService } from '../../services/pending-profile.service';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 import { collection, doc, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from 'src/environments/firebase';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -71,6 +74,7 @@ import { db } from 'src/environments/firebase';
     IonInput,
     IonButton,
     NavbarComponent,
+    LottieLoaderComponent,
     TranslatePipe
   ],
   templateUrl: './profile.page.html',
@@ -86,6 +90,7 @@ export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
   appointments: any[] = [];
   private unsubscribeAppointments?: () => void;
   private unsubscribeProfile?: () => void;
+  private onlineSub?: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -94,7 +99,8 @@ export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
     private fb: FormBuilder,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
-    private onlineService: OnlineService
+    private onlineService: OnlineService,
+    private pendingProfileService: PendingProfileService
   ) { 
     addIcons({
       mailOutline,
@@ -127,6 +133,27 @@ export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
         this.router.navigateByUrl('/home', { replaceUrl: true });
       }
     });
+
+    // Suscribirse a cambios de conexión para mostrar toasts específicos de la página
+    this.onlineSub = this.onlineService.isOnline$.subscribe(async (isOnline) => {
+      if (!isOnline) {
+        await this.presentToast(
+          'Estás sin conexión: los cambios en tu perfil no se guardarán hasta reconectar',
+          'warning',
+          4000
+        );
+      }
+    });
+
+    // Verificar si hay cambios pendientes al iniciar
+    if (this.pendingProfileService.hasPendingUpdate()) {
+      await this.presentToast(
+        'Tienes cambios pendientes que se sincronizarán al reconectar',
+        'warning',
+        4000
+      );
+    }
+
     await this.loadUserData();
   }
 
@@ -185,6 +212,20 @@ export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
         name: this.userProfile?.name || '',
         phone: this.userProfile?.phone || ''
       });
+    } else {
+      // Al iniciar edición, cargar cambios pendientes si existen
+      const pending = this.pendingProfileService.getPendingUpdate();
+      if (pending && pending.uid === this.currentUser?.uid) {
+        this.editForm.patchValue({
+          name: pending.name,
+          phone: pending.phone
+        });
+        this.presentToast(
+          'Cambios pendientes restaurados',
+          'info',
+          2000
+        );
+      }
     }
   }
 
@@ -196,6 +237,33 @@ export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
     }
 
     const { name, phone } = this.editForm.value;
+
+    // Detectar si está offline ANTES de mostrar el alert para evitar que se trabe
+    const wasOffline = this.onlineService.wasRecentlyOffline(2000);
+    const isNetworkReachable = await this.onlineService.isNetworkReachable(1200);
+    const isOffline = wasOffline || !navigator.onLine || !isNetworkReachable;
+
+    if (isOffline) {
+      // Guardar temporalmente en localStorage
+      this.pendingProfileService.savePendingUpdate(
+        this.currentUser.uid,
+        name,
+        phone,
+        this.currentUser.email
+      );
+
+      // Mostrar toast inmediato sin alert
+      await this.presentToast(
+        'Cambios guardados temporalmente. Se sincronizarán al reconectar',
+        'warning',
+        4000
+      );
+
+      // Cerrar modo edición para que el usuario vea que se "guardó"
+      this.isEditing = false;
+      return;
+    }
+
     const alert = await this.alertCtrl.create({
       header: '¿Guardar cambios?',
       message: '¿Estás seguro de que deseas guardar los cambios en tu perfil?',
@@ -214,6 +282,10 @@ export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
               });
               this.userProfile = await this.dataService.getUserProfile(this.currentUser.uid);
               this.isEditing = false;
+              
+              // Limpiar cambios pendientes si existían
+              this.pendingProfileService.clearPendingUpdate();
+              
               await this.presentToast('Perfil actualizado correctamente', 'success');
             } catch (error) {
               console.error('Error saving profile:', error);
@@ -292,6 +364,7 @@ export class ProfilePage implements OnInit, ViewWillEnter, OnDestroy {
   ngOnDestroy(): void {
     try { this.unsubscribeAppointments?.(); } catch {}
     try { this.unsubscribeProfile?.(); } catch {}
+    try { this.onlineSub?.unsubscribe(); } catch {}
   }
 
   private startRealtimeSubscriptions(uid: string) {
