@@ -16,13 +16,28 @@ export class AuthService {
   private userSubject = new BehaviorSubject<any>(undefined);
   user$: Observable<any> = this.userSubject.asObservable();
   private authChecked = false;
+  private pushNotificationService?: any; // Lazy load to avoid circular dependency
 
   constructor() {
     auth.onAuthStateChanged(async user => {
       this.userSubject.next(user);
       this.authChecked = true;
-      // Limpieza: sin logs ni alertas innecesarias
+      
+      // Inicializar push notifications cuando hay usuario autenticado
+      if (user && this.pushNotificationService) {
+        await this.pushNotificationService.initialize();
+      } else if (!user && this.pushNotificationService) {
+        await this.pushNotificationService.cleanup();
+      }
     });
+  }
+
+  /**
+   * Inyectar el servicio de push notifications (lazy load)
+   * Se llama desde app.component.ts para evitar dependencia circular
+   */
+  setPushNotificationService(service: any): void {
+    this.pushNotificationService = service;
   }
 
   async resetPassword(email: string) {

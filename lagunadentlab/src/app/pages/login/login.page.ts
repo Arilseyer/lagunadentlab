@@ -19,6 +19,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { OnlineService } from '../../services/online.service';
 import { Subscription } from 'rxjs';
 import { TranslatePipe } from '../../pipes/translate.pipe';
+import { PushNotificationService } from '../../services/push-notification.service';
 
 @Component({
   selector: 'app-login',
@@ -50,7 +51,8 @@ export class LoginPage implements OnInit, OnDestroy {
     private router: Router,
     private toastCtrl: ToastController,
     private online: OnlineService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private pushNotificationService: PushNotificationService
   ) {
     addIcons({
       logInOutline,
@@ -128,6 +130,11 @@ export class LoginPage implements OnInit, OnDestroy {
   this.errorMessage = null;
   await this.presentToast('¡Login exitoso!', 'success');
       this.router.navigateByUrl('/profile', { replaceUrl: true });
+
+      // Inicializar notificaciones push nativas (no bloquear UI)
+      this.pushNotificationService.initialize().catch(e => 
+        console.error('Error inicializando push notifications:', e)
+      );
 
       // Guardar perfil si no existe (no bloquear UI)
       if (user && user.emailVerified) {

@@ -10,6 +10,7 @@ import { ApprovalNotificationService } from './services/approval-notification.se
 import { PendingEmailsService } from './services/pending-emails.service';
 import { PendingProfileService } from './services/pending-profile.service';
 import { LottieLoaderComponent } from './components/lottie-loader/lottie-loader.component';
+import { PushNotificationService } from './services/push-notification.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent {
     private router: Router, 
     private approvalNotifications: ApprovalNotificationService,
     private pendingEmailsService: PendingEmailsService,
-    private pendingProfileService: PendingProfileService
+    private pendingProfileService: PendingProfileService,
+    private pushNotificationService: PushNotificationService
   ) {
     this.isOnline$ = this.onlineService.isOnline$;
 
@@ -53,5 +55,9 @@ export class AppComponent {
 
     // Iniciar listener de notificaciones de aprobación de citas
     this.approvalNotifications.start();
+    
+    // Configurar push notifications (lazy injection para evitar dependencia circular)
+    // El servicio de auth llamará a initialize() cuando el usuario inicie sesión
+    // Note: AuthService no puede importar PushNotificationService directamente debido a dependencia circular
   }
 }
