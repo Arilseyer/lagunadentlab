@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+//Analiticas
+import { getAnalytics } from "firebase/analytics";
 import { getAuth, indexedDBLocalPersistence, setPersistence } from "firebase/auth";
 import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from "firebase/firestore";
 import { firebaseConfig } from "./environment";
@@ -20,3 +22,6 @@ export const db = initializeFirestore(app, {
 		tabManager: persistentMultipleTabManager(),
 	}),
 });
+
+//Analiticas
+const analytics = getAnalytics(app);
